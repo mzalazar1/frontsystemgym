@@ -1,0 +1,45 @@
+.prodABM {
+    background-color: red;
+    height: 50px;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    margin: 14PX;
+    cursor: pointer;
+}
+.editProd,
+.elimProd,
+.confElimProd,
+.cancElimProd {
+    background-color: blue;
+    width: 40%;
+    font-weight: 500;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin: 10PX;
+    cursor: pointer;
+}
+.elimProd {
+    background-color: red;
+}
+.confElimProd,
+.cancElimProd {
+    font-size: medium;
+    background-color: red;
+    width: 25%;
+    margin-left: 15%;
+    height: 50px;
+}
+.cancElimProd {
+    background-color: gray;
+    border: 1px solid;
+    border-color: black;
+    margin-right: 15%;
+}

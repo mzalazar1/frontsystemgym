@@ -1,0 +1,18 @@
+h1 {
+    color: darkgray;
+}
+h2 {
+    font-size: larger;
+}
+h3 {
+    color: lightgrey;
+}
+.texto {
+    text-align: center;
+    max-width: 75%;
+}
+.cuerpo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

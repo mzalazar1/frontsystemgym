@@ -1,0 +1,89 @@
+/* Index.module.css */
+
+/* Estilos para el contenedor principal */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /* Altura del 100% de la ventana visible */
+}
+
+/* Estilos para el formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estilos para los label */
+form label {
+    font-size: 16px;
+    color: darkgray;
+    margin-bottom: 10px;
+}
+
+/* Estilos para los inputs */
+form input {
+    width: 300px;
+    height: 30px;
+    padding: 5px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Estilos para el botón */
+form input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+/* Estilos para el botón de cambio de registro */
+form button {
+    background-color: transparent;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+}
+
+.formContainer {
+    width: 100%;
+    max-width: 400px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* .buttonContainer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.buttonContainer {
+    /* Agregamos estilos para centrar horizontalmente */
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    /* Ajusta esto según lo que necesites */
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+/* Estilos para el h1 y h2 */
+h1,
+h2 {
+    text-align: center;
+}

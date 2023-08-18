@@ -1,0 +1,39 @@
+Table {
+    border: 1px solid;
+    border-radius: 5px;
+    margin: 0 auto;
+    width: 90%;
+    text-align: center;
+}
+tr,
+th {
+    height: 35px;
+    border: 1px solid
+}
+th, 
+td {
+    border: 1px solid;
+    border-radius: 5px;
+    margin: 0;
+}
+.tdDatos,
+.thDatos {
+    width: 125px;
+}
+.tdBotones,
+.thBotones {
+    width: 200px;
+}
+.elimProd {
+    background-color: blue;
+    width: 40%;
+    font-weight: 500;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin: 10PX;
+    background-color: red;
+    cursor: pointer;
+}
