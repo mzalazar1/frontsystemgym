@@ -6,44 +6,44 @@ import Modal from "../Modal/Modal";
 import { useState } from "react";
 
 const Tabla = () => {
-    let products = useSelector((state) => state.redProduct.products);
-    const [delProd, setDelProd] = useState(false)
-    const [eliProd, setEliProd] = useState()
-    const delProdu = (prod) => {
-        setEliProd(prod)
-        setDelProd(true)
+    let socios = useSelector((state) => state.redSocio.socios);
+    const [delSocio, setDelSocio] = useState(false)
+    const [eliSocio, setEliSocio] = useState()
+    const delSoc = (socio) => {
+        setEliSocio(socio)
+        setDelSocio(true)
     }
-    const cancDelProd = () => {
-        setDelProd(false)
+    const cancDelSocio = () => {
+        setDelSocio(false)
     }
     return (
-        <div>    
+        <div>
             {
-            delProd ? 
-            <Modal 
-                texto='¿Desea eliminar el producto?'
-                cerrar={cancDelProd}
-                producto={eliProd}
-                tipo='elimProd' /> : <div></div>
+                delSocio ?
+                    <Modal
+                        texto='¿Desea eliminar el socio?'
+                        cerrar={cancDelSocio}
+                        socio={eliSocio}
+                        tipo='elimSocio' /> : <div></div>
             }
-            {products.length > 0 ? (
+            {socios.length > 0 ? (
                 <div>
-                    {products.map((product) => (
-                        <table className={styles.Table} key={product.id}>
+                    {socios.map((socio) => (
+                        <table className={styles.Table} key={socio.id}>
                             <tbody>
                                 <tr>
-                                    <td className={styles.tdDatos}>{product.id}</td>
-                                    <td className={styles.tdDatos}>{product.name}</td>
-                                    <td className={styles.tdDatos}>{product.price}</td>
-                                    <td className={styles.tdDatos}>{product.stock}</td>
-                                    <td className={styles.tdDatos}>{product.description}</td>
+                                    <td className={styles.tdDatos}>{socio.id}</td>
+                                    <td className={styles.tdDatos}>{socio.name}</td>
+                                    <td className={styles.tdDatos}>{socio.price}</td>
+                                    <td className={styles.tdDatos}>{socio.stock}</td>
+                                    <td className={styles.tdDatos}>{socio.description}</td>
                                     <td className={styles.tdBotones}>
-                                        <Link to={`/edit/${product.id}`}>
-                                        <Boton
-                                                tipo='editProd'
+                                        <Link to={`/edit/${socio.id}`}>
+                                            <Boton
+                                                tipo='editSocio'
                                                 texto='Editar' />
                                         </Link>
-                                        <button className={styles.elimProd} onClick={() => delProdu(product)}> Eliminar </button>
+                                        <button className={styles.elimSocio} onClick={() => delSoc(socio)}> Eliminar </button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -51,7 +51,7 @@ const Tabla = () => {
                     ))}
                 </div>
             ) : (
-                <h4>No hay productos cargados</h4>
+                <h4>No hay socios cargados</h4>
             )}
         </div>
     );

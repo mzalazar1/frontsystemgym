@@ -1,98 +1,119 @@
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Boton from "../../Components/SharedComponents/Boton";
-import { editProd } from '../../redux/Productos/prod.actions';
+import { editSocio } from '../../redux/Socios/soc.actions';
 import styles from './Form.module.css';
 import Modal from "../Modal/Modal";
 
-const EditProd = () => {
-    const [selectedProd, setSelectedProd] = useState({});
+const EditSocio = () => {
+    const [selectedSocio, setSelectedSocio] = useState({});
     const dispatch = useDispatch();
-    const products = useSelector((state) => state.redProduct.products);
+    const socios = useSelector((state) => state.redSocio.socios);
     const currentId = useParams();
-    const [modEditProd, setModEditProd] = useState(false)
+    const [modEditSocio, setModEditSocio] = useState(false)
     const [modFallaEdit, setModFallaEdit] = useState(false)
     const navigate = useNavigate();
     const onSubmitHandler = async () => {
         try {
-            await dispatch(editProd(selectedProd));
-            setModEditProd(false)
+            await dispatch(editSocio(selectedSocio));
+            setModEditSocio(false)
         } catch (error) {
-            setModEditProd(false)
+            setModEditSocio(false)
             setModFallaEdit(true)
             setTimeout(() => {
                 setModFallaEdit(false)
             }, 2000);
         }
-        navigate("/productos");
+        navigate("/socios");
     };
     useEffect(() => {
-        const prodDetail = products.filter(prod => prod.id === currentId.id);
-        setSelectedProd(prodDetail[0]);
+        const socioDetail = socios.filter(socio => socio.id === currentId.id);
+        setSelectedSocio(socioDetail[0]);
     }, [currentId]);
     return (
-        <div className={styles.frmProd}>
+        <div className={styles.frmSocio}>
             {
-                modEditProd ? 
-                <Modal 
-                texto='Aguarde mientras se actualizan los datos'
-                tipo='nuevoProd' /> : <div></div>
+                modEditSocio ?
+                    <Modal
+                        texto='Aguarde mientras se actualizan los datos'
+                        tipo='nuevoSocio' /> : <div></div>
             }
             {
-                modFallaEdit ? 
-                <Modal 
-                texto='Falló al actualizar los datos'
-                tipo='nuevoProd' /> : <div></div>
+                modFallaEdit ?
+                    <Modal
+                        texto='Falló al actualizar los datos'
+                        tipo='nuevoSocio' /> : <div></div>
             }
             <form onSubmit={onSubmitHandler}>
                 <div>
-                <label>Nombre:</label>
+                    <label>Dni:</label>
                     <input
-                    type="text"
-                    onChange = {(e) => setSelectedProd({...selectedProd, name: e.target.value})}
-                    value={selectedProd.name}
-                    name="name"
-                    placeholder="Enter Name"
-                    className={styles.inpForm}
+                        type="text"
+                        onChange={(e) => setSelectedSocio({ ...selectedSocio, dni: e.target.value })}
+                        value={selectedSocio.dni}
+                        name="dni"
+                        placeholder="Enter dni"
+                        className={styles.inpForm}
                     />
                 </div>
                 <div>
-                <label>Precio:</label>
+                    <label>Nombre:</label>
                     <input
-                    type="number"
-                    onChange = {(e) => setSelectedProd({...selectedProd, price: e.target.value})}
-                    value={selectedProd.price}
-                    name="price"
-                    placeholder="Ingrese el precio"
+                        type="text"
+                        onChange={(e) => setSelectedSocio({ ...selectedSocio, name: e.target.value })}
+                        value={selectedSocio.name}
+                        name="name"
+                        placeholder="Enter Name"
+                        className={styles.inpForm}
                     />
                 </div>
                 <div>
-                    <label>Stock:</label>
+                    <label>Apellido:</label>
                     <input
-                    type="number"
-                    onChange = {(e) => setSelectedProd({...selectedProd, stock: e.target.value})}
-                    value={selectedProd.stock}
-                    name="stock"
-                    placeholder="Ingrese el stock"
-                    /> 
-                </div>
-                <div>
-                    <label>Descripcion:</label>
-                    <input
-                    type="text"
-                    onChange = {(e) => setSelectedProd({...selectedProd, description: e.target.value})}
-                    value={selectedProd.description}
-                    name="description"
-                    placeholder="Ingrese la descripción"
+                        type="text"
+                        onChange={(e) => setSelectedSocio({ ...selectedSocio, lastname: e.target.value })}
+                        value={selectedSocio.lastname}
+                        name="lastname"
+                        placeholder="Ingrese el apellido"
                     />
                 </div>
-                <Boton 
-                    tipo='prodABM'
+                <div>
+                    <label>Tel:</label>
+                    <input
+                        type="text"
+                        onChange={(e) => setSelectedSocio({ ...selectedSocio, tel: e.target.value })}
+                        value={selectedSocio.tel}
+                        name="tel"
+                        placeholder="Ingrese el tel"
+                    />
+                </div>
+                <div>
+                    <label>Mail:</label>
+                    <input
+                        type="text"
+                        onChange={(e) => setSelectedSocio({ ...selectedSocio, mail: e.target.value })}
+                        value={selectedSocio.mail}
+                        name="mail"
+                        placeholder="Ingrese el mail"
+                    />
+                </div>
+                <div>
+                    <label>Fecha de nacimiento:</label>
+                    <input
+                        type="date"
+                        onChange={(e) => setSelectedSocio({ ...selectedSocio, fecNac: e.target.value })}
+                        value={selectedSocio.fecNac}
+                        name="fecNac"
+                        placeholder="Ingrese fecha de nacimiento"
+                    />
+                </div>
+                <Boton
+                    tipo='socioABM'
                     texto='Guardar' />
             </form>
         </div>
     );
 };
 
-export default EditProd;
+export default EditSocio;

@@ -1,31 +1,31 @@
 import { useDispatch } from 'react-redux'
 import Boton from '../SharedComponents/Boton'
 import styles from './Modal.module.css'
-import { remProd } from '../../redux/Productos/prod.actions'
+import { remSocio } from '../../redux/Socios/soc.actions'
 
-const Modal = ({ texto, cerrar, producto, tipo }) => {
+const Modal = ({ texto, cerrar, socio, tipo }) => {
     const dispatch = useDispatch()
-    const elimProd = () => {
-        dispatch(remProd(producto))
+    const elimSocio = () => {
+        dispatch(remSocio(socio))
         cerrar()
     }
-    const cancElimProd = () => {
+    const cancElimSocio = () => {
         cerrar()
     }
-    return(
+    return (
         <div className={styles.baseModal}>
             <p className='text'>{texto}</p>
-            {tipo === 'elimProd' ? 
-            <div>
-                <Boton 
-                tipo='confElimProd'
-                texto='Eliminar' 
-                onClick={elimProd}/>
-                <Boton
-                tipo='cancElimProd'
-                texto='Cancelar' 
-                onClick={cancElimProd} />
-            </div> : <div></div> }
+            {tipo === 'elimSocio' ?
+                <div>
+                    <Boton
+                        tipo='confElimSocio'
+                        texto='Eliminar'
+                        onClick={elimSocio} />
+                    <Boton
+                        tipo='cancElimSocio'
+                        texto='Cancelar'
+                        onClick={cancElimSocio} />
+                </div> : <div></div>}
         </div>
     )
 }

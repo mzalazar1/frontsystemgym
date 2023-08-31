@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Home from './Screens/Home';
-import Productos from './Screens/Productos';
+import Socios from './Screens/Socios';
 import FormAdd from './Screens/FormAdd';
 import FormEdit from './Screens/FormEdit';
 import Login from "./Screens/Login";
@@ -13,24 +13,24 @@ const auth = getAuth(firebaseAapp)
 const RoutesAPP = () => {
     const [userLogin, setUserLogin] = useState(false)
     onAuthStateChanged(auth, (userFirebase) => {
-        if(userFirebase) {
+        if (userFirebase) {
             setUserLogin(true)
         } else {
             setUserLogin(false)
         }
     })
 
-    return(
-    <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/productos" element={<Productos />} />
-        <Route path='/login' element={<Login />} />
-        {userLogin ? 
-        <>
-            <Route path="/addproduct" element={<FormAdd />} />
-            <Route path='/edit/:id' element={<FormEdit />} />
-        </> : <></>}
-    </Routes>
+    return (
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/socios" element={<Socios />} />
+            <Route path='/login' element={<Login />} />
+            {userLogin ?
+                <>
+                    <Route path="/addSocio" element={<FormAdd />} />
+                    <Route path='/edit/:id' element={<FormEdit />} />
+                </> : <></>}
+        </Routes>
     )
 }
 

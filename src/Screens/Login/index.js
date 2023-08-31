@@ -25,17 +25,17 @@ const Login = () => {
 
     const regNuevoUsuario = async (email, password) => {
         await createUserWithEmailAndPassword(auth, email, password)
-        .then((usuReg) => {
-            setModNuevoUsu(false)
-            navigate('/')
-        })
-        .catch((error) => {
-            setModNuevoUsu(false)
-            setModFalNueUsu(true)
-            setTimeout(() => {
-                setModFalNueUsu(false)
-            }, 2500);
-        })
+            .then((usuReg) => {
+                setModNuevoUsu(false)
+                navigate('/')
+            })
+            .catch((error) => {
+                setModNuevoUsu(false)
+                setModFalNueUsu(true)
+                setTimeout(() => {
+                    setModFalNueUsu(false)
+                }, 2500);
+            })
     }
 
     const inciarSesion = async (email, password) => {
@@ -44,7 +44,7 @@ const Login = () => {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const token = await userCredential.user.getIdToken();
             Cookies.set('firebaseToken', token, { expires: 1 / 24 });
-            navigate('/productos')  
+            navigate('/socios')
             setModIniSes(false)
         } catch (error) {
             setModIniSes(false)
@@ -59,10 +59,10 @@ const Login = () => {
         setModCieSes(true)
         try {
             await signOut(auth)
-            .then((resp) => {
-                setModCieSes(false)
-                navigate('/')
-            })
+                .then((resp) => {
+                    setModCieSes(false)
+                    navigate('/')
+                })
         } catch {
             setModCieSes(false)
             setModFalCieSes(true)
@@ -70,14 +70,14 @@ const Login = () => {
                 setModFalCieSes(false)
             }, 2500);
         }
-        
+
     }
 
     const sumbitHandler = (e) => {
         e.preventDefault()
         const email = e.target.elements.email.value
         const password = e.target.elements.password.value
-        
+
         if (noUserReg) {
             regNuevoUsuario(email, password)
             setModNuevoUsu(true)
@@ -89,40 +89,40 @@ const Login = () => {
     return (
         <div>
             {
-                modIniSes ? 
-                <Modal 
-                texto='Iniciando sesión'
-                tipo='nuevoProd' /> : <div></div>
+                modIniSes ?
+                    <Modal
+                        texto='Iniciando sesión'
+                        tipo='nuevoSocio' /> : <div></div>
             }
             {
-                modFalIniSes ? 
-                <Modal 
-                texto='Falló el inicio de sesión, verifique los datos'
-                tipo='nuevoProd' /> : <div></div>
+                modFalIniSes ?
+                    <Modal
+                        texto='Falló el inicio de sesión, verifique los datos'
+                        tipo='nuevoSocio' /> : <div></div>
             }
             {
-                modNuevoUsu ? 
-                <Modal 
-                texto='Creando nuevo usuario'
-                tipo='nuevoProd' /> : <div></div>
+                modNuevoUsu ?
+                    <Modal
+                        texto='Creando nuevo usuario'
+                        tipo='nuevoSocio' /> : <div></div>
             }
             {
-                modFalNueUsu ? 
-                <Modal 
-                texto='Falló la creación del usuario, intente nuevamente mas tarde'
-                tipo='nuevoProd' /> : <div></div>
+                modFalNueUsu ?
+                    <Modal
+                        texto='Falló la creación del usuario, intente nuevamente mas tarde'
+                        tipo='nuevoSocio' /> : <div></div>
             }
             {
-                modCieSes ? 
-                <Modal 
-                texto='Cerrando sesión'
-                tipo='nuevoProd' /> : <div></div>
+                modCieSes ?
+                    <Modal
+                        texto='Cerrando sesión'
+                        tipo='nuevoSocio' /> : <div></div>
             }
             {
-                modFalCieSes ? 
-                <Modal 
-                texto='Falló el cierre de sesión, verifique los datos'
-                tipo='nuevoProd' /> : <div></div>
+                modFalCieSes ?
+                    <Modal
+                        texto='Falló el cierre de sesión, verifique los datos'
+                        tipo='nuevoSocio' /> : <div></div>
             }
             <Header />
             <h1>Gestión del perfil</h1>

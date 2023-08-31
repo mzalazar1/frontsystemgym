@@ -1,15 +1,16 @@
 import Cookies from 'js-cookie';
-import { ADD_PROD, EDIT_PROD, REM_PROD } from './prod.types';
+import { ADD_SOCIO, EDIT_SOCIO, REM_SOCIO } from './soc.types';
 
 const getToken = () => {
     const tkn = Cookies.get('firebaseToken');
     return tkn
 }
 
-export const addProd = (prod) => async dispatch => {
+
+export const addSocio = (socio) => async dispatch => {
     const token = getToken()
     try {
-        await fetch("https://final-mcga-back-mz.vercel.app/final_mcga/products/",
+        await fetch("https://backsystemgym.vercel.app/api/socios",
             {
                 method: 'POST',
                 headers: {
@@ -18,18 +19,18 @@ export const addProd = (prod) => async dispatch => {
                 },
                 body:
                     JSON.stringify({
-                        id: prod.id,
-                        name: prod.name,
-                        price: prod.price,
-                        stock: prod.stock,
-                        description: prod.description
+                        id: socio.id,
+                        name: socio.name,
+                        price: socio.price,
+                        stock: socio.stock,
+                        description: socio.description
                     })
             })
             .then(function (respuesta) {
                 if (respuesta.ok) {
                     dispatch({
-                        type: ADD_PROD,
-                        payload: prod
+                        type: ADD_SOCIO,
+                        payload: socio
                     })
                 }
                 else {
@@ -41,10 +42,10 @@ export const addProd = (prod) => async dispatch => {
     }
 };
 
-export const editProd = (prod) => async dispatch => {
+export const editSocio = (socio) => async dispatch => {
     const token = getToken()
     try {
-        await fetch("https://final-mcga-back-mz.vercel.app/final_mcga/products/" + prod.id,
+        await fetch("https://backsystemgym.vercel.app/api/socios" + socio.id,
             {
                 method:
                     "PUT",
@@ -54,18 +55,18 @@ export const editProd = (prod) => async dispatch => {
                 },
                 body:
                     JSON.stringify({
-                        id: prod.id,
-                        name: prod.name,
-                        price: prod.price,
-                        stock: prod.stock,
-                        description: prod.description
+                        id: socio.id,
+                        name: socio.name,
+                        price: socio.price,
+                        stock: socio.stock,
+                        description: socio.description
                     })
             })
             .then(function (respuesta) {
                 if (respuesta.ok) {
                     dispatch({
-                        type: EDIT_PROD,
-                        payload: prod
+                        type: EDIT_SOCIO,
+                        payload: socio
                     })
                 } else {
                     console.log("fallo la edición")
@@ -76,10 +77,10 @@ export const editProd = (prod) => async dispatch => {
     }
 };
 
-export const remProd = (prod) => async dispatch => {
+export const remSocio = (socio) => async dispatch => {
     const token = getToken()
     try {
-        await fetch('https://final-mcga-back-mz.vercel.app/final_mcga/products/' + prod.id,
+        await fetch('https://backsystemgym.vercel.app/api/socios' + socio.id,
             {
                 method: "DELETE",
                 headers: {
@@ -90,8 +91,8 @@ export const remProd = (prod) => async dispatch => {
             .then(function (respuesta) {
                 if (respuesta.ok) {
                     dispatch({
-                        type: REM_PROD,
-                        payload: prod.id
+                        type: REM_SOCIO,
+                        payload: socio.id
                     })
                 } else {
                     console.log("fallo al borrar")
@@ -102,10 +103,10 @@ export const remProd = (prod) => async dispatch => {
     }
 };
 
-export const getProdCloud = () => async dispatch => {
+export const getSocioCloud = () => async dispatch => {
     let respOk = false
     try {
-        await fetch('https://final-mcga-back-mz.vercel.app/final_mcga/products/all')
+        await fetch('https://backsystemgym.vercel.app/api/socios/all')
             .then(function (respuesta) {
                 if (respuesta.ok) {
                     respOk = true
@@ -114,12 +115,12 @@ export const getProdCloud = () => async dispatch => {
             })
             .then((data) => {
                 if (respOk) {
-                    const prodCloud = data.data
-                    if (prodCloud.length > 0) {
-                        prodCloud.map((producto) => {
+                    const socioCloud = data.data
+                    if (socioCloud.length > 0) {
+                        socioCloud.map((socio) => {
                             dispatch({
-                                type: ADD_PROD,
-                                payload: producto
+                                type: ADD_SOCIO,
+                                payload: socio
                             })
                         })
                     }
