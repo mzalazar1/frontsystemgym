@@ -10,7 +10,7 @@ const getToken = () => {
 export const addSocio = (socio) => async dispatch => {
     const token = getToken()
     try {
-        await fetch("https://backsystemgym.vercel.app/api/socios",
+        await fetch("https://backsystemgym.vercel.app/socios",
             {
                 method: 'POST',
                 headers: {
@@ -45,7 +45,7 @@ export const addSocio = (socio) => async dispatch => {
 export const editSocio = (socio) => async dispatch => {
     const token = getToken()
     try {
-        await fetch("https://backsystemgym.vercel.app/api/socios" + socio.id,
+        await fetch("https://backsystemgym.vercel.app/socios" + socio.id,
             {
                 method:
                     "PUT",
@@ -80,7 +80,7 @@ export const editSocio = (socio) => async dispatch => {
 export const remSocio = (socio) => async dispatch => {
     const token = getToken()
     try {
-        await fetch('https://backsystemgym.vercel.app/api/socios' + socio.id,
+        await fetch('https://backsystemgym.vercel.app/socios' + socio.id,
             {
                 method: "DELETE",
                 headers: {
@@ -106,7 +106,7 @@ export const remSocio = (socio) => async dispatch => {
 export const getSocioCloud = () => async dispatch => {
     let respOk = false
     try {
-        await fetch('https://backsystemgym.vercel.app/api/socios/all')
+        await fetch('https://backsystemgym.vercel.app/socios/all')
             .then(function (respuesta) {
                 if (respuesta.ok) {
                     respOk = true
