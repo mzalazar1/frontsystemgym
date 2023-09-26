@@ -7,6 +7,7 @@ import { useState } from "react";
 
 const Tabla = () => {
     let socios = useSelector((state) => state.redSocio.socios);
+    console.log(socios)
     const [delSocio, setDelSocio] = useState(false)
     const [eliSocio, setEliSocio] = useState()
     const delSoc = (socio) => {
@@ -33,10 +34,12 @@ const Tabla = () => {
                             <tbody>
                                 <tr>
                                     <td className={styles.tdDatos}>{socio.id}</td>
+                                    <td className={styles.tdDatos}>{socio.dni}</td>
                                     <td className={styles.tdDatos}>{socio.name}</td>
-                                    <td className={styles.tdDatos}>{socio.price}</td>
-                                    <td className={styles.tdDatos}>{socio.stock}</td>
-                                    <td className={styles.tdDatos}>{socio.description}</td>
+                                    <td className={styles.tdDatos}>{socio.lastname}</td>
+                                    <td className={styles.tdDatos}>{socio.tel}</td>
+                                    <td className={styles.tdDatos}>{socio.mail}</td>
+                                    <td className={styles.tdDatos}>{socio.fechaNac}</td>
                                     <td className={styles.tdBotones}>
                                         <Link to={`/edit/${socio.id}`}>
                                             <Boton

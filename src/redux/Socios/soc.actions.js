@@ -10,7 +10,7 @@ const getToken = () => {
 export const addSocio = (socio) => async dispatch => {
     const token = getToken()
     try {
-        await fetch("https://backsystemgym.vercel.app/socios",
+        await fetch("https://backsystemgym.vercel.app/socios/all",
             {
                 method: 'POST',
                 headers: {
