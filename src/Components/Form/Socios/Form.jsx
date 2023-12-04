@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addSocio } from "../../redux/Socios/soc.actions";
-import SocInput from "../SharedComponents/Input";
-import Boton from "../SharedComponents/Boton";
+import { POST } from "../../../redux/main.actions";
+import SocInput from "../../SharedComponents/Input";
+import Boton from "../../SharedComponents/Boton";
 import styles from './Form.module.css';
-import Modal from "../Modal/Modal";
+import Modal from "../../Modal/Modal";
 
 const Formulario = () => {
     const dispatch = useDispatch();
@@ -14,10 +14,11 @@ const Formulario = () => {
     const [modNewSocio, setModNewSocio] = useState(false)
     const [modFallaSocio, setModFallaSocio] = useState(false)
     const { register, formState: { errors }, handleSubmit } = useForm()
-    const socio = async (data) => {
+
+    const socioHandler = async (socio) => {
         setModNewSocio(true);
         try {
-            await dispatch(addSocio(data));
+            await dispatch(POST((socio), 'socios'));
             setModNewSocio(false)
             navigate('/socios');
         } catch (error) {
@@ -35,7 +36,8 @@ const Formulario = () => {
                 modNewSocio ?
                     <Modal
                         texto='Se estan enviando los datos'
-                        tipo='nuevoSocio' /> : <div></div>
+                        tipo='nuevoSocio'
+                        path='socios' /> : <div></div>
             }
             {
                 modFallaSocio ?
@@ -44,7 +46,7 @@ const Formulario = () => {
                         tipo='nuevoSocio' /> : <div></div>
             }
             <h2>Formulario</h2>
-            <form onSubmit={handleSubmit(socio)}>
+            <form onSubmit={handleSubmit(socioHandler)}>
                 <div>
                     <label>Id: </label>
                     <SocInput
@@ -57,6 +59,19 @@ const Formulario = () => {
                         }}
                     />
                     {errors.id && <span className={styles.claseError}>{errors.id.message}</span>}
+                </div>
+                <div>
+                    <label>Dni: </label>
+                    <SocInput
+                        register={register}
+                        type="text"
+                        placeholder="dni"
+                        name="dni"
+                        rules={{
+                            required: 'ingrese número de Dni'
+                        }}
+                    />
+                    {errors.dni && <span className={styles.claseError}>{errors.dni.message}</span>}
                 </div>
                 <div>
                     <label>Nombre: </label>
@@ -82,7 +97,7 @@ const Formulario = () => {
                             required: 'ingrese apellido'
                         }}
                     />
-                    {errors.price && <span className={styles.claseError}>{errors.lastname.message}</span>}
+                    {errors.lastname && <span className={styles.claseError}>{errors.lastname.message}</span>}
                 </div>
                 <div>
                     <label>Telefono: </label>
@@ -95,7 +110,7 @@ const Formulario = () => {
                             required: 'ingrese telefono'
                         }}
                     />
-                    {errors.stock && <span className={styles.claseError}>{errors.tel.message}</span>}
+                    {errors.tel && <span className={styles.claseError}>{errors.tel.message}</span>}
                 </div>
                 <div>
                     <label>Mail: </label>
@@ -108,7 +123,7 @@ const Formulario = () => {
                             required: 'ingrese mail'
                         }}
                     />
-                    {errors.description && <span className={styles.claseError}>{errors.mail.message}</span>}
+                    {errors.mail && <span className={styles.claseError}>{errors.mail.message}</span>}
                 </div>
                 <div>
                     <label>Fecha de nacimiento: </label>
@@ -121,7 +136,7 @@ const Formulario = () => {
                             required: 'ingrese fecha de nacimiento'
                         }}
                     />
-                    {errors.description && <span className={styles.claseError}>{errors.fechaNac.message}</span>}
+                    {errors.fechaNac && <span className={styles.claseError}>{errors.fechaNac.message}</span>}
                 </div>
                 <Boton
                     tipo='socioABM'

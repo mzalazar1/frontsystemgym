@@ -1,30 +1,35 @@
 import { useDispatch } from 'react-redux'
 import Boton from '../SharedComponents/Boton'
 import styles from './Modal.module.css'
-import { remSocio } from '../../redux/Socios/soc.actions'
+import { DELETE } from '../../redux/main.actions'
 
-const Modal = ({ texto, cerrar, socio, tipo }) => {
+const Modal = ({ texto, cerrar, id, tipo, path }) => {
+    console.log("🚀 ~ file: Modal.jsx:7 ~ Modal ~ id:", id)
+
     const dispatch = useDispatch()
-    const elimSocio = () => {
-        dispatch(remSocio(socio))
+
+    const deleteHandler = () => {
+        dispatch(DELETE(id, path))
         cerrar()
     }
-    const cancElimSocio = () => {
+
+    const cancelHandler = () => {
         cerrar()
     }
+
     return (
         <div className={styles.baseModal}>
             <p className='text'>{texto}</p>
-            {tipo === 'elimSocio' ?
+            {tipo === 'elminiar' ?
                 <div>
                     <Boton
                         tipo='confElimSocio'
                         texto='Eliminar'
-                        onClick={elimSocio} />
+                        onClick={deleteHandler} />
                     <Boton
                         tipo='cancElimSocio'
                         texto='Cancelar'
-                        onClick={cancElimSocio} />
+                        onClick={cancelHandler} />
                 </div> : <div></div>}
         </div>
     )

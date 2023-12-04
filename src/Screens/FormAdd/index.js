@@ -1,9 +1,9 @@
 import HeaderSection from "../../Components/Header/Header";
 import FooterSection from "../../Components/Footer/Footer";
-import Formulario from "../../Components/Form/Form";
+import Formulario from "../../Components/Form/Socios/Form";
 
-const addProd = () => {
-    
+const addSocio = () => {
+
     return (
         <div>
             <HeaderSection />
@@ -13,4 +13,4 @@ const addProd = () => {
     );
 }
 
-export default addProd;
+export default addSocio;

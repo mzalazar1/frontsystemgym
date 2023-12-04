@@ -3,60 +3,58 @@ import { useSelector } from "react-redux";
 import Boton from "../SharedComponents/Boton";
 import styles from './Table.module.css';
 import Modal from "../Modal/Modal";
-import { useState } from "react";
+import { useState, Fragment } from "react";
 
-const Tabla = () => {
-    let socios = useSelector((state) => state.redSocio.socios);
-    console.log(socios)
-    const [delSocio, setDelSocio] = useState(false)
-    const [eliSocio, setEliSocio] = useState()
-    const delSoc = (socio) => {
-        setEliSocio(socio)
-        setDelSocio(true)
+const Tabla = ({ entidad }) => {
+
+    let stateValues = useSelector((state) => state[entidad]);
+
+    const [deleteValue, setDeleteValue] = useState(false);
+    const [id, setId] = useState();
+
+    const deleteHandler = (id) => {
+        setDeleteValue(true)
+        setId(id)
     }
-    const cancDelSocio = () => {
-        setDelSocio(false)
+
+    const cancelHandler = () => {
+        setDeleteValue(false)
     }
+
     return (
-        <div>
+        <Fragment>
             {
-                delSocio ?
-                    <Modal
-                        texto='¿Desea eliminar el socio?'
-                        cerrar={cancDelSocio}
-                        socio={eliSocio}
-                        tipo='elimSocio' /> : <div></div>
+                deleteValue &&
+                <Modal
+                    texto='¿Desea eliminar el registro?'
+                    cerrar={cancelHandler}
+                    id={id}
+                    path={entidad}
+                    tipo='elminiar' />
             }
-            {socios.length > 0 ? (
-                <div>
-                    {socios.map((socio) => (
-                        <table className={styles.Table} key={socio.id}>
-                            <tbody>
-                                <tr>
-                                    <td className={styles.tdDatos}>{socio.id}</td>
-                                    <td className={styles.tdDatos}>{socio.dni}</td>
-                                    <td className={styles.tdDatos}>{socio.name}</td>
-                                    <td className={styles.tdDatos}>{socio.lastname}</td>
-                                    <td className={styles.tdDatos}>{socio.tel}</td>
-                                    <td className={styles.tdDatos}>{socio.mail}</td>
-                                    <td className={styles.tdDatos}>{socio.fechaNac}</td>
-                                    <td className={styles.tdBotones}>
-                                        <Link to={`/edit/${socio.id}`}>
-                                            <Boton
-                                                tipo='editSocio'
-                                                texto='Editar' />
-                                        </Link>
-                                        <button className={styles.elimSocio} onClick={() => delSoc(socio)}> Eliminar </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    ))}
-                </div>
+            {stateValues?.length > 0 ? (
+
+                stateValues.map((element, index) => (
+                    <tr key={element.id + 'tr'}>
+                        {Object.keys(element).map((key, index) => (
+                            !key.startsWith('_') && <td key={element.id + index + 'td'} >{element[key]}</td>
+                        ))}
+
+                        <td key={element.id + index + 'editar'} className={styles.tdBotones}>
+                            <Link to={`/edit/${entidad.id}`}>
+                                <Boton
+                                    tipo='editSocio'
+                                    texto='Editar' />
+                            </Link>
+                            <button key={element.id + 'eliminar'} className={styles.elimSocio} onClick={() => deleteHandler(element.id)}> Eliminar </button>
+                        </td>
+                    </tr >
+                ))
+
             ) : (
                 <h4>No hay socios cargados</h4>
             )}
-        </div>
+        </Fragment>
     );
 };
 export default Tabla;

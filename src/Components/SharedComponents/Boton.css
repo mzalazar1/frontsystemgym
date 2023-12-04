@@ -12,10 +12,10 @@
     cursor: pointer;
 }
 
-.editSoc,
-.elimSoc,
-.confElimSoc,
-.cancElimSoc {
+.editSocio,
+.elimSocio,
+.confElimSocio,
+.cancElimSocio {
     background-color: blue;
     width: 40%;
     font-weight: 500;
@@ -28,12 +28,12 @@
     cursor: pointer;
 }
 
-.elimSoc {
+.elimSocio {
     background-color: red;
 }
 
-.confElimSoc,
-.cancElimSoc {
+.confElimSocio,
+.cancElimSocio {
     font-size: medium;
     background-color: red;
     width: 25%;
@@ -41,7 +41,7 @@
     height: 50px;
 }
 
-.cancElimSoc {
+.cancElimSocio {
     background-color: gray;
     border: 1px solid;
     border-color: black;

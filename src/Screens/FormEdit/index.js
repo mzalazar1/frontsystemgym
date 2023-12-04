@@ -2,8 +2,8 @@ import HeaderSection from "../../Components/Header/Header";
 import FooterSection from "../../Components/Footer/Footer";
 import Formulario from "../../Components/FormEdit/Form";
 
-const editProd = () => {
-    
+const editSoc = () => {
+
     return (
         <div>
             <HeaderSection />
@@ -13,4 +13,4 @@ const editProd = () => {
     );
 }
 
-export default editProd;
+export default editSoc;
