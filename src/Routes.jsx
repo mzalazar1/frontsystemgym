@@ -8,6 +8,12 @@ import Actividades from "./Screens/Actividades";
 import Empleados from "./Screens/Empleados";
 import EstadosCuotas from "./Screens/EstadosCuotas";
 import MetodoPago from "./Screens/MetodoPago";
+import Profesores from "./Screens/Profesores";
+import Logs from "./Screens/PantallaLogs";
+import Roles from "./Screens/Roles";
+import TiposCuotas from "./Screens/TiposCuotas";
+import ValoresCuotas from "./Screens/ValoresCuotas";
+
 import FormAdd from './Screens/FormAdd';
 import FormEdit from './Screens/FormEdit';
 import Login from "./Screens/Login";
@@ -39,6 +45,11 @@ const RoutesAPP = () => {
             <Route path="/empleados" element={<Empleados />} />
             <Route path="/estadosCuota" element={<EstadosCuotas />} />
             <Route path="/metodospagos" element={<MetodoPago />} />
+            <Route path="/profesores" element={<Profesores />} />
+            <Route path="/logs" element={<Logs />} />
+            <Route path="/roles" element={<Roles />} />
+            <Route path="/tiposcuota" element={<TiposCuotas />} />
+            <Route path="/valorescuota" element={<ValoresCuotas />} />
 
             <Route path='/login' element={<Login />} />
             {userLogin ?
