@@ -1,38 +1,41 @@
-import { useDispatch } from 'react-redux'
-import Boton from '../SharedComponents/Boton'
-import styles from './Modal.module.css'
-import { DELETE } from '../../redux/main.actions'
+import { useDispatch } from "react-redux";
+import Boton from "../SharedComponents/Boton";
+import styles from "./Modal.module.css";
+import { DELETE } from "../../redux/main.actions";
 
-const Modal = ({ texto, cerrar, id, tipo, path }) => {
-    console.log("🚀 ~ file: Modal.jsx:7 ~ Modal ~ id:", id)
+const Modal = ({ id, entidad, texto, cerrar, tipo }) => {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch()
+  const deleteHandler = () => {
+    const payload = { id }; // construimos un payload object con solo el ID ya que para DELETE no enviamos ninguna otra data.
 
-    const deleteHandler = () => {
-        dispatch(DELETE(id, path))
-        cerrar()
-    }
+    dispatch(DELETE(entidad, payload));
+    cerrar();
+  };
 
-    const cancelHandler = () => {
-        cerrar()
-    }
+  const cancelHandler = () => {
+    cerrar();
+  };
 
-    return (
-        <div className={styles.baseModal}>
-            <p className='text'>{texto}</p>
-            {tipo === 'elminiar' ?
-                <div>
-                    <Boton
-                        tipo='confElimSocio'
-                        texto='Eliminar'
-                        onClick={deleteHandler} />
-                    <Boton
-                        tipo='cancElimSocio'
-                        texto='Cancelar'
-                        onClick={cancelHandler} />
-                </div> : <div></div>}
+  return (
+    <div className={styles.baseModal}>
+      <p className="text">{texto}</p>
+      {tipo === "elminiar" && (
+        <div>
+          <Boton
+            tipo="confElimSocio"
+            texto="Eliminar"
+            onClick={deleteHandler}
+          />
+          <Boton
+            tipo="cancElimSocio"
+            texto="Cancelar"
+            onClick={cancelHandler}
+          />
         </div>
-    )
-}
+      )}
+    </div>
+  );
+};
 
-export default Modal
+export default Modal;
