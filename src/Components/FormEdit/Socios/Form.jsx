@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { PUT } from "../../../redux/main.actions";
 import Boton from "../../SharedComponents/Boton";
 import styles from "./Form.module.css";
+
 import Modal from "../../Modal/Modal";
 
 const EditSocio = () => {
