@@ -61,7 +61,7 @@ const Tabla = ({ entidad }) => {
                 ))
 
             ) : (
-                <h4>No hay socios cargados</h4>
+                <h4>No hay campos cargados</h4>
             )}
         </Fragment>
     );
