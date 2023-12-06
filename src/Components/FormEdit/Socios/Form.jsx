@@ -3,9 +3,8 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { EDIT } from '../../../redux/main.actions';
-import SocInput from "../../SharedComponents/Input";
 import Boton from "../../SharedComponents/Boton";
-import styles from './Form.module.css';
+import styles from './Form.module.css'
 import Modal from "../../Modal/Modal";
 
 const EditSocio = () => {

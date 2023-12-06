@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import Home from './Screens/Home';
 import Socios from './Screens/Socios';
 import Pagos from './Screens/Pagos';
+import Cuotas from "./Screens/Cuotas";
+import Actividades from "./Screens/Actividades";
 import FormAdd from './Screens/FormAdd';
 import FormEdit from './Screens/FormEdit';
 import Login from "./Screens/Login";
@@ -29,6 +31,8 @@ const RoutesAPP = () => {
             <Route path="/" element={<Home />} />
             <Route path="/socios" element={<Socios />} />
             <Route path="/pagos" element={<Pagos />} />
+            <Route path="/cuotas" element={<Cuotas />} />
+            <Route path="/actividades" element={<Actividades />} />
             <Route path='/login' element={<Login />} />
             {userLogin ?
                 <>
