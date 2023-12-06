@@ -2,7 +2,6 @@ import Cookies from 'js-cookie';
 import { ADD, UPDATE, DEL } from './main.types';
 
 const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
-console.log("🚀 ~ file: main.actions.js:5 ~ REACT_APP_API_URL:", REACT_APP_API_URL)
 
 const getToken = () => {
     const tkn = Cookies.get('firebaseToken');
@@ -14,7 +13,6 @@ export const GET = (path) => async dispatch => {
     try {
         await fetch(`${REACT_APP_API_URL}/${path}/all`)
             .then((respuesta) => {
-                console.log("🚀 ~ file: main.actions.js:14 ~ .then ~ respuesta:", respuesta)
 
                 if (respuesta.ok) {
                     respOk = true
@@ -29,7 +27,6 @@ export const GET = (path) => async dispatch => {
                 if (respOk) {
                     console.log("🚀 ~ file: main.actions.js:26 ~ .then ~ respOk:", respOk)
                     if (respuesta.length > 0) {
-                        console.log("🚀 ~ file: main.actions.js:28 ~ .then ~ respuesta.length:", respuesta.length)
                         dispatch({
                             type: ADD,
                             payload: respuesta

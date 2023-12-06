@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { GET } from "../../redux/main.actions";
 import Boton from "../SharedComponents/Boton";
 import styles from './Table.module.css';
 import Modal from "../Modal/Modal";
-import { useState, Fragment } from "react";
+import { useState, Fragment, useEffect } from "react";
 
 const Tabla = ({ entidad }) => {
+    const dispatch = useDispatch();
 
-    let stateValues = useSelector((state) => state[entidad]);
+    let stateValues = useSelector((state) => state && state[entidad]) || [];
 
     const [deleteValue, setDeleteValue] = useState(false);
     const [id, setId] = useState();
@@ -20,6 +23,12 @@ const Tabla = ({ entidad }) => {
     const cancelHandler = () => {
         setDeleteValue(false)
     }
+
+    useEffect(() => {
+        if (stateValues?.length === 0) {
+            dispatch(GET(entidad));
+        }
+    }, [dispatch])
 
     return (
         <Fragment>
@@ -41,7 +50,7 @@ const Tabla = ({ entidad }) => {
                         ))}
 
                         <td key={element.id + index + 'editar'} className={styles.tdBotones}>
-                            <Link to={`/edit/${entidad.id}`}>
+                            <Link to={`/edit/${element.id}`}>
                                 <Boton
                                     tipo='editSocio'
                                     texto='Editar' />

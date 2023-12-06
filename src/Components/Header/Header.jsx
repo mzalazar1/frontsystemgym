@@ -13,6 +13,9 @@ const HeaderSection = () => {
         <Link to="/socios">
           Socios
         </Link>
+        <Link to="/pagos">
+          Pagos
+        </Link>
         <Link to="/login">
           Perfil
         </Link>

@@ -1,3 +1,12 @@
+.estadoCuotaABM,
+.logABM,
+.metodoPagoABM,
+.pagoABM,
+.profesorABM,
+.rolABM,
+.tipoABM,
+.empleadoABM,
+.socioABM,
 .socABM {
     background-color: red;
     height: 50px;
@@ -12,6 +21,17 @@
     cursor: pointer;
 }
 
+.editValoresCuota,
+.editTiposCuota,
+.editRoles,
+.editProfesores,
+.editLog,
+.editPagos,
+.editMetodoPago,
+.editEstadoCuota,
+.editEmpleados,
+.editActividad,
+.editCuota,
 .editSocio,
 .elimSocio,
 .confElimSocio,

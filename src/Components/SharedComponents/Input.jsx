@@ -1,9 +1,11 @@
-const SocInput = ({ register, type, placeholder, value, name, rules, onChange }) => {
+const SocInput = ({ value, onChange }) => {
     return (
-        <input {...register(`${name}`, rules)} type={type} value={value} onChange={onChange} placeholder={placeholder} name={name} >
-        </input>
-    )
+        <input
+            type="text"
+            value={value}
+            onChange={onChange}
+        />
+    );
 }
 
 export default SocInput;
-

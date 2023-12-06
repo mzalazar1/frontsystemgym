@@ -18,9 +18,6 @@ const INITIAL_STATE = {
 const reducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case ADD:
-            console.log('payload:', action.payload); //
-            console.log('payload.entidad:', action.payload.entidad); //
-
             return {
                 ...state,
                 [action.payload?.entidad]: [...state[action.payload.entidad], ...action.payload]

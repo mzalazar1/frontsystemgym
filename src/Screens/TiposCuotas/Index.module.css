@@ -1,0 +1,4 @@
+.botTiposCuota {
+    display: flex;
+    justify-content: space-around;
+}
