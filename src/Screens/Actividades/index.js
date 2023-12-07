@@ -30,7 +30,7 @@ const Actividades = () => {
                 <div className={styles.botActividad}>
                     <Link to="/addactividad">
                         <Boton
-                            tipo='socABM'
+                            tipo='actividadABM'
                             texto='Agregar actividad' />
                     </Link>
                 </div>

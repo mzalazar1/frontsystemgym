@@ -8,56 +8,56 @@ import styles from "./Form.module.css";
 
 import Modal from "../../Modal/Modal";
 
-const EditPago = () => {
-    const pagos = useSelector((state) => state.pagos);
+const EditActividad = () => {
+    const actividades = useSelector((state) => state.actividades);
     const dispatch = useDispatch();
     const currentId = useParams();
     const navigate = useNavigate();
-    const [selectedPago, setSelectedPago] = useState(null);
-    const [modEditPago, setModEditPago] = useState(false);
+    const [selectedActividad, setSelectedActividad] = useState(null);
+    const [modEditActividad, setModEditActividad] = useState(false);
     const [modFallaEdit, setModFallaEdit] = useState(false);
     const { register, handleSubmit } = useForm();
 
     const onSubmitHandler = async (data) => {
-        setModEditPago(true);
+        setModEditActividad(true);
         try {
-            await dispatch(PUT("pagos", data)); // para el PUT enviamos el ID
-            setModEditPago(false);
-            navigate("/pagos");
+            await dispatch(PUT("actividades", data)); // para el PUT enviamos el ID
+            setModEditActividad(false);
+            navigate("/actividades");
         } catch (error) {
-            setModEditPago(false);
+            setModEditActividad(false);
             setModFallaEdit(true);
             setTimeout(() => {
                 setModFallaEdit(false);
             }, 2000);
         }
-        navigate("/pagos");
+        navigate("/actividades");
     };
 
     useEffect(() => {
-        const pagosDetail = pagos.filter((pagos) => pagos.id === +currentId.id);
-        setSelectedPago(pagosDetail[0]);
-    }, [currentId, pagos]);
+        const actividadDetail = actividades.filter((actividad) => actividad.id === +currentId.id);
+        setSelectedActividad(actividadDetail[0]);
+    }, [currentId, actividades]);
 
     return (
-        <div className={styles.frmPago}>
-            {modEditPago && (
+        <div className={styles.frmActividad}>
+            {modEditActividad && (
                 <Modal
-                    id={selectedPago?.id}
-                    path={"pagos"}
+                    id={selectedActividad?.id}
+                    path={"actividades"}
                     texto="Aguarde mientras se actualizan los datos"
-                    tipo="nuevoPago"
+                    tipo="nuevoActividad"
                 />
             )}
             {modFallaEdit && (
                 <Modal
-                    id={selectedPago?.id}
-                    path={"pagos"}
+                    id={selectedActividad?.id}
+                    path={"actividades"}
                     texto="Falló al actualizar los datos"
-                    tipo="nuevoPago"
+                    tipo="nuevoActividad"
                 />
             )}
-            {selectedPago != null && (
+            {selectedActividad != null && (
                 <form onSubmit={handleSubmit(onSubmitHandler)}>
                     <h2>Editar datos</h2>
 
@@ -65,30 +65,31 @@ const EditPago = () => {
                         <label>Id: </label>
                         <input
                             {...register("id")}
-                            value={selectedPago?.id}
+                            value={selectedActividad?.id}
                             type="number"
                         />
                     </div>
                     <div>
-                        <label>Fecha: </label>
+                        <label>Nombre: </label>
 
-                        <input {...register("fecha")} defaultValue={selectedPago?.fecha} />
+                        <input {...register("nombre")} defaultValue={selectedActividad?.nombre} />
                     </div>
                     <div>
-                        <label>Importe: </label>
-                        <input {...register("importe")} defaultValue={selectedPago?.importe} />
+                        <label>Horarios: </label>
+                        <input {...register("horarios")} defaultValue={selectedActividad?.horarios} />
                     </div>
                     <div>
-                        <label>Metodo: </label>
+                        <label>Profesor: </label>
                         <input
-                            {...register("metodo")} defaultValue={selectedPago?.metodo} />
+                            {...register("profesor")} defaultValue={selectedActividad?.profesor}
+                        />
                     </div>
 
-                    <Boton tipo="pagosABM" texto="Guardar" />
+                    <Boton tipo="actividadABM" texto="Guardar" />
                 </form>
             )}
         </div>
     );
 };
 
-export default EditPago;
+export default EditActividad;

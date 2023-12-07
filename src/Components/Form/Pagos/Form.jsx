@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { POST } from "../../../redux/main.actions";
-import SocInput from "../../SharedComponents/Input";
 import Boton from "../../SharedComponents/Boton";
 import styles from "./Form.module.css";
 import Modal from "../../Modal/Modal";
@@ -20,6 +19,7 @@ const Formulario = () => {
     } = useForm();
 
     const pagoHandler = async (pago) => {
+        console.log("🚀 ~ file: Form.jsx:36 ~ pagoHandler ~ pago:", pago);
         setModNewPago(true);
         try {
             await dispatch(POST("pagos", pago));
@@ -54,60 +54,28 @@ const Formulario = () => {
             <form onSubmit={handleSubmit(pagoHandler)}>
                 <div>
                     <label>Id: </label>
-                    <SocInput
-                        register={register}
-                        type="text"
-                        placeholder="id"
-                        name="id"
-                        rules={{
-                            required: "ingrese número de ID",
-                        }}
-                    />
+                    <input {...register("id")} />
                     {errors.id && (
                         <span className={styles.claseError}>{errors.id.message}</span>
                     )}
                 </div>
                 <div>
                     <label>Fecha: </label>
-                    <SocInput
-                        register={register}
-                        type="text"
-                        placeholder="fecha"
-                        name="fecha"
-                        rules={{
-                            required: "ingrese Fecha",
-                        }}
-                    />
+                    <input {...register("fecha")} />
                     {errors.fecha && (
                         <span className={styles.claseError}>{errors.fecha.message}</span>
                     )}
                 </div>
                 <div>
                     <label>Importe: </label>
-                    <SocInput
-                        register={register}
-                        type="number"
-                        placeholder="importe"
-                        name="importe"
-                        rules={{
-                            required: "ingrese importe",
-                        }}
-                    />
+                    <input {...register("importe")} />
                     {errors.importe && (
                         <span className={styles.claseError}>{errors.importe.message}</span>
                     )}
                 </div>
                 <div>
                     <label>Metodo: </label>
-                    <SocInput
-                        register={register}
-                        type="text"
-                        placeholder="metodo"
-                        name="metodo"
-                        rules={{
-                            required: "ingrese metodo",
-                        }}
-                    />
+                    <input {...register("metodo")} />
                     {errors.metodo && (
                         <span className={styles.claseError}>{errors.metodo.message}</span>
                     )}

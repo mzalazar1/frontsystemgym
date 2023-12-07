@@ -8,56 +8,56 @@ import styles from "./Form.module.css";
 
 import Modal from "../../Modal/Modal";
 
-const EditPago = () => {
-    const pagos = useSelector((state) => state.pagos);
+const EditCuota = () => {
+    const cuotas = useSelector((state) => state.cuotas);
     const dispatch = useDispatch();
     const currentId = useParams();
     const navigate = useNavigate();
-    const [selectedPago, setSelectedPago] = useState(null);
-    const [modEditPago, setModEditPago] = useState(false);
+    const [selectedCuota, setSelectedCuota] = useState(null);
+    const [modEditCuota, setModEditCuota] = useState(false);
     const [modFallaEdit, setModFallaEdit] = useState(false);
     const { register, handleSubmit } = useForm();
 
     const onSubmitHandler = async (data) => {
-        setModEditPago(true);
+        setModEditCuota(true);
         try {
-            await dispatch(PUT("pagos", data)); // para el PUT enviamos el ID
-            setModEditPago(false);
-            navigate("/pagos");
+            await dispatch(PUT("cuotas", data)); // para el PUT enviamos el ID
+            setModEditCuota(false);
+            navigate("/cuotas");
         } catch (error) {
-            setModEditPago(false);
+            setModEditCuota(false);
             setModFallaEdit(true);
             setTimeout(() => {
                 setModFallaEdit(false);
             }, 2000);
         }
-        navigate("/pagos");
+        navigate("/cuotas");
     };
 
     useEffect(() => {
-        const pagosDetail = pagos.filter((pagos) => pagos.id === +currentId.id);
-        setSelectedPago(pagosDetail[0]);
-    }, [currentId, pagos]);
+        const cuotasDetail = cuotas.filter((cuotas) => cuotas.id === +currentId.id);
+        setSelectedCuota(cuotasDetail[0]);
+    }, [currentId, cuotas]);
 
     return (
-        <div className={styles.frmPago}>
-            {modEditPago && (
+        <div className={styles.frmCuota}>
+            {modEditCuota && (
                 <Modal
-                    id={selectedPago?.id}
-                    path={"pagos"}
+                    id={selectedCuota?.id}
+                    path={"cuotas"}
                     texto="Aguarde mientras se actualizan los datos"
-                    tipo="nuevoPago"
+                    tipo="nuevoCuota"
                 />
             )}
             {modFallaEdit && (
                 <Modal
-                    id={selectedPago?.id}
-                    path={"pagos"}
+                    id={selectedCuota?.id}
+                    path={"cuotas"}
                     texto="Falló al actualizar los datos"
-                    tipo="nuevoPago"
+                    tipo="nuevoCuota"
                 />
             )}
-            {selectedPago != null && (
+            {selectedCuota != null && (
                 <form onSubmit={handleSubmit(onSubmitHandler)}>
                     <h2>Editar datos</h2>
 
@@ -65,30 +65,30 @@ const EditPago = () => {
                         <label>Id: </label>
                         <input
                             {...register("id")}
-                            value={selectedPago?.id}
+                            value={selectedCuota?.id}
                             type="number"
                         />
                     </div>
                     <div>
                         <label>Fecha: </label>
 
-                        <input {...register("fecha")} defaultValue={selectedPago?.fecha} />
+                        <input {...register("fecha")} defaultValue={selectedCuota?.fecha} />
                     </div>
                     <div>
                         <label>Importe: </label>
-                        <input {...register("importe")} defaultValue={selectedPago?.importe} />
+                        <input {...register("importe")} defaultValue={selectedCuota?.importe} />
                     </div>
                     <div>
                         <label>Metodo: </label>
                         <input
-                            {...register("metodo")} defaultValue={selectedPago?.metodo} />
+                            {...register("metodo")} defaultValue={selectedCuota?.metodo} />
                     </div>
 
-                    <Boton tipo="pagosABM" texto="Guardar" />
+                    <Boton tipo="cuotaABM" texto="Guardar" />
                 </form>
             )}
         </div>
     );
 };
 
-export default EditPago;
+export default EditCuota;
