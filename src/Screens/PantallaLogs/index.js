@@ -42,6 +42,7 @@ const Logs = () => {
                             <th className={styles.thDatos}>Usuario</th>
                             <th className={styles.thDatos}>Fecha</th>
                             <th className={styles.thDatos}>Hora</th>
+                            <th className={styles.thDatos}>Acciones</th>
                         </tr>
                     </thead>
 

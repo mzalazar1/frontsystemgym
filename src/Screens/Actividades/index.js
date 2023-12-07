@@ -41,6 +41,7 @@ const Actividades = () => {
                             <th className={styles.thDatos}>Nombre</th>
                             <th className={styles.thDatos}>Horarios</th>
                             <th className={styles.thDatos}>Profesor</th>
+                            <th className={styles.thDatos}>Acciones</th>
                         </tr>
                     </thead>
 

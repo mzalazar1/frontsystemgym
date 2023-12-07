@@ -39,6 +39,7 @@ const TiposCuota = () => {
                         <tr>
                             <th className={styles.thDatos}>Id</th>
                             <th className={styles.thDatos}>Tipo</th>
+                            <th className={styles.thDatos}>Acciones</th>
                         </tr>
                     </thead>
 

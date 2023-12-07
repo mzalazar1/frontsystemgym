@@ -44,6 +44,7 @@ const Empleados = () => {
                             <th className={styles.thDatos}>Mail</th>
                             <th className={styles.thDatos}>Fecha de Nacimiento</th>
                             <th className={styles.thDatos}>Rol</th>
+                            <th className={styles.thDatos}>Acciones</th>
                         </tr>
                     </thead>
 

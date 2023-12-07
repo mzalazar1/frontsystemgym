@@ -39,6 +39,7 @@ const EstadosCuotas = () => {
                         <tr>
                             <th className={styles.thDatos}>Id</th>
                             <th className={styles.thDatos}>Estado Actual</th>
+                            <th className={styles.thDatos}>Acciones</th>
                         </tr>
                     </thead>
 
