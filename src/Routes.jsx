@@ -26,11 +26,19 @@ import FormAddEstadoCuota from './Screens/FormAddEstadoCuota';
 import FormEditMetodoPago from './Screens/FormEditMetodoPago';
 import FormEditTipoCuota from './Screens/FormEditTipoCuota';
 import FormAddTipoCuota from './Screens/FormAddTipoCuota';
+import FormAddValorCuota from './Screens/FormAddValorCuota';
+import FormAddLog from './Screens/FormAddLog';
+import FormAddRol from './Screens/FormAddRol';
+import FormEditValorCuota from './Screens/FormEditValorCuota';
+
 import FormAddMetodoPago from './Screens/FormAddMetodoPago';
 import FormAddProfesor from './Screens/FormAddProfesor';
 import FormEditProfesor from './Screens/FormEditProfesor';
 import FormEdit from './Screens/FormEdit';
 import FormEditPago from './Screens/FormEditPago';
+import FormEditRol from './Screens/FormEditRol';
+import FormEditLog from './Screens/FormEditLog';
+
 import Login from "./Screens/Login";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import firebaseAapp from "./Firebase/credenciales";
@@ -78,14 +86,22 @@ const RoutesAPP = () => {
                     <Route path="/addestadocuota" element={<FormAddEstadoCuota />} />
                     <Route path='/editestadocuota/:id' element={<FormEditEstadoCuota />} />
                     <Route path="/addprofesor" element={<FormAddProfesor />} />
+                    <Route path="/addrol" element={<FormAddRol />} />
                     <Route path="/editprofesor/:id" element={<FormEditProfesor />} />
                     <Route path="/edittipocuota/:id" element={<FormEditTipoCuota />} />
+                    <Route path="/editlog/:id" element={<FormEditLog />} />
+
+
                     <Route path="/addtipocuota" element={<FormAddTipoCuota />} />
+                    <Route path="/addvalorcuota" element={<FormAddValorCuota />} />
+                    <Route path="/addlog" element={<FormAddLog />} />
 
 
                     <Route path="/addmetodopago" element={<FormAddMetodoPago />} />
                     <Route path='/editmetodopago/:id' element={<FormEditMetodoPago />} />
                     <Route path='/editactividad/:id' element={<FormEditActividad />} />
+                    <Route path='/editvalorcuota/:id' element={<FormEditValorCuota />} />
+                    <Route path='/editrol/:id' element={<FormEditRol />} />
 
                     <Route path='/editcuota/:id' element={<FormEditPago />} />
                     <Route path="/addpago" element={<FormAddPago />} />

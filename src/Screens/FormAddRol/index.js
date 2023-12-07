@@ -1,8 +1,8 @@
 import HeaderSection from "../../Components/Header/Header";
 import FooterSection from "../../Components/Footer/Footer";
-import Formulario from "../../Components/FormEdit/Log/Form";
+import Formulario from "../../Components/Form/Roles/Form";
 
-const editLog = () => {
+const addRol = () => {
 
     return (
         <div>
@@ -13,4 +13,4 @@ const editLog = () => {
     );
 }
 
-export default editLog;
+export default addRol;

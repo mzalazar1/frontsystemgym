@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { POST } from "../../../redux/main.actions";
-import SocInput from "../../SharedComponents/Input";
 import Boton from "../../SharedComponents/Boton";
 import styles from "./Form.module.css";
 import Modal from "../../Modal/Modal";
@@ -19,12 +18,13 @@ const Formulario = () => {
     handleSubmit,
   } = useForm();
 
-  const valoresRolHandler = async (rol) => {
+  const rolHandler = async (rol) => {
+    console.log("🚀 ~ file: Form.jsx:36 ~ rolHandler ~ rol:", rol);
     setModNewRol(true);
     try {
-      await dispatch(POST("rol", rol));
+      await dispatch(POST("roles", rol));
       setModNewRol(false);
-      navigate("/valorescuota");
+      navigate("/roles");
     } catch (error) {
       setModNewRol(false);
       setModFallaRol(true);
@@ -51,37 +51,29 @@ const Formulario = () => {
         <div></div>
       )}
       <h2>Formulario</h2>
-      <form onSubmit={handleSubmit(valoresRolHandler)}>
+      <form onSubmit={handleSubmit(rolHandler)}>
         <div>
           <label>Id: </label>
-          <SocInput
-            register={register}
-            type="text"
-            placeholder="id"
-            name="id"
-            rules={{
-              required: "ingrese número de ID",
-            }}
-          />
+          <input {...register("id")} />
           {errors.id && (
             <span className={styles.claseError}>{errors.id.message}</span>
           )}
         </div>
         <div>
+          <label>Usuario: </label>
+          <input {...register("usuario")} />
+          {errors.usuario && (
+            <span className={styles.claseError}>{errors.usuario.message}</span>
+          )}
+        </div>
+        <div>
           <label>Rol: </label>
-          <SocInput
-            register={register}
-            type="text"
-            placeholder="rol"
-            name="rol"
-            rules={{
-              required: "ingrese el rol",
-            }}
-          />
+          <input {...register("rol")} />
           {errors.rol && (
             <span className={styles.claseError}>{errors.rol.message}</span>
           )}
         </div>
+
         <Boton tipo="rolABM" texto="Enviar" />
       </form>
     </div>

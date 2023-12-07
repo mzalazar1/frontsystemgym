@@ -1,8 +1,8 @@
 import HeaderSection from "../../Components/Header/Header";
 import FooterSection from "../../Components/Footer/Footer";
-import Formulario from "../../Components/FormEdit/Log/Form";
+import Formulario from "../../Components/FormEdit/ValoresCuota/Form";
 
-const editLog = () => {
+const editValorCuota = () => {
 
     return (
         <div>
@@ -13,4 +13,4 @@ const editLog = () => {
     );
 }
 
-export default editLog;
+export default editValorCuota;
