@@ -21,8 +21,10 @@ import FormAddActividad from './Screens/FormAddActividad';
 import FormEditActividad from './Screens/FormEditActividad';
 import FormAddEmpleado from './Screens/FormAddEmpleado';
 import FormEditEmpleado from './Screens/FormEditEmpleado';
-import FormEditEstadoCuota from './Screens/FormEditEstadoCuota'
+import FormEditEstadoCuota from './Screens/FormEditEstadoCuota';
 import FormAddEstadoCuota from './Screens/FormAddEstadoCuota';
+import FormEditMetodoPago from './Screens/FormEditMetodoPago';
+import FormAddMetodoPago from './Screens/FormAddMetodoPago';
 import FormEdit from './Screens/FormEdit';
 import FormEditPago from './Screens/FormEditPago';
 import Login from "./Screens/Login";
@@ -70,8 +72,10 @@ const RoutesAPP = () => {
                     <Route path="/addempleado" element={<FormAddEmpleado />} />
                     <Route path="/editempleado" element={<FormEditEmpleado />} />
                     <Route path="/addestadocuota" element={<FormAddEstadoCuota />} />
-
                     <Route path='/editestadocuota/:id' element={<FormEditEstadoCuota />} />
+
+                    <Route path="/addmetodopago" element={<FormAddMetodoPago />} />
+                    <Route path='/editmetodopago/:id' element={<FormEditMetodoPago />} />
                     <Route path='/editactividad/:id' element={<FormEditActividad />} />
 
                     <Route path='/editcuota/:id' element={<FormEditPago />} />

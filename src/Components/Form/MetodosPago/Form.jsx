@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { POST } from "../../../redux/main.actions";
-import SocInput from "../../SharedComponents/Input";
 import Boton from "../../SharedComponents/Boton";
 import styles from "./Form.module.css";
 import Modal from "../../Modal/Modal";
@@ -11,76 +10,58 @@ import Modal from "../../Modal/Modal";
 const Formulario = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [modNewmetodoPago, setModNewmetodoPago] = useState(false);
-  const [modFallametodoPago, setModFallametodoPago] = useState(false);
+  const [modNewMetodoPago, setModNewMetodoPago] = useState(false);
+  const [modFallaMetodoPago, setModFallaMetodoPago] = useState(false);
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
-  const metodopagoHandler = async (metodopago) => {
-    setModNewmetodoPago(true);
+  const metodoPagoHandler = async (metodoPago) => {
+    console.log("🚀 ~ file: Form.jsx:36 ~ metodoPagoHandler ~ metodoPago:", metodoPago);
+    setModNewMetodoPago(true);
     try {
-      await dispatch(POST("metodospagos", metodopago));
-      setModNewmetodoPago(false);
+      await dispatch(POST("metodospagos", metodoPago));
+      setModNewMetodoPago(false);
       navigate("/metodospagos");
     } catch (error) {
-      setModNewmetodoPago(false);
-      setModFallametodoPago(true);
+      setModNewMetodoPago(false);
+      setModFallaMetodoPago(true);
       setTimeout(() => {
-        setModNewmetodoPago(false);
+        setModNewMetodoPago(false);
       }, 2000);
     }
   };
 
   return (
-    <div className={styles.frmmetodoPago}>
-      {modNewmetodoPago ? (
+    <div className={styles.frmMetodoPago}>
+      {modNewMetodoPago ? (
         <Modal
           texto="Se estan enviando los datos"
-          tipo="nuevometodoPago"
+          tipo="nuevoMetodoPago"
           path="metodospagos"
         />
       ) : (
         <div></div>
       )}
-      {modFallametodoPago ? (
-        <Modal
-          texto="Falló al cargar el nuevo metodo de pago"
-          tipo="nuevometodoPago"
-        />
+      {modFallaMetodoPago ? (
+        <Modal texto="Falló al cargar el nuevo metodoPago" tipo="nuevoMetodoPago" />
       ) : (
         <div></div>
       )}
       <h2>Formulario</h2>
-      <form onSubmit={handleSubmit(metodopagoHandler)}>
+      <form onSubmit={handleSubmit(metodoPagoHandler)}>
         <div>
           <label>Id: </label>
-          <SocInput
-            register={register}
-            type="text"
-            placeholder="id"
-            name="id"
-            rules={{
-              required: "ingrese número de ID",
-            }}
-          />
+          <input {...register("id")} />
           {errors.id && (
             <span className={styles.claseError}>{errors.id.message}</span>
           )}
         </div>
         <div>
           <label>Tipo: </label>
-          <SocInput
-            register={register}
-            type="text"
-            placeholder="tipo"
-            name="tipo"
-            rules={{
-              required: "ingrese tipo",
-            }}
-          />
+          <input {...register("tipo")} />
           {errors.tipo && (
             <span className={styles.claseError}>{errors.tipo.message}</span>
           )}
