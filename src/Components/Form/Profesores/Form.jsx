@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { POST } from "../../../redux/main.actions";
-import SocInput from "../../SharedComponents/Input";
 import Boton from "../../SharedComponents/Boton";
 import styles from "./Form.module.css";
 import Modal from "../../Modal/Modal";
@@ -20,11 +19,12 @@ const Formulario = () => {
   } = useForm();
 
   const profesorHandler = async (profesor) => {
+    console.log("🚀 ~ file: Form.jsx:36 ~ profesorHandler ~ profesor:", profesor);
     setModNewProfesor(true);
     try {
       await dispatch(POST("profesores", profesor));
       setModNewProfesor(false);
-      navigate("/profesores");
+      navigate("/profesors");
     } catch (error) {
       setModNewProfesor(false);
       setModFallaProfesor(true);
@@ -40,13 +40,13 @@ const Formulario = () => {
         <Modal
           texto="Se estan enviando los datos"
           tipo="nuevoProfesor"
-          path="socios"
+          path="profesores"
         />
       ) : (
         <div></div>
       )}
       {modFallaProfesor ? (
-        <Modal texto="Falló al cargar el nuevo socio" tipo="nuevoProfesor" />
+        <Modal texto="Falló al cargar el nuevo profesor" tipo="nuevoProfesor" />
       ) : (
         <div></div>
       )}
@@ -54,105 +54,49 @@ const Formulario = () => {
       <form onSubmit={handleSubmit(profesorHandler)}>
         <div>
           <label>Id: </label>
-          <SocInput
-            register={register}
-            type="text"
-            placeholder="id"
-            name="id"
-            rules={{
-              required: "ingrese número de ID",
-            }}
-          />
+          <input {...register("id")} />
           {errors.id && (
             <span className={styles.claseError}>{errors.id.message}</span>
           )}
         </div>
         <div>
           <label>Dni: </label>
-          <SocInput
-            register={register}
-            type="text"
-            placeholder="dni"
-            name="dni"
-            rules={{
-              required: "ingrese número de Dni",
-            }}
-          />
+          <input {...register("dni")} />
           {errors.dni && (
             <span className={styles.claseError}>{errors.dni.message}</span>
           )}
         </div>
         <div>
           <label>Nombre: </label>
-          <SocInput
-            register={register}
-            type="text"
-            placeholder="nombre"
-            name="name"
-            rules={{
-              required: "ingrese nombre",
-            }}
-          />
+          <input {...register("name")} />
           {errors.name && (
             <span className={styles.claseError}>{errors.name.message}</span>
           )}
         </div>
         <div>
           <label>Apellido: </label>
-          <SocInput
-            register={register}
-            type="text"
-            placeholder="apellido"
-            name="lastname"
-            rules={{
-              required: "ingrese apellido",
-            }}
-          />
+          <input {...register("lastname")} />
           {errors.lastname && (
             <span className={styles.claseError}>{errors.lastname.message}</span>
           )}
         </div>
         <div>
           <label>Telefono: </label>
-          <SocInput
-            register={register}
-            type="number"
-            placeholder="tel"
-            name="tel"
-            rules={{
-              required: "ingrese telefono",
-            }}
-          />
+          <input {...register("tel")} />
           {errors.tel && (
             <span className={styles.claseError}>{errors.tel.message}</span>
           )}
         </div>
         <div>
           <label>Mail: </label>
-          <SocInput
-            register={register}
-            type="text"
-            placeholder="mail"
-            name="mail"
-            rules={{
-              required: "ingrese mail",
-            }}
-          />
+          <input {...register("mail")} />
           {errors.mail && (
             <span className={styles.claseError}>{errors.mail.message}</span>
           )}
         </div>
         <div>
           <label>Fecha de nacimiento: </label>
-          <SocInput
-            register={register}
-            type="text"
-            placeholder="fecha de nacimiento"
-            name="fechaNac"
-            rules={{
-              required: "ingrese fecha de nacimiento",
-            }}
-          />
+          <input {...register("fechaNac")} />
           {errors.fechaNac && (
             <span className={styles.claseError}>{errors.fechaNac.message}</span>
           )}

@@ -20,7 +20,7 @@ const Pagos = () => {
                     <div className={styles.botPagos}>
                         <Link to="/addpago">
                             <Boton
-                                tipo='socABM'
+                                tipo='pagoABM'
                                 texto='Agregar pago' />
                         </Link>
                     </div>

@@ -24,7 +24,11 @@ import FormEditEmpleado from './Screens/FormEditEmpleado';
 import FormEditEstadoCuota from './Screens/FormEditEstadoCuota';
 import FormAddEstadoCuota from './Screens/FormAddEstadoCuota';
 import FormEditMetodoPago from './Screens/FormEditMetodoPago';
+import FormEditTipoCuota from './Screens/FormEditTipoCuota';
+import FormAddTipoCuota from './Screens/FormAddTipoCuota';
 import FormAddMetodoPago from './Screens/FormAddMetodoPago';
+import FormAddProfesor from './Screens/FormAddProfesor';
+import FormEditProfesor from './Screens/FormEditProfesor';
 import FormEdit from './Screens/FormEdit';
 import FormEditPago from './Screens/FormEditPago';
 import Login from "./Screens/Login";
@@ -70,9 +74,14 @@ const RoutesAPP = () => {
                     <Route path="/addcuota" element={<FormAddCuota />} />
                     <Route path="/addactividad" element={<FormAddActividad />} />
                     <Route path="/addempleado" element={<FormAddEmpleado />} />
-                    <Route path="/editempleado" element={<FormEditEmpleado />} />
+                    <Route path="/editempleado/:id" element={<FormEditEmpleado />} />
                     <Route path="/addestadocuota" element={<FormAddEstadoCuota />} />
                     <Route path='/editestadocuota/:id' element={<FormEditEstadoCuota />} />
+                    <Route path="/addprofesor" element={<FormAddProfesor />} />
+                    <Route path="/editprofesor/:id" element={<FormEditProfesor />} />
+                    <Route path="/edittipocuota/:id" element={<FormEditTipoCuota />} />
+                    <Route path="/addtipocuota" element={<FormAddTipoCuota />} />
+
 
                     <Route path="/addmetodopago" element={<FormAddMetodoPago />} />
                     <Route path='/editmetodopago/:id' element={<FormEditMetodoPago />} />
