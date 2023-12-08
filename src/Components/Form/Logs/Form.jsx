@@ -19,7 +19,6 @@ const Formulario = () => {
   } = useForm();
 
   const logHandler = async (log) => {
-    console.log("🚀 ~ file: Form.jsx:36 ~ logHandler ~ log:", log);
     setModNewLog(true);
     try {
       await dispatch(POST("logs", log));

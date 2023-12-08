@@ -35,7 +35,7 @@ const EditLog = () => {
     };
 
     useEffect(() => {
-        const logDetail = logs.filter((log) => log.id === +currentId.id);
+        const logDetail = logs.filter((log) => +log.id === +currentId.id);
         setSelectedLog(logDetail[0]);
     }, [currentId, logs]);
 
@@ -64,7 +64,9 @@ const EditLog = () => {
                     <div>
                         <label>Id: </label>
                         <input
-                            {...register("id")}
+                            {...register("id", {
+                                valueAsNumber: true,
+                            })}
                             value={selectedLog?.id}
                             type="number"
                         />

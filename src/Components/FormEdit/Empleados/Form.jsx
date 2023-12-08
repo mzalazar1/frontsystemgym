@@ -35,7 +35,7 @@ const EditEmpleado = () => {
     };
 
     useEffect(() => {
-        const empleadoDetail = empleados.filter((empleado) => empleado.id === +currentId.id);
+        const empleadoDetail = empleados.filter((empleado) => +empleado.id === +currentId.id);
         setSelectedEmpleado(empleadoDetail[0]);
     }, [currentId, empleados]);
 
@@ -64,7 +64,9 @@ const EditEmpleado = () => {
                     <div>
                         <label>Id: </label>
                         <input
-                            {...register("id")}
+                            {...register("id", {
+                                valueAsNumber: true,
+                            })}
                             value={selectedEmpleado?.id}
                             type="number"
                         />

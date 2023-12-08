@@ -20,7 +20,7 @@ const Cuotas = () => {
                     <div className={styles.botCuota}>
                         <Link to="/addcuota">
                             <Boton
-                                tipo='socABM'
+                                tipo='cuotaABM'
                                 texto='Agregar cuota' />
                         </Link>
                     </div>

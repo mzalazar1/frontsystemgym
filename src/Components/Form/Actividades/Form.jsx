@@ -19,7 +19,6 @@ const Formulario = () => {
     } = useForm();
 
     const actividadHandler = async (actividad) => {
-        console.log("🚀 ~ file: Form.jsx:36 ~ actividadHandler ~ actividad:", actividad);
         setModNewActividad(true);
         try {
             await dispatch(POST("actividades", actividad));

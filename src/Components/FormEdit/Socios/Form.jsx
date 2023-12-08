@@ -10,8 +10,10 @@ import Modal from "../../Modal/Modal";
 
 const EditSocio = () => {
     const socios = useSelector((state) => state.socios);
+
+
     const dispatch = useDispatch();
-    const currentId = useParams();
+    const currentId = useParams(null);
     const navigate = useNavigate();
     const [selectedSocio, setSelectedSocio] = useState(null);
     const [modEditSocio, setModEditSocio] = useState(false);
@@ -19,6 +21,8 @@ const EditSocio = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmitHandler = async (data) => {
+
+
         setModEditSocio(true);
         try {
             await dispatch(PUT("socios", data)); // para el PUT enviamos el ID
@@ -35,8 +39,9 @@ const EditSocio = () => {
     };
 
     useEffect(() => {
-        const socioDetail = socios.filter((socio) => socio.id === +currentId.id);
+        const socioDetail = socios.filter((socio) => +socio.id === +currentId.id);
         setSelectedSocio(socioDetail[0]);
+
     }, [currentId, socios]);
 
     return (
@@ -64,7 +69,9 @@ const EditSocio = () => {
                     <div>
                         <label>Id: </label>
                         <input
-                            {...register("id")}
+                            {...register("id", {
+                                valueAsNumber: true,
+                            })}
                             value={selectedSocio?.id}
                             type="number"
                         />

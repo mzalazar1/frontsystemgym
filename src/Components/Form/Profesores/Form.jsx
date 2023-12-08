@@ -19,7 +19,6 @@ const Formulario = () => {
   } = useForm();
 
   const profesorHandler = async (profesor) => {
-    console.log("🚀 ~ file: Form.jsx:36 ~ profesorHandler ~ profesor:", profesor);
     setModNewProfesor(true);
     try {
       await dispatch(POST("profesores", profesor));

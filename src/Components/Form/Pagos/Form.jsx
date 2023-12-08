@@ -19,7 +19,6 @@ const Formulario = () => {
     } = useForm();
 
     const pagoHandler = async (pago) => {
-        console.log("🚀 ~ file: Form.jsx:36 ~ pagoHandler ~ pago:", pago);
         setModNewPago(true);
         try {
             await dispatch(POST("pagos", pago));

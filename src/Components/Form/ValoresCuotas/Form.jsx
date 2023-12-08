@@ -19,7 +19,7 @@ const Formulario = () => {
   } = useForm();
 
   const valorCuotaHandler = async (valorCuota) => {
-    console.log("🚀 ~ file: Form.jsx:36 ~ valorCuotaHandler ~ valorCuota:", valorCuota);
+
     setModNewValorCuota(true);
     try {
       await dispatch(POST("valorescuota", valorCuota));

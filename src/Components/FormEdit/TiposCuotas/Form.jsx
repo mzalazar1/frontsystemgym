@@ -35,7 +35,7 @@ const EditTipoCuota = () => {
     };
 
     useEffect(() => {
-        const tipoCuotaDetail = tiposcuota.filter((tipoCuota) => tipoCuota.id === +currentId.id);
+        const tipoCuotaDetail = tiposcuota.filter((tipoCuota) => +tipoCuota.id === +currentId.id);
         setSelectedTipoCuota(tipoCuotaDetail[0]);
     }, [currentId, tiposcuota]);
 
@@ -64,43 +64,24 @@ const EditTipoCuota = () => {
                     <div>
                         <label>Id: </label>
                         <input
-                            {...register("id")}
+                            {...register("id", {
+                                valueAsNumber: true,
+                            })}
                             value={selectedTipoCuota?.id}
                             type="number"
                         />
                     </div>
                     <div>
-                        <label>Dni: </label>
+                        <label>Descripcion: </label>
 
-                        <input {...register("dni")} defaultValue={selectedTipoCuota?.dni} />
+                        <input {...register("descripcion")} defaultValue={selectedTipoCuota?.descripcion} />
                     </div>
                     <div>
-                        <label>Nombre: </label>
-                        <input {...register("name")} defaultValue={selectedTipoCuota?.name} />
+                        <label>Importe: </label>
+                        <input {...register("importe")} defaultValue={selectedTipoCuota?.importe} />
                     </div>
-                    <div>
-                        <label>Apellido: </label>
-                        <input
-                            {...register("lastname")}
-                            defaultValue={selectedTipoCuota?.lastname}
-                        />
-                    </div>
-                    <div>
-                        <label>Telefono: </label>
-                        <input {...register("tel")} defaultValue={selectedTipoCuota?.tel} />
-                    </div>
-                    <div>
-                        <label>Mail: </label>
-                        <input {...register("mail")} defaultValue={selectedTipoCuota?.mail} />
-                    </div>
-                    <div>
-                        <label>Fecha de nacimiento: </label>
-                        <input
-                            {...register("fechaNac")}
-                            defaultValue={selectedTipoCuota?.fechaNac}
-                        />
-                    </div>
-                    <Boton tipo="socioABM" texto="Guardar" />
+
+                    <Boton tipo="tipoABM" texto="Guardar" />
                 </form>
             )}
         </div>

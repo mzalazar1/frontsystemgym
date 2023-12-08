@@ -19,6 +19,7 @@ const EditCuota = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmitHandler = async (data) => {
+        console.log("🚀 ~ file: Form.jsx:22 ~ onSubmitHandler ~ data:", data)
         setModEditCuota(true);
         try {
             await dispatch(PUT("cuotas", data)); // para el PUT enviamos el ID
@@ -35,9 +36,11 @@ const EditCuota = () => {
     };
 
     useEffect(() => {
-        const cuotasDetail = cuotas.filter((cuotas) => cuotas.id === +currentId.id);
+        const cuotasDetail = cuotas.filter((cuotas) => +cuotas.id === +currentId.id);
+        console.log("🚀 ~ file: Form.jsx:39 ~ useEffect ~ cuotasDetail:", cuotasDetail)
         setSelectedCuota(cuotasDetail[0]);
     }, [currentId, cuotas]);
+
 
     return (
         <div className={styles.frmCuota}>
@@ -64,25 +67,43 @@ const EditCuota = () => {
                     <div>
                         <label>Id: </label>
                         <input
-                            {...register("id")}
+                            {...register("id", {
+                                valueAsNumber: true,
+                            })}
                             value={selectedCuota?.id}
                             type="number"
                         />
                     </div>
                     <div>
-                        <label>Fecha: </label>
+                        <label>Socio: </label>
 
-                        <input {...register("fecha")} defaultValue={selectedCuota?.fecha} />
+                        <input {...register("socio")} defaultValue={selectedCuota?.socio} />
                     </div>
                     <div>
-                        <label>Importe: </label>
-                        <input {...register("importe")} defaultValue={selectedCuota?.importe} />
+                        <label>Estado: </label>
+                        <input {...register("estado")} defaultValue={selectedCuota?.estado} />
                     </div>
                     <div>
-                        <label>Metodo: </label>
+                        <label>Actividad: </label>
                         <input
-                            {...register("metodo")} defaultValue={selectedCuota?.metodo} />
+                            {...register("actividad")} defaultValue={selectedCuota?.actividad} />
                     </div>
+                    <div>
+                        <label>Fecha de Pago: </label>
+                        <input
+                            {...register("fechaPago")} defaultValue={selectedCuota?.fechaPago} />
+                    </div>
+                    <div>
+                        <label>Tipo: </label>
+                        <input
+                            {...register("tipo")} defaultValue={selectedCuota?.tipo} />
+                    </div>
+                    <div>
+                        <label>Valor: </label>
+                        <input
+                            {...register("valor")} defaultValue={selectedCuota?.valor} />
+                    </div>
+
 
                     <Boton tipo="cuotaABM" texto="Guardar" />
                 </form>

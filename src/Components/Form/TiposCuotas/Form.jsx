@@ -19,7 +19,6 @@ const Formulario = () => {
   } = useForm();
 
   const tipoCuotaHandler = async (tipoCuota) => {
-    console.log("🚀 ~ file: Form.jsx:36 ~ tipoCuotaHandler ~ tipoCuota:", tipoCuota);
     setModNewTipoCuota(true);
     try {
       await dispatch(POST("tiposcuota", tipoCuota));

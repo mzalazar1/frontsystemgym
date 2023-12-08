@@ -2,7 +2,7 @@
     color: red;
 }
 
-.frmLogPago {
+.frmLog {
     display: flex;
     flex-direction: column;
     align-items: center;

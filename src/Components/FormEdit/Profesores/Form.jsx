@@ -35,7 +35,7 @@ const EditProfesor = () => {
     };
 
     useEffect(() => {
-        const profesorDetail = profesores.filter((profesor) => profesor.id === +currentId.id);
+        const profesorDetail = profesores.filter((profesor) => +profesor.id === +currentId.id);
         setSelectedProfesor(profesorDetail[0]);
     }, [currentId, profesores]);
 
@@ -64,7 +64,9 @@ const EditProfesor = () => {
                     <div>
                         <label>Id: </label>
                         <input
-                            {...register("id")}
+                            {...register("id", {
+                                valueAsNumber: true,
+                            })}
                             value={selectedProfesor?.id}
                             type="number"
                         />

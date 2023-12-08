@@ -8,15 +8,16 @@ import Modal from "../Modal/Modal";
 import { useState, Fragment, useEffect } from "react";
 
 const Tabla = ({ entidad }) => {
+  console.log("🚀 ~ file: table.jsx:11 ~ Tabla ~ entidad:", entidad)
   const dispatch = useDispatch();
 
   let stateValues = useSelector((state) => state && state[entidad]) || [];
+  console.log("🚀 ~ file: table.jsx:15 ~ Tabla ~ stateValues:", stateValues)
 
   const [deleteValue, setDeleteValue] = useState(false);
   const [id, setId] = useState();
 
   const deleteHandler = (id) => {
-    console.log("🚀 ~ file: table.jsx:19 ~ deleteHandler ~ id:", id);
     setDeleteValue(true);
     setId(id);
   };
@@ -30,6 +31,8 @@ const Tabla = ({ entidad }) => {
       dispatch(GET(entidad));
     }
   }, [dispatch, entidad, stateValues?.length]);
+  console.log("🚀 ~ file: table.jsx:32 ~ useEffect ~ entidad:", entidad)
+
 
   return (
     <Fragment>
@@ -43,21 +46,24 @@ const Tabla = ({ entidad }) => {
         />
       )}
       {stateValues?.length > 0 ? (
-        stateValues.map((entidad, stateValueIndex) => (
+        stateValues.map((element, stateValueIndex) => (
           <tr key={stateValueIndex}>
-            {Object.keys(entidad).map(
+            {Object.keys(element).map(
               (key, keyIndex) =>
-                !key.startsWith("_") && <td key={keyIndex}>{entidad[key]}</td>
+                !key.startsWith("_") && <td key={keyIndex}>{element[key]}</td>
             )}
 
             <td key={stateValueIndex + "td"} className={styles.tdBotones}>
-              <Link to={`/edit/${entidad.id}`}>
+              {/* esta hardcodeado para socios tendria que ser algo asi edit${} */}
+
+              <Link to={`/edit${entidad}/${element.id}`}>
                 <Boton tipo="editSocio" texto="Editar" />
               </Link>
+
               <Boton
                 tipo="editSocio"
                 texto="Eliminar"
-                onClick={() => deleteHandler(entidad.id)}
+                onClick={() => deleteHandler(element.id)}
               />
             </td>
           </tr>

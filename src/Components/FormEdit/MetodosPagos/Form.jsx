@@ -31,11 +31,11 @@ const EditMetodoPago = () => {
                 setModFallaEdit(false);
             }, 2000);
         }
-        navigate("/metodosPago");
+        navigate("/metodospagos");
     };
 
     useEffect(() => {
-        const metodoPagoDetail = metodosPago.filter((metodoPago) => metodoPago.id === +currentId.id);
+        const metodoPagoDetail = metodosPago.filter((metodoPago) => +metodoPago.id === +currentId.id);
         setSelectedMetodoPago(metodoPagoDetail[0]);
     }, [currentId, metodosPago]);
 
@@ -64,7 +64,9 @@ const EditMetodoPago = () => {
                     <div>
                         <label>Id: </label>
                         <input
-                            {...register("id")}
+                            {...register("id", {
+                                valueAsNumber: true,
+                            })}
                             value={selectedMetodoPago?.id}
                             type="number"
                         />

@@ -35,7 +35,7 @@ const EditActividad = () => {
     };
 
     useEffect(() => {
-        const actividadDetail = actividades.filter((actividad) => actividad.id === +currentId.id);
+        const actividadDetail = actividades.filter((actividad) => +actividad.id === +currentId.id);
         setSelectedActividad(actividadDetail[0]);
     }, [currentId, actividades]);
 
@@ -64,7 +64,9 @@ const EditActividad = () => {
                     <div>
                         <label>Id: </label>
                         <input
-                            {...register("id")}
+                            {...register("id", {
+                                valueAsNumber: true,
+                            })}
                             value={selectedActividad?.id}
                             type="number"
                         />

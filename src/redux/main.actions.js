@@ -17,17 +17,19 @@ export const GET = (path) => async (dispatch) => {
   try {
     await fetch(`${REACT_APP_API_URL}/${path}/all`)
       .then((respuesta) => {
+        console.log("🚀 ~ file: main.actions.js:20 ~ .then ~ respuesta:", respuesta)
         if (respuesta.ok) {
           return respuesta.json();
         }
       })
       .then((respuesta) => {
-        respuesta.entidad = path; // asignamos a la propiedad nueva 'entidad' el valor de path, para que el reducer lo tenga en "payload.entidad",
+        console.log("🚀 ~ file: main.actions.js:25 ~ .then ~ respuesta:", respuesta)
 
         if (respuesta.length > 0) {
           dispatch({
             type: LOAD_INITIAL_STATE,
             payload: respuesta,
+            path: path
           });
         } else {
           console.log("fallo la conexion");
@@ -39,8 +41,9 @@ export const GET = (path) => async (dispatch) => {
 };
 
 export const POST = (path, payload) => async (dispatch) => {
+  console.log("🚀 ~ file: main.actions.js:44 ~ POST ~ payload:", payload)
+
   const token = getToken();
-  payload.entidad = path; // asignamos a la propiedad nueva 'entidad' el valor de path, para que el reducer lo tenga en "payload.entidad",
 
   try {
     await fetch(`${REACT_APP_API_URL}/${path}`, {
@@ -51,10 +54,12 @@ export const POST = (path, payload) => async (dispatch) => {
       },
       body: JSON.stringify({ ...payload }),
     }).then((respuesta) => {
+      console.log("🚀 ~ file: main.actions.js:55 ~ POST ~ respuesta:", respuesta)
       if (respuesta.ok) {
         dispatch({
           type: ADD_STATE,
           payload: payload,
+          path: path
         });
       } else {
         console.log("fallo la subida");
@@ -67,7 +72,6 @@ export const POST = (path, payload) => async (dispatch) => {
 
 export const PUT = (path, payload) => async (dispatch) => {
   const token = getToken();
-  payload.entidad = path; // asignamos a la propiedad nueva 'entidad' el valor de path, para que el reducer lo tenga en "payload.entidad",
 
   try {
     await fetch(`${REACT_APP_API_URL}/${path}/${payload.id}`, {
@@ -80,10 +84,13 @@ export const PUT = (path, payload) => async (dispatch) => {
         ...payload,
       }),
     }).then((respuesta) => {
+
       if (respuesta.ok) {
         dispatch({
           type: UPDATE_STATE,
           payload: payload,
+          path: path
+
         });
       } else {
         console.log("fallo la edición");
@@ -96,7 +103,6 @@ export const PUT = (path, payload) => async (dispatch) => {
 
 export const DELETE = (path, payload) => async (dispatch) => {
   const token = getToken();
-  payload.entidad = path; // asignamos a la propiedad nueva 'entidad' el valor de path, para que el reducer lo tenga en "payload.entidad",
 
   try {
     await fetch(`${REACT_APP_API_URL}/${path}/${payload.id}`, {
@@ -110,6 +116,8 @@ export const DELETE = (path, payload) => async (dispatch) => {
         dispatch({
           type: DELETE_STATE,
           payload: payload,
+          path: path
+
         });
       } else {
         console.log("fallo al borrar");

@@ -35,7 +35,7 @@ const EditEstadoCuota = () => {
     };
 
     useEffect(() => {
-        const estadoCuotaDetail = estadosCuota.filter((estadoCuota) => estadoCuota.id === +currentId.id);
+        const estadoCuotaDetail = estadosCuota.filter((estadoCuota) => +estadoCuota.id === +currentId.id);
         setSelectedEstadoCuota(estadoCuotaDetail[0]);
     }, [currentId, estadosCuota]);
 
@@ -64,7 +64,9 @@ const EditEstadoCuota = () => {
                     <div>
                         <label>Id: </label>
                         <input
-                            {...register("id")}
+                            {...register("id", {
+                                valueAsNumber: true,
+                            })}
                             value={selectedEstadoCuota?.id}
                             type="number"
                         />

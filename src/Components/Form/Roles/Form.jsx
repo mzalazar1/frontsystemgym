@@ -19,7 +19,6 @@ const Formulario = () => {
   } = useForm();
 
   const rolHandler = async (rol) => {
-    console.log("🚀 ~ file: Form.jsx:36 ~ rolHandler ~ rol:", rol);
     setModNewRol(true);
     try {
       await dispatch(POST("roles", rol));

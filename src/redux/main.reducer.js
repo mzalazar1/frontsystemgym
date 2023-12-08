@@ -8,10 +8,10 @@ import {
 const INITIAL_STATE = {
     socios: [],
     profesor: [],
-    cuota: [],
+    cuotas: [],
     valoresCuotas: [],
     estadosCuotas: [],
-    tipoCuotas: [],
+    tiposcuota: [],
     actividades: [],
     empleados: [],
     roles: [],
@@ -22,45 +22,46 @@ const INITIAL_STATE = {
 
 // en action vienen "action.type" y "action.payload"
 const reducer = (state = INITIAL_STATE, action) => {
+    console.log("🚀 ~ file: main.reducer.js:25 ~ reducer ~ action:", action)
     switch (action.type) {
         case LOAD_INITIAL_STATE:
             return {
                 ...state,
-                [action.payload?.entidad]: [
-                    ...state[action.payload?.entidad],
-                    ...action.payload, // viene como array desde el back, ya que trae una lista. aca si hacemos spread para que tire adentro todos los elementos
+                [action.path]: [
+                    ...state[action.path], //traemos los valores ya actuales
+                    ...action.payload // viene como array desde el back, ya que trae una lista. aca si hacemos spread para que tire adentro todos los elementos
                 ],
             };
 
         case ADD_STATE:
             return {
                 ...state,
-                [action.payload?.entidad]: [
-                    ...state[action.payload?.entidad],
+                [action.path]: [
+                    ...state[action.path],
                     action.payload, // no hacemos spread porque no es un array, es un objeto directo. Aca lo agregamos como elemento al array
                 ],
             };
 
         case UPDATE_STATE:
-            const indexToUpdate = state[action.payload.entidad].findIndex((e) => {
+            const indexToUpdate = state[action.path].findIndex((e) => {
                 return e.id === +action.payload.id; // "+" para convertirlo en numero, porque del input viene como string
             });
-            const updatedArray = [...state[action.payload.entidad]];
+            const updatedArray = [...state[action.path]];
             updatedArray[indexToUpdate] = action.payload;
 
             return {
                 ...state,
-                [action.payload.entidad]: updatedArray,
+                [action.path]: updatedArray,
             };
 
         case DELETE_STATE:
-            const finalAfterDeleted = state[action.payload.entidad].filter((e) => {
+            const finalAfterDeleted = state[action.path].filter((e) => {
                 return e.id !== action.payload.id;
             });
 
             return {
                 ...state,
-                [action.payload.entidad]: finalAfterDeleted,
+                [action.path]: finalAfterDeleted,
             };
 
         default:

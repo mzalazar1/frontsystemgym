@@ -35,7 +35,7 @@ const EditPago = () => {
     };
 
     useEffect(() => {
-        const pagosDetail = pagos.filter((pagos) => pagos.id === +currentId.id);
+        const pagosDetail = pagos.filter((pagos) => +pagos.id === +currentId.id);
         setSelectedPago(pagosDetail[0]);
     }, [currentId, pagos]);
 
@@ -64,7 +64,9 @@ const EditPago = () => {
                     <div>
                         <label>Id: </label>
                         <input
-                            {...register("id")}
+                            {...register("id", {
+                                valueAsNumber: true,
+                            })}
                             value={selectedPago?.id}
                             type="number"
                         />
@@ -84,7 +86,7 @@ const EditPago = () => {
                             {...register("metodo")} defaultValue={selectedPago?.metodo} />
                     </div>
 
-                    <Boton tipo="pagosABM" texto="Guardar" />
+                    <Boton tipo="pagoABM" texto="Guardar" />
                 </form>
             )}
         </div>

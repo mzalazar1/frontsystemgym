@@ -19,7 +19,7 @@ const Formulario = () => {
   } = useForm();
 
   const socioHandler = async (socio) => {
-    console.log("🚀 ~ file: Form.jsx:36 ~ socioHandler ~ socio:", socio);
+
     setModNewSocio(true);
     try {
       await dispatch(POST("socios", socio));
@@ -36,19 +36,15 @@ const Formulario = () => {
 
   return (
     <div className={styles.frmSocio}>
-      {modNewSocio ? (
+      {modNewSocio && (
         <Modal
           texto="Se estan enviando los datos"
           tipo="nuevoSocio"
           path="socios"
         />
-      ) : (
-        <div></div>
       )}
-      {modFallaSocio ? (
+      {modFallaSocio && (
         <Modal texto="Falló al cargar el nuevo socio" tipo="nuevoSocio" />
-      ) : (
-        <div></div>
       )}
       <h2>Formulario</h2>
       <form onSubmit={handleSubmit(socioHandler)}>

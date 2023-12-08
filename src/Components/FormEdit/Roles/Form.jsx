@@ -35,7 +35,7 @@ const EditRol = () => {
     };
 
     useEffect(() => {
-        const rolDetail = roles.filter((rol) => rol.id === +currentId.id);
+        const rolDetail = roles.filter((rol) => +rol.id === +currentId.id);
         setSelectedRol(rolDetail[0]);
     }, [currentId, roles]);
 
@@ -64,7 +64,9 @@ const EditRol = () => {
                     <div>
                         <label>Id: </label>
                         <input
-                            {...register("id")}
+                            {...register("id", {
+                                valueAsNumber: true,
+                            })}
                             value={selectedRol?.id}
                             type="number"
                         />

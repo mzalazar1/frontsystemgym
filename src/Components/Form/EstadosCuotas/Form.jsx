@@ -19,7 +19,6 @@ const Formulario = () => {
   } = useForm();
 
   const estadoCuotaHandler = async (estadoCuota) => {
-    console.log("🚀 ~ file: Form.jsx:36 ~ estadoCuotaHandler ~ estadoCuota:", estadoCuota);
     setModNewEstadoCuota(true);
     try {
       await dispatch(POST("estadoCuotas", estadoCuota));
