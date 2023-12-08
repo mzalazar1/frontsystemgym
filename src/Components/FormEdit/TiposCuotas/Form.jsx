@@ -74,7 +74,7 @@ const EditTipoCuota = () => {
                     <div>
                         <label>Descripcion: </label>
 
-                        <input {...register("descripcion")} defaultValue={selectedTipoCuota?.descripcion} />
+                        <input {...register("tipo")} defaultValue={selectedTipoCuota?.tipo} />
                     </div>
                     <div>
                         <label>Importe: </label>

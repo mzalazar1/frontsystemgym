@@ -18,10 +18,10 @@ const Formulario = () => {
     handleSubmit,
   } = useForm();
 
-  const tipoCuotaHandler = async (tipoCuota) => {
+  const tipoCuotaHandler = async (data) => {
     setModNewTipoCuota(true);
     try {
-      await dispatch(POST("tiposcuota", tipoCuota));
+      await dispatch(POST("tiposcuota", data));
       setModNewTipoCuota(false);
       navigate("/tiposcuota");
     } catch (error) {
