@@ -23,7 +23,7 @@ const Formulario = () => {
     try {
       await dispatch(POST("profesores", profesor));
       setModNewProfesor(false);
-      navigate("/profesors");
+      navigate("/profesores");
     } catch (error) {
       setModNewProfesor(false);
       setModFallaProfesor(true);

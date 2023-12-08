@@ -21,9 +21,9 @@ const Formulario = () => {
   const estadoCuotaHandler = async (estadoCuota) => {
     setModNewEstadoCuota(true);
     try {
-      await dispatch(POST("estadoCuotas", estadoCuota));
+      await dispatch(POST("estadoscuota", estadoCuota));
       setModNewEstadoCuota(false);
-      navigate("/estadoCuotas");
+      navigate("/estadoscuota");
     } catch (error) {
       setModNewEstadoCuota(false);
       setModFallaEstadoCuota(true);
@@ -39,7 +39,7 @@ const Formulario = () => {
         <Modal
           texto="Se estan enviando los datos"
           tipo="nuevoEstadoCuota"
-          path="estadoCuotas"
+          path="estadoscuota"
         />
       ) : (
         <div></div>
@@ -59,47 +59,13 @@ const Formulario = () => {
           )}
         </div>
         <div>
-          <label>Dni: </label>
-          <input {...register("dni")} />
-          {errors.dni && (
-            <span className={styles.claseError}>{errors.dni.message}</span>
+          <label>Estado Actual: </label>
+          <input {...register("estadoActual")} />
+          {errors.estadoActual && (
+            <span className={styles.claseError}>{errors.estadoActual.message}</span>
           )}
         </div>
-        <div>
-          <label>Nombre: </label>
-          <input {...register("name")} />
-          {errors.name && (
-            <span className={styles.claseError}>{errors.name.message}</span>
-          )}
-        </div>
-        <div>
-          <label>Apellido: </label>
-          <input {...register("lastname")} />
-          {errors.lastname && (
-            <span className={styles.claseError}>{errors.lastname.message}</span>
-          )}
-        </div>
-        <div>
-          <label>Telefono: </label>
-          <input {...register("tel")} />
-          {errors.tel && (
-            <span className={styles.claseError}>{errors.tel.message}</span>
-          )}
-        </div>
-        <div>
-          <label>Mail: </label>
-          <input {...register("mail")} />
-          {errors.mail && (
-            <span className={styles.claseError}>{errors.mail.message}</span>
-          )}
-        </div>
-        <div>
-          <label>Fecha de nacimiento: </label>
-          <input {...register("fechaNac")} />
-          {errors.fechaNac && (
-            <span className={styles.claseError}>{errors.fechaNac.message}</span>
-          )}
-        </div>
+
         <Boton tipo="estadoCuotaABM" texto="Enviar" />
       </form>
     </div>

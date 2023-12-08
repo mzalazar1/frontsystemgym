@@ -33,7 +33,7 @@ const EstadosCuotas = () => {
                             </tr>
                         </thead>
 
-                        <Tabla entidad="Estadocuotas" />
+                        <Tabla entidad="estadoscuota" />
 
                     </table>
 
@@ -42,7 +42,7 @@ const EstadosCuotas = () => {
                     <p>Debe iniciar sesión para ingresar a este menú</p>
                     <Link to="/login">
                         <Boton
-                            tipo='editSocio'
+                            tipo='editEstadoCuota'
                             texto='Iniciar sesión' />
                     </Link>
                 </>

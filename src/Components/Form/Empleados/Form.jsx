@@ -19,6 +19,8 @@ const Formulario = () => {
     } = useForm();
 
     const empleadoHandler = async (empleado) => {
+        console.log("🚀 ~ file: Form.jsx:35 ~ empleadoHandler ~ empleado:", empleado)
+
         setModNewEmpleado(true);
         try {
             await dispatch(POST("empleados", empleado));
@@ -33,6 +35,7 @@ const Formulario = () => {
         }
     };
 
+
     return (
         <div className={styles.frmEmpleado}>
             {modNewEmpleado ? (
@@ -44,10 +47,8 @@ const Formulario = () => {
             ) : (
                 <div></div>
             )}
-            {modFallaEmpleado ? (
+            {modFallaEmpleado && (
                 <Modal texto="Falló al cargar el nuevo empleado" tipo="nuevoEmpleado" />
-            ) : (
-                <div></div>
             )}
             <h2>Formulario</h2>
             <form onSubmit={handleSubmit(empleadoHandler)}>

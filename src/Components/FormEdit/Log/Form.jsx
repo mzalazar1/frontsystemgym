@@ -19,6 +19,7 @@ const EditLog = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmitHandler = async (data) => {
+        console.log("🚀 ~ file: Form.jsx:22 ~ onSubmitHandler ~ data:", data)
         setModEditLog(true);
         try {
             await dispatch(PUT("logs", data)); // para el PUT enviamos el ID
@@ -72,36 +73,23 @@ const EditLog = () => {
                         />
                     </div>
                     <div>
-                        <label>Dni: </label>
+                        <label>Acción: </label>
 
-                        <input {...register("dni")} defaultValue={selectedLog?.dni} />
+                        <input {...register("accion")} defaultValue={selectedLog?.accion} />
                     </div>
                     <div>
-                        <label>Nombre: </label>
-                        <input {...register("name")} defaultValue={selectedLog?.name} />
+                        <label>Usuario: </label>
+                        <input {...register("usuario")} defaultValue={selectedLog?.usuario} />
                     </div>
                     <div>
-                        <label>Apellido: </label>
-                        <input
-                            {...register("lastname")}
-                            defaultValue={selectedLog?.lastname}
-                        />
+                        <label>Fecha: </label>
+                        <input {...register("fecha")} defaultValue={selectedLog?.fecha} />
                     </div>
                     <div>
-                        <label>Telefono: </label>
-                        <input {...register("tel")} defaultValue={selectedLog?.tel} />
+                        <label>Hora: </label>
+                        <input {...register("hora")} defaultValue={selectedLog?.hora} />
                     </div>
-                    <div>
-                        <label>Mail: </label>
-                        <input {...register("mail")} defaultValue={selectedLog?.mail} />
-                    </div>
-                    <div>
-                        <label>Fecha de nacimiento: </label>
-                        <input
-                            {...register("fechaNac")}
-                            defaultValue={selectedLog?.fechaNac}
-                        />
-                    </div>
+
                     <Boton tipo="logABM" texto="Guardar" />
                 </form>
             )}

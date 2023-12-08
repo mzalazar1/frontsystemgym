@@ -35,19 +35,15 @@ const Formulario = () => {
 
   return (
     <div className={styles.frmTipoCuota}>
-      {modNewTipoCuota ? (
+      {modNewTipoCuota && (
         <Modal
           texto="Se estan enviando los datos"
           tipo="nuevoTipoCuota"
           path="tiposcuota"
         />
-      ) : (
-        <div></div>
       )}
-      {modFallaTipoCuota ? (
-        <Modal texto="Falló al cargar el nuevo tipoCuota" tipo="nuevoTipoCuota" />
-      ) : (
-        <div></div>
+      {modFallaTipoCuota && (
+        <Modal texto="Falló al cargar el nuevo socio" tipo="nuevoTipoCuota" />
       )}
       <h2>Formulario</h2>
       <form onSubmit={handleSubmit(tipoCuotaHandler)}>
@@ -63,6 +59,13 @@ const Formulario = () => {
           <input {...register("tipo")} />
           {errors.tipo && (
             <span className={styles.claseError}>{errors.tipo.message}</span>
+          )}
+        </div>
+        <div>
+          <label>Importe: </label>
+          <input {...register("importe")} />
+          {errors.importe && (
+            <span className={styles.claseError}>{errors.importe.message}</span>
           )}
         </div>
 

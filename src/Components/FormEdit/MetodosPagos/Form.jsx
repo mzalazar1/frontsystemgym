@@ -9,7 +9,7 @@ import styles from "./Form.module.css";
 import Modal from "../../Modal/Modal";
 
 const EditMetodoPago = () => {
-    const metodosPago = useSelector((state) => state.metodosPago);
+    const metodosPago = useSelector((state) => state.metodospagos);
     const dispatch = useDispatch();
     const currentId = useParams();
     const navigate = useNavigate();
@@ -72,36 +72,11 @@ const EditMetodoPago = () => {
                         />
                     </div>
                     <div>
-                        <label>Dni: </label>
+                        <label>Tipo: </label>
 
-                        <input {...register("dni")} defaultValue={selectedMetodoPago?.dni} />
+                        <input {...register("tipo")} defaultValue={selectedMetodoPago?.tipo} />
                     </div>
-                    <div>
-                        <label>Nombre: </label>
-                        <input {...register("name")} defaultValue={selectedMetodoPago?.name} />
-                    </div>
-                    <div>
-                        <label>Apellido: </label>
-                        <input
-                            {...register("lastname")}
-                            defaultValue={selectedMetodoPago?.lastname}
-                        />
-                    </div>
-                    <div>
-                        <label>Telefono: </label>
-                        <input {...register("tel")} defaultValue={selectedMetodoPago?.tel} />
-                    </div>
-                    <div>
-                        <label>Mail: </label>
-                        <input {...register("mail")} defaultValue={selectedMetodoPago?.mail} />
-                    </div>
-                    <div>
-                        <label>Fecha de nacimiento: </label>
-                        <input
-                            {...register("fechaNac")}
-                            defaultValue={selectedMetodoPago?.fechaNac}
-                        />
-                    </div>
+
                     <Boton tipo="metodoPagoABM" texto="Guardar" />
                 </form>
             )}

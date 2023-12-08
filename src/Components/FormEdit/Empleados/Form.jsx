@@ -9,7 +9,7 @@ import styles from "./Form.module.css";
 import Modal from "../../Modal/Modal";
 
 const EditEmpleado = () => {
-    const empleados = useSelector((state) => state.socios);
+    const empleados = useSelector((state) => state.empleados);
     const dispatch = useDispatch();
     const currentId = useParams();
     const navigate = useNavigate();

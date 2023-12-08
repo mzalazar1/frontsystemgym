@@ -20,7 +20,7 @@ const Empleados = () => {
                     <div className={styles.botEmpleados}>
                         <Link to="/addempleado">
                             <Boton
-                                tipo='socABM'
+                                tipo='empleadoABM'
                                 texto='Agregar empleado' />
                         </Link>
                     </div>

@@ -9,7 +9,7 @@ import styles from "./Form.module.css";
 import Modal from "../../Modal/Modal";
 
 const EditEstadoCuota = () => {
-    const estadosCuota = useSelector((state) => state.estadosCuota);
+    const estadosCuota = useSelector((state) => state.estadoscuota);
     const dispatch = useDispatch();
     const currentId = useParams();
     const navigate = useNavigate();
@@ -21,9 +21,9 @@ const EditEstadoCuota = () => {
     const onSubmitHandler = async (data) => {
         setModEditEstadoCuota(true);
         try {
-            await dispatch(PUT("estadosCuota", data)); // para el PUT enviamos el ID
+            await dispatch(PUT("estadoscuota", data)); // para el PUT enviamos el ID
             setModEditEstadoCuota(false);
-            navigate("/estadosCuota");
+            navigate("/estadoscuota");
         } catch (error) {
             setModEditEstadoCuota(false);
             setModFallaEdit(true);
@@ -31,7 +31,7 @@ const EditEstadoCuota = () => {
                 setModFallaEdit(false);
             }, 2000);
         }
-        navigate("/estadosCuota");
+        navigate("/estadoscuota");
     };
 
     useEffect(() => {

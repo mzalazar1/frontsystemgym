@@ -83,12 +83,12 @@ const RoutesAPP = () => {
                     <Route path="/addcuota" element={<FormAddCuota />} />
                     <Route path="/addactividad" element={<FormAddActividad />} />
                     <Route path="/addempleado" element={<FormAddEmpleado />} />
-                    <Route path="/editempleado/:id" element={<FormEditEmpleado />} />
+                    <Route path="/editempleados/:id" element={<FormEditEmpleado />} />
                     <Route path="/addestadocuota" element={<FormAddEstadoCuota />} />
-                    <Route path='/editestadocuota/:id' element={<FormEditEstadoCuota />} />
+                    <Route path='/editestadoscuota/:id' element={<FormEditEstadoCuota />} />
                     <Route path="/addprofesor" element={<FormAddProfesor />} />
                     <Route path="/addrol" element={<FormAddRol />} />
-                    <Route path="/editprofesor/:id" element={<FormEditProfesor />} />
+                    <Route path="/editprofesores/:id" element={<FormEditProfesor />} />
                     <Route path="/edittiposcuota/:id" element={<FormEditTipoCuota />} />
                     <Route path="/editlogs/:id" element={<FormEditLog />} />
 
@@ -101,7 +101,7 @@ const RoutesAPP = () => {
                     <Route path="/addmetodoPago" element={<FormAddMetodoPago />} />
                     <Route path='/editmetodospagos/:id' element={<FormEditMetodoPago />} />
                     <Route path='/editactividades/:id' element={<FormEditActividad />} />
-                    <Route path='/editvalorcuota/:id' element={<FormEditValorCuota />} />
+                    <Route path='/editvalorescuota/:id' element={<FormEditValorCuota />} />
                     <Route path='/editroles/:id' element={<FormEditRol />} />
 
                     <Route path='/editcuotas/:id' element={<FormEditCuota />} />

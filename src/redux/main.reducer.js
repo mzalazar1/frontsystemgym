@@ -7,10 +7,10 @@ import {
 
 const INITIAL_STATE = {
     socios: [],
-    profesor: [],
+    profesores: [],
     cuotas: [],
-    valoresCuotas: [],
-    estadosCuotas: [],
+    valorescuota: [],
+    estadoscuota: [],
     tiposcuota: [],
     actividades: [],
     empleados: [],
