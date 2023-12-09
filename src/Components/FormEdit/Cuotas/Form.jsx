@@ -2,14 +2,16 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { PUT } from "../../../redux/main.actions";
+import { GET, PUT } from "../../../redux/main.actions";
 import Boton from "../../SharedComponents/Boton";
 import styles from "./Form.module.css";
 
 import Modal from "../../Modal/Modal";
 
+
 const EditCuota = () => {
-    const cuotas = useSelector((state) => state.cuotas);
+    const { cuotas, socios, actividades, tiposcuota, valorescuota, pagos, metodospagos } = useSelector((state) => state); // traigo todo el state
+
     const dispatch = useDispatch();
     const currentId = useParams();
     const navigate = useNavigate();
@@ -19,7 +21,6 @@ const EditCuota = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmitHandler = async (data) => {
-        console.log("🚀 ~ file: Form.jsx:22 ~ onSubmitHandler ~ data:", data)
         setModEditCuota(true);
         try {
             await dispatch(PUT("cuotas", data)); // para el PUT enviamos el ID
@@ -37,10 +38,8 @@ const EditCuota = () => {
 
     useEffect(() => {
         const cuotasDetail = cuotas.filter((cuotas) => +cuotas.id === +currentId.id);
-        console.log("🚀 ~ file: Form.jsx:39 ~ useEffect ~ cuotasDetail:", cuotasDetail)
         setSelectedCuota(cuotasDetail[0]);
     }, [currentId, cuotas]);
-
 
     return (
         <div className={styles.frmCuota}>
@@ -77,38 +76,55 @@ const EditCuota = () => {
                     <div>
                         <label>Socio: </label>
 
-                        <input {...register("socio")} defaultValue={selectedCuota?.socio} />
-                    </div>
-                    <div>
-                        <label>Estado: </label>
-                        <input {...register("estado")} defaultValue={selectedCuota?.estado} />
+                        <select {...register("socio")}>
+                            <option value="">Seleccionar Socio</option>
+
+                            {socios.map(socio => {
+                                return <option selected={socio.name + " " + socio.lastname === selectedCuota.socio && "selected"} value={socio.name + " " + socio.lastname}>{socio.name + " " + socio.lastname}</option>
+                            })}
+                        </select>
                     </div>
                     <div>
                         <label>Actividad: </label>
-                        <input
-                            {...register("actividad")} defaultValue={selectedCuota?.actividad} />
-                    </div>
-                    <div>
-                        <label>Fecha de Pago: </label>
-                        <input
-                            {...register("fechaPago")} defaultValue={selectedCuota?.fechaPago} />
+
+                        <select {...register("actividad")} defaultValue={selectedCuota?.actividad}>
+
+                            <option value="">Seleccionar Actividad</option>
+
+                            {actividades.map(actividad => {
+                                return <option key={actividad.id} value={actividad.id}>{actividad.nombre}</option>
+                            })}
+                        </select>
                     </div>
                     <div>
                         <label>Tipo: </label>
-                        <input
-                            {...register("tipo")} defaultValue={selectedCuota?.tipo} />
+                        <select {...register("tipocuota")} defaultValue={selectedCuota?.tipocuota}>
+
+                            <option value="">Seleccionar Tipo de Cuota</option>
+
+                            {tiposcuota.map(tipocuota => {
+                                return <option key={tipocuota.id} value={tipocuota.id}>{tipocuota.tipo}</option>
+                            })}
+                        </select>
                     </div>
                     <div>
                         <label>Valor: </label>
-                        <input
-                            {...register("valor")} defaultValue={selectedCuota?.valor} />
+                        <select {...register("valorcuota")} defaultValue={selectedCuota?.valorcuota}>
+
+                            <option value="">Seleccionar Valor Cuota</option>
+
+                            {valorescuota.map(valorcuota => {
+                                return <option key={valorcuota.id} value={valorcuota.id}>{valorcuota.importe}</option>
+                            })}
+                        </select>
                     </div>
 
 
                     <Boton tipo="cuotaABM" texto="Guardar" />
                 </form>
-            )}
-        </div>
+            )
+            }
+        </div >
     );
 };
 

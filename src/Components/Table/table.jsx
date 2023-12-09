@@ -7,12 +7,24 @@ import styles from "./Table.module.css";
 import Modal from "../Modal/Modal";
 import { useState, Fragment, useEffect } from "react";
 
+const DATES_PROPERTIES = ["updated_at"];
+
+const transformDate = (date) => {
+
+  const newDate = new Date(date);
+  const yyyy = newDate.getFullYear();
+  const mm = newDate.getMonth() + 1; //se hace +1 porque enero es cero
+  const dd = newDate.getDate();
+
+  const finalDate = dd + "/" + mm + "/" + yyyy;
+
+  return finalDate
+}
+
 const Tabla = ({ entidad }) => {
-  console.log("🚀 ~ file: table.jsx:11 ~ Tabla ~ entidad:", entidad)
   const dispatch = useDispatch();
 
   let stateValues = useSelector((state) => state && state[entidad]) || [];
-  console.log("🚀 ~ file: table.jsx:15 ~ Tabla ~ stateValues:", stateValues)
 
   const [deleteValue, setDeleteValue] = useState(false);
   const [id, setId] = useState();
@@ -28,10 +40,9 @@ const Tabla = ({ entidad }) => {
 
   useEffect(() => {
     if (stateValues?.length === 0) {
-      dispatch(GET(entidad));
+      dispatch(GET(entidad)); // traigo la netidad en la que estoy
     }
   }, [dispatch, entidad, stateValues?.length]);
-  console.log("🚀 ~ file: table.jsx:32 ~ useEffect ~ entidad:", entidad)
 
 
   return (
@@ -50,11 +61,10 @@ const Tabla = ({ entidad }) => {
           <tr key={stateValueIndex}>
             {Object.keys(element).map(
               (key, keyIndex) =>
-                !key.startsWith("_") && <td key={keyIndex}>{element[key]}</td>
+                !DATES_PROPERTIES.includes(key) && !key.startsWith("_") && <td key={keyIndex}>{key === "created_at" ? transformDate(element[key]) : element[key]}</td>
             )}
 
             <td key={stateValueIndex + "td"} className={styles.tdBotones}>
-              {/* esta hardcodeado para socios tendria que ser algo asi edit${} */}
 
               <Link to={`/edit${entidad}/${element.id}`}>
                 <Boton tipo="editSocio" texto="Editar" />

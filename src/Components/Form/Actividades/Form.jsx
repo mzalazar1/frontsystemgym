@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { POST } from "../../../redux/main.actions";
 import Boton from "../../SharedComponents/Boton";
 import styles from "./Form.module.css";
@@ -12,6 +12,10 @@ const Formulario = () => {
     const navigate = useNavigate();
     const [modNewActividad, setModNewActividad] = useState(false);
     const [modFallaActividad, setModFallaActividad] = useState(false);
+    const [selectedActividad, setSelectedActividad] = useState(null);
+
+    const { socios, actividades, profesores, tiposcuota, valorescuota, pagos, metodospagos } = useSelector((state) => state); // traigo todo el state
+
     const {
         register,
         formState: { errors },
@@ -74,10 +78,14 @@ const Formulario = () => {
                 </div>
                 <div>
                     <label>Profesor: </label>
-                    <input {...register("profesor")} />
-                    {errors.profesor && (
-                        <span className={styles.claseError}>{errors.profesor.message}</span>
-                    )}
+                    <select {...register("actividad")} defaultValue={selectedActividad?.actividad}>
+
+                        <option value="">Seleccionar Profesor</option>
+
+                        {actividades.map(actividad => {
+                            return <option value={actividad.id}>{actividad.profesor}</option>
+                        })}
+                    </select>
                 </div>
 
                 <Boton tipo="actividadABM" texto="Enviar" />

@@ -34,6 +34,7 @@ const Socios = () => {
                                 <th className={styles.thDatos}>Tel</th>
                                 <th className={styles.thDatos}>Mail</th>
                                 <th className={styles.thDatos}>Fecha de Nacimiento</th>
+                                <th className={styles.thDatos}>Fecha Inscripción</th>
                                 <th className={styles.thBotones}>Acción</th>
                             </tr>
                         </thead>

@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { POST } from "../../../redux/main.actions";
+import { useDispatch, useSelector } from "react-redux";
+import { GET, POST } from "../../../redux/main.actions";
 import Boton from "../../SharedComponents/Boton";
 import styles from './Form.module.css';
 import Modal from "../../Modal/Modal";
@@ -12,10 +12,12 @@ const Formulario = () => {
     const navigate = useNavigate()
     const [modNewCuota, setModNewCuota] = useState(false)
     const [modFallaCuota, setModFallaCuota] = useState(false)
+    const [selectedCuota, setSelectedCuota] = useState(null);
     const { register, formState: { errors }, handleSubmit } = useForm()
 
+    const { socios, actividades, tiposcuota, valorescuota, pagos, metodospagos } = useSelector((state) => state); // traigo todo el state
+
     const cuotaHandler = async (data) => {
-        console.log("🚀 ~ file: Form.jsx:19 ~ cuotaHandler ~ data:", data)
         setModNewCuota(true);
         try {
             await dispatch(POST("cuotas", data));
@@ -55,48 +57,46 @@ const Formulario = () => {
                     )}
                 </div>
                 <div>
-                    <label>Socio: </label>
-                    <input {...register("socio")} />
-                    {errors.socio && (
-                        <span className={styles.claseError}>{errors.socio.message}</span>
-                    )}
-                </div>
-                <div>
-                    <label>Estado: </label>
-                    <input {...register("estado")} />
-                    {errors.estado && (
-                        <span className={styles.claseError}>{errors.estado.message}</span>
-                    )}
+                    <select {...register("socio")}>
+                        <option value="">Seleccionar Socio</option>
+
+                        {socios.map(socio => {
+                            return <option value={socio.name + " " + socio.lastname}>{socio.name + " " + socio.lastname}</option>
+                        })}
+                    </select>
                 </div>
                 <div>
                     <label>Actividad: </label>
-                    <input {...register("actividad")} />
-                    {errors.actividad && (
-                        <span className={styles.claseError}>{errors.actividad.message}</span>
-                    )}
-                </div>
-                <div>
-                    <label>Fecha de Pago: </label>
-                    <input {...register("fechaPago")} />
-                    {errors.fechaPago && (
-                        <span className={styles.claseError}>{errors.fechaPago.message}</span>
-                    )}
+                    <select {...register("actividad")} defaultValue={selectedCuota?.actividad}>
+
+                        <option value="">Seleccionar Actividad</option>
+
+                        {actividades.map(actividad => {
+                            return <option value={actividad.id}>{actividad.nombre}</option>
+                        })}
+                    </select>
                 </div>
                 <div>
                     <label>Tipo: </label>
-                    <input {...register("tipo")} />
-                    {errors.tipo && (
-                        <span className={styles.claseError}>{errors.tipo.message}</span>
-                    )}
+                    <select {...register("tipocuota")} defaultValue={selectedCuota?.tipocuota}>
+
+                        <option value="">Seleccionar Tipo de Cuota</option>
+
+                        {tiposcuota.map(tipocuota => {
+                            return <option key={tipocuota.id} value={tipocuota.id}>{tipocuota.tipo}</option>
+                        })}
+                    </select>
                 </div>
                 <div>
                     <label>Valor: </label>
-                    <input {...register("valor", {
-                        valueAsNumber: true,
-                    })} />
-                    {errors.valor && (
-                        <span className={styles.claseError}>{errors.valor.message}</span>
-                    )}
+                    <select {...register("valorcuota")} defaultValue={selectedCuota?.valorcuota}>
+
+                        <option value="">Seleccionar Valor Cuota</option>
+
+                        {valorescuota.map(valorcuota => {
+                            return <option key={valorcuota.id} value={valorcuota.id}>{valorcuota.importe}</option>
+                        })}
+                    </select>
                 </div>
                 <Boton tipo="cuotaABM" texto="Enviar" />
             </form>
