@@ -18,6 +18,9 @@ const EditActividad = () => {
     const [modFallaEdit, setModFallaEdit] = useState(false);
     const { register, handleSubmit } = useForm();
 
+    const { socios, profesores, tiposcuota, valorescuota, pagos, metodospagos } = useSelector((state) => state); // traigo todo el state
+
+
     const onSubmitHandler = async (data) => {
         setModEditActividad(true);
         try {
@@ -82,11 +85,15 @@ const EditActividad = () => {
                     </div>
                     <div>
                         <label>Profesor: </label>
-                        <input
-                            {...register("profesor")} defaultValue={selectedActividad?.profesor}
-                        />
-                    </div>
+                        <select {...register("actividad")} defaultValue={selectedActividad?.actividad}>
 
+                            <option value="">Seleccionar Profesor</option>
+
+                            {actividades.map(actividad => {
+                                return <option value={actividad.id}>{actividad.profesor}</option>
+                            })}
+                        </select>
+                    </div>
                     <Boton tipo="actividadABM" texto="Guardar" />
                 </form>
             )}

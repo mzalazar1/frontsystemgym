@@ -11,7 +11,6 @@ import Modal from "../../Modal/Modal";
 const EditSocio = () => {
     const socios = useSelector((state) => state.socios);
 
-
     const dispatch = useDispatch();
     const currentId = useParams(null);
     const navigate = useNavigate();

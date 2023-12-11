@@ -2,12 +2,13 @@ import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { GET, POST } from "../../../redux/main.actions";
+import { POST } from "../../../redux/main.actions";
 import Boton from "../../SharedComponents/Boton";
 import styles from './Form.module.css';
 import Modal from "../../Modal/Modal";
 
 const Formulario = () => {
+
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const [modNewCuota, setModNewCuota] = useState(false)
@@ -21,6 +22,8 @@ const Formulario = () => {
         setModNewCuota(true);
         try {
             await dispatch(POST("cuotas", data));
+            console.log("🚀 ~ file: Form.jsx:28 ~ cuotaHandler ~ data:", data)
+            //error 500 falló la subida
             setModNewCuota(false)
             navigate('/cuotas');
         } catch (error) {
@@ -57,11 +60,12 @@ const Formulario = () => {
                     )}
                 </div>
                 <div>
+                    <label>Socio: </label>
                     <select {...register("socio")}>
                         <option value="">Seleccionar Socio</option>
 
                         {socios.map(socio => {
-                            return <option value={socio.name + " " + socio.lastname}>{socio.name + " " + socio.lastname}</option>
+                            return <option key={socio.dni} value={socio.dni}>{socio.dni}</option>
                         })}
                     </select>
                 </div>
@@ -72,18 +76,18 @@ const Formulario = () => {
                         <option value="">Seleccionar Actividad</option>
 
                         {actividades.map(actividad => {
-                            return <option value={actividad.id}>{actividad.nombre}</option>
+                            return <option key={actividad.id} value={actividad.nombre}>{actividad.nombre}</option>
                         })}
                     </select>
                 </div>
                 <div>
                     <label>Tipo: </label>
-                    <select {...register("tipocuota")} defaultValue={selectedCuota?.tipocuota}>
+                    <select {...register("tipo")} defaultValue={selectedCuota?.tipo}>
 
                         <option value="">Seleccionar Tipo de Cuota</option>
 
-                        {tiposcuota.map(tipocuota => {
-                            return <option key={tipocuota.id} value={tipocuota.id}>{tipocuota.tipo}</option>
+                        {tiposcuota.map(tipo => {
+                            return <option key={tipo.id} value={tipo.tipo}>{tipo.tipo}</option>
                         })}
                     </select>
                 </div>
@@ -94,7 +98,7 @@ const Formulario = () => {
                         <option value="">Seleccionar Valor Cuota</option>
 
                         {valorescuota.map(valorcuota => {
-                            return <option key={valorcuota.id} value={valorcuota.id}>{valorcuota.importe}</option>
+                            return <option key={valorcuota.id} value={valorcuota.importe}>{valorcuota.importe}</option>
                         })}
                     </select>
                 </div>

@@ -41,11 +41,10 @@ export const GET = (path) => async (dispatch) => {
 };
 
 export const POST = (path, payload) => async (dispatch) => {
-  console.log("🚀 ~ file: main.actions.js:44 ~ POST ~ payload:", payload)
-
   const token = getToken();
 
   try {
+    // osea que ahi en PATH va a venir "/" ??? y va a temrinar tu final de URL con doble "//"
     await fetch(`${REACT_APP_API_URL}/${path}`, {
       method: "POST",
       headers: {
@@ -54,7 +53,6 @@ export const POST = (path, payload) => async (dispatch) => {
       },
       body: JSON.stringify({ ...payload }),
     }).then((respuesta) => {
-      console.log("🚀 ~ file: main.actions.js:55 ~ POST ~ respuesta:", respuesta)
       if (respuesta.ok) {
         dispatch({
           type: ADD_STATE,
@@ -64,9 +62,9 @@ export const POST = (path, payload) => async (dispatch) => {
       } else {
         console.log("fallo la subida");
       }
-    });
+    })
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
 };
 
@@ -127,3 +125,36 @@ export const DELETE = (path, payload) => async (dispatch) => {
     console.log(error);
   }
 };
+
+
+
+export const CHECK_DNI = (path, payload) => async (dispatch) => {
+  const token = getToken();
+
+  try {
+    const respuesta = await fetch(`${REACT_APP_API_URL}/${path}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        ...payload,
+      }),
+    });
+
+    if (respuesta.ok) {
+      const data = await respuesta.json();
+      return data;
+
+    } else {
+      // Handle non-OK responses, e.g., dispatch an action to handle errors
+      console.error("Error in fetch:", respuesta.status);
+      return null;
+    }
+  } catch (error) {
+    console.error("Error during fetch:", error);
+    return null;
+  }
+};
+

@@ -80,7 +80,7 @@ const EditCuota = () => {
                             <option value="">Seleccionar Socio</option>
 
                             {socios.map(socio => {
-                                return <option selected={socio.name + " " + socio.lastname === selectedCuota.socio && "selected"} value={socio.name + " " + socio.lastname}>{socio.name + " " + socio.lastname}</option>
+                                return <option key={socio.dni} selected={socio.dni === selectedCuota.dni && "selected"} value={socio.dni}>{socio.dni}</option>
                             })}
                         </select>
                     </div>
@@ -98,12 +98,12 @@ const EditCuota = () => {
                     </div>
                     <div>
                         <label>Tipo: </label>
-                        <select {...register("tipocuota")} defaultValue={selectedCuota?.tipocuota}>
+                        <select {...register("tipo")} defaultValue={selectedCuota?.tipo}>
 
                             <option value="">Seleccionar Tipo de Cuota</option>
 
-                            {tiposcuota.map(tipocuota => {
-                                return <option key={tipocuota.id} value={tipocuota.id}>{tipocuota.tipo}</option>
+                            {tiposcuota.map(tipo => {
+                                return <option key={tipo.id} value={tipo.tipo}>{tipo.tipo}</option>
                             })}
                         </select>
                     </div>

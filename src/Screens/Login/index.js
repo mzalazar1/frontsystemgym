@@ -1,3 +1,5 @@
+
+import { useDispatch } from "react-redux";
 import React, { useState } from "react";
 import firebaseAapp from "../../Firebase/credenciales";
 import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword } from "firebase/auth";
@@ -18,10 +20,11 @@ const Login = () => {
     const [modFalNueUsu, setModFalNueUsu] = useState(false)
     const [modCieSes, setModCieSes] = useState(false)
     const [modFalCieSes, setModFalCieSes] = useState(false)
-
-
     const [noUserReg, setNoUserReg] = useState(false)
     const navigate = useNavigate()
+
+    // se agrega dispatch para usarlo
+    const dispatch = useDispatch();
 
     const regNuevoUsuario = async (email, password) => {
         await createUserWithEmailAndPassword(auth, email, password)
@@ -46,6 +49,9 @@ const Login = () => {
             Cookies.set('firebaseToken', token, { expires: 1 / 24 });
             navigate('/socios')
             setModIniSes(false)
+
+            // aca cuando inicias sesion podes hacer un DISPATCH con el email, asi guardas el email en un estado de REDUX
+            dispatch()
         } catch (error) {
             setModIniSes(false)
             setModFalSes(true)
