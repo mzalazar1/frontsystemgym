@@ -17,19 +17,25 @@ export const GET = (path) => async (dispatch) => {
   try {
     await fetch(`${REACT_APP_API_URL}/${path}/all`)
       .then((respuesta) => {
-        console.log("🚀 ~ file: main.actions.js:20 ~ .then ~ respuesta:", respuesta)
+        console.log(
+          "🚀 ~ file: main.actions.js:20 ~ .then ~ respuesta:",
+          respuesta
+        );
         if (respuesta.ok) {
           return respuesta.json();
         }
       })
       .then((respuesta) => {
-        console.log("🚀 ~ file: main.actions.js:25 ~ .then ~ respuesta:", respuesta)
+        console.log(
+          "🚀 ~ file: main.actions.js:25 ~ .then ~ respuesta:",
+          respuesta
+        );
 
         if (respuesta.length > 0) {
           dispatch({
             type: LOAD_INITIAL_STATE,
             payload: respuesta,
-            path: path
+            path: path,
           });
         } else {
           console.log("fallo la conexion");
@@ -52,19 +58,21 @@ export const POST = (path, payload) => async (dispatch) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ ...payload }),
-    }).then((respuesta) => {
-      if (respuesta.ok) {
+    })
+      .then((respuesta) => {
+        if (respuesta.ok) {
+          return respuesta.json();
+        }
+      })
+      .then((respuesta) => {
         dispatch({
           type: ADD_STATE,
-          payload: payload,
-          path: path
+          payload: respuesta,
+          path: path,
         });
-      } else {
-        console.log("fallo la subida");
-      }
-    })
+      });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
@@ -81,19 +89,19 @@ export const PUT = (path, payload) => async (dispatch) => {
       body: JSON.stringify({
         ...payload,
       }),
-    }).then((respuesta) => {
-
-      if (respuesta.ok) {
+    })
+      .then((respuesta) => {
+        if (respuesta.ok) {
+          return respuesta.json();
+        }
+      })
+      .then((respuesta) => {
         dispatch({
           type: UPDATE_STATE,
-          payload: payload,
-          path: path
-
+          payload: respuesta,
+          path: path,
         });
-      } else {
-        console.log("fallo la edición");
-      }
-    });
+      });
   } catch (error) {
     console.log(error);
   }
@@ -114,8 +122,7 @@ export const DELETE = (path, payload) => async (dispatch) => {
         dispatch({
           type: DELETE_STATE,
           payload: payload,
-          path: path
-
+          path: path,
         });
       } else {
         console.log("fallo al borrar");
@@ -125,8 +132,6 @@ export const DELETE = (path, payload) => async (dispatch) => {
     console.log(error);
   }
 };
-
-
 
 export const CHECK_DNI = (path, payload) => async (dispatch) => {
   const token = getToken();
@@ -146,7 +151,6 @@ export const CHECK_DNI = (path, payload) => async (dispatch) => {
     if (respuesta.ok) {
       const data = await respuesta.json();
       return data;
-
     } else {
       // Handle non-OK responses, e.g., dispatch an action to handle errors
       console.error("Error in fetch:", respuesta.status);
@@ -157,4 +161,3 @@ export const CHECK_DNI = (path, payload) => async (dispatch) => {
     return null;
   }
 };
-
