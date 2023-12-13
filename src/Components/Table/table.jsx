@@ -6,6 +6,7 @@ import Boton from "../SharedComponents/Boton";
 import styles from "./Table.module.css";
 import Modal from "../Modal/Modal";
 import { useState, Fragment, useEffect } from "react";
+import AuthorizationComponent from './../../redux/authorizationComponent';
 
 const DATES_PROPERTIES = ["updated_at"];
 
@@ -72,11 +73,13 @@ const Tabla = ({ entidad }) => {
                     <Boton tipo="editSocio" texto="Editar" />
                   </Link>
 
-                  <Boton
-                    tipo="editSocio"
-                    texto="Eliminar"
-                    onClick={() => deleteHandler(element.id)}
-                  />
+                  <AuthorizationComponent requiredRole='supervisor'>
+                    <Boton
+                      tipo="editSocio"
+                      texto="Eliminar"
+                      onClick={() => deleteHandler(element.id)}
+                    />
+                  </AuthorizationComponent>
                 </Fragment>
 
               </td>
@@ -86,7 +89,7 @@ const Tabla = ({ entidad }) => {
       ) : (
         <h4>No hay elementos cargados</h4>
       )}
-    </Fragment>
+    </Fragment >
   );
 };
 export default Tabla;
