@@ -22,6 +22,7 @@ const transformDate = (date) => {
 }
 
 const Tabla = ({ entidad }) => {
+  console.log("🚀 ~ file: table.jsx:25 ~ Tabla ~ entidad:", typeof entidad)
   const dispatch = useDispatch();
 
   let stateValues = useSelector((state) => state && state[entidad]) || [];
@@ -63,19 +64,23 @@ const Tabla = ({ entidad }) => {
               (key, keyIndex) =>
                 !DATES_PROPERTIES.includes(key) && !key.startsWith("_") && <td key={keyIndex}>{key === "created_at" ? transformDate(element[key]) : element[key]}</td>
             )}
+            {entidad !== 'logs' && (
+              <td key={stateValueIndex + "td"} className={styles.tdBotones}>
 
-            <td key={stateValueIndex + "td"} className={styles.tdBotones}>
+                <Fragment>
+                  <Link to={`/edit${entidad}/${element.id}`}>
+                    <Boton tipo="editSocio" texto="Editar" />
+                  </Link>
 
-              <Link to={`/edit${entidad}/${element.id}`}>
-                <Boton tipo="editSocio" texto="Editar" />
-              </Link>
+                  <Boton
+                    tipo="editSocio"
+                    texto="Eliminar"
+                    onClick={() => deleteHandler(element.id)}
+                  />
+                </Fragment>
 
-              <Boton
-                tipo="editSocio"
-                texto="Eliminar"
-                onClick={() => deleteHandler(element.id)}
-              />
-            </td>
+              </td>
+            )}
           </tr>
         ))
       ) : (

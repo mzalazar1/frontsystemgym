@@ -34,6 +34,7 @@ const Profesores = () => {
                                 <th className={styles.thDatos}>Tel</th>
                                 <th className={styles.thDatos}>Mail</th>
                                 <th className={styles.thDatos}>Fecha de Nacimiento</th>
+                                <th className={styles.thDatos}>Fecha Inicio</th>
                                 <th className={styles.thDatos}>Acciones</th>
                             </tr>
                         </thead>

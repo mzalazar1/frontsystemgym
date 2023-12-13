@@ -3,10 +3,14 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import myReducer from './main.reducer';
 import { GET } from './main.actions';
+import auditMiddleware from './auditMiddleware';
+
+const middlewares = [thunk, auditMiddleware];
+
 
 const store = createStore(
     myReducer,
-    composeWithDevTools(applyMiddleware(thunk))
+    composeWithDevTools(applyMiddleware(...middlewares))
 );
 
 // Despachamos acciones iniciales aca. Aca se pueden ejecutar asi:

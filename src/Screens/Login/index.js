@@ -47,6 +47,10 @@ const Login = () => {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const token = await userCredential.user.getIdToken();
             Cookies.set('firebaseToken', token, { expires: 1 / 24 });
+
+            // aca guardamos email para los LOGS
+            localStorage.setItem("email", email);
+
             navigate('/socios')
             setModIniSes(false)
 

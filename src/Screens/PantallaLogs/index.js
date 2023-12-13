@@ -19,20 +19,17 @@ const Logs = () => {
                 <>
                     <div className={styles.botLog}>
                         <Link to="/addlog">
-                            <Boton
+                            {/* <Boton
                                 tipo='logABM'
-                                texto='Agregar log' />
+                                texto='Agregar log' /> */}
                         </Link>
                     </div>
                     <table>
                         <thead>
                             <tr>
-                                <th className={styles.thDatos}>Id</th>
-                                <th className={styles.thDatos}>Acción</th>
+                                <th className={styles.thDatos}>Acción Log</th>
                                 <th className={styles.thDatos}>Usuario</th>
                                 <th className={styles.thDatos}>Fecha</th>
-                                <th className={styles.thDatos}>Hora</th>
-                                <th className={styles.thDatos}>Acciones</th>
                             </tr>
                         </thead>
 
