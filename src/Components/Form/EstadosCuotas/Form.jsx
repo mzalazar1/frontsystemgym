@@ -21,9 +21,9 @@ const Formulario = () => {
   const estadoCuotaHandler = async (estadoCuota) => {
     setModNewEstadoCuota(true);
     try {
-      await dispatch(POST("estadoscuota", estadoCuota));
+      await dispatch(POST("estadoscuotas", estadoCuota));
       setModNewEstadoCuota(false);
-      navigate("/estadoscuota");
+      navigate("/estadoscuotas");
     } catch (error) {
       setModNewEstadoCuota(false);
       setModFallaEstadoCuota(true);
@@ -39,7 +39,7 @@ const Formulario = () => {
         <Modal
           texto="Se estan enviando los datos"
           tipo="nuevoEstadoCuota"
-          path="estadoscuota"
+          path="estadoscuotas"
         />
       ) : (
         <div></div>
@@ -60,9 +60,9 @@ const Formulario = () => {
         </div>
         <div>
           <label>Estado Actual: </label>
-          <input {...register("estadoActual")} />
-          {errors.estadoActual && (
-            <span className={styles.claseError}>{errors.estadoActual.message}</span>
+          <input {...register("estado")} />
+          {errors.estado && (
+            <span className={styles.claseError}>{errors.estado.message}</span>
           )}
         </div>
 

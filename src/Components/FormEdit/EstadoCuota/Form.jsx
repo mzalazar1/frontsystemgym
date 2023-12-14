@@ -9,7 +9,7 @@ import styles from "./Form.module.css";
 import Modal from "../../Modal/Modal";
 
 const EditEstadoCuota = () => {
-    const estadosCuota = useSelector((state) => state.estadoscuota);
+    const estadosCuota = useSelector((state) => state.estado);
     const dispatch = useDispatch();
     const currentId = useParams();
     const navigate = useNavigate();
@@ -21,9 +21,9 @@ const EditEstadoCuota = () => {
     const onSubmitHandler = async (data) => {
         setModEditEstadoCuota(true);
         try {
-            await dispatch(PUT("estadoscuota", data)); // para el PUT enviamos el ID
+            await dispatch(PUT("estadoscuotas", data)); // para el PUT enviamos el ID
             setModEditEstadoCuota(false);
-            navigate("/estadoscuota");
+            navigate("/estadoscuotas");
         } catch (error) {
             setModEditEstadoCuota(false);
             setModFallaEdit(true);
@@ -31,7 +31,7 @@ const EditEstadoCuota = () => {
                 setModFallaEdit(false);
             }, 2000);
         }
-        navigate("/estadoscuota");
+        navigate("/estadoscuotas");
     };
 
     useEffect(() => {
@@ -74,7 +74,7 @@ const EditEstadoCuota = () => {
                     <div>
                         <label>Estado Actual: </label>
 
-                        <input {...register("estadoActual")} defaultValue={selectedEstadoCuota?.estadoActual} />
+                        <input {...register("estado")} defaultValue={selectedEstadoCuota?.estado} />
                     </div>
 
                     <Boton tipo="estadoCuotaABM" texto="Guardar" />

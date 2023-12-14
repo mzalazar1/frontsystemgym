@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Home from './Screens/Home';
 import Socios from './Screens/Socios';
@@ -13,6 +13,8 @@ import Logs from "./Screens/PantallaLogs";
 import Roles from "./Screens/Roles";
 import TiposCuotas from "./Screens/TiposCuotas";
 import ValoresCuotas from "./Screens/ValoresCuotas";
+// ESTADISTICAS
+import Estadisticas from "./Screens/Estadisticas";
 
 import FormAddSocio from './Screens/FormAddSocio';
 import FormAddPago from './Screens/FormAddPago';
@@ -61,23 +63,31 @@ const RoutesAPP = () => {
 
     return (
         <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/socios" element={<Socios />} />
-            <Route path="/pagos" element={<Pagos />} />
-            <Route path="/cuotas" element={<Cuotas />} />
-            <Route path="/actividades" element={<Actividades />} />
-            <Route path="/empleados" element={<Empleados />} />
-            <Route path="/estadosCuota" element={<EstadosCuotas />} />
-            <Route path="/metodospagos" element={<MetodoPago />} />
-            <Route path="/profesores" element={<Profesores />} />
-            <Route path="/logs" element={<Logs />} />
-            <Route path="/roles" element={<Roles />} />
-            <Route path="/tiposcuota" element={<TiposCuotas />} />
-            <Route path="/valorescuota" element={<ValoresCuotas />} />
+            <Route path="/estadisticas" element={<Estadisticas />} />
 
+
+            <Route path="/" element={<Home />} />
             <Route path='/login' element={<Login />} />
+
             {userLogin ?
                 <>
+                    <Route path="/estadisticas" element={<Estadisticas />} />
+
+                    <Route path="/socios" element={<Socios />} />
+                    <Route path="/pagos" element={<Pagos />} />
+                    <Route path="/cuotas" element={<Cuotas />} />
+                    <Route path="/actividades" element={<Actividades />} />
+                    <Route path="/empleados" element={<Empleados />} />
+                    <Route path="/estadoscuotas" element={<EstadosCuotas />} />
+                    <Route path="/metodospagos" element={<MetodoPago />} />
+                    <Route path="/profesores" element={<Profesores />} />
+                    <Route path="/logs" element={<Logs />} />
+                    <Route path="/roles" element={<Roles />} />
+                    <Route path="/tiposcuota" element={<TiposCuotas />} />
+                    <Route path="/valorescuota" element={<ValoresCuotas />} />
+
+
+
                     <Route path="/addSocio" element={<FormAddSocio />} />
                     <Route path='/editsocios/:id' element={<FormEditSocio />} />
                     <Route path="/addcuota" element={<FormAddCuota />} />
@@ -85,7 +95,7 @@ const RoutesAPP = () => {
                     <Route path="/addempleado" element={<FormAddEmpleado />} />
                     <Route path="/editempleados/:id" element={<FormEditEmpleado />} />
                     <Route path="/addestadocuota" element={<FormAddEstadoCuota />} />
-                    <Route path='/editestadoscuota/:id' element={<FormEditEstadoCuota />} />
+                    <Route path='/editestadoscuotas/:id' element={<FormEditEstadoCuota />} />
                     <Route path="/addprofesor" element={<FormAddProfesor />} />
                     <Route path="/addrol" element={<FormAddRol />} />
                     <Route path="/editprofesores/:id" element={<FormEditProfesor />} />
@@ -108,7 +118,8 @@ const RoutesAPP = () => {
                     <Route path="/addpago" element={<FormAddPago />} />
                     <Route path='/editpagos/:id' element={<FormEditPago />} />
 
-                </> : <></>}
+                </> : <Route path="*" element={<Navigate to="/" />} />
+            }
         </Routes>
     )
 }

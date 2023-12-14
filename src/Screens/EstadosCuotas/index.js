@@ -29,11 +29,12 @@ const EstadosCuotas = () => {
                             <tr>
                                 <th className={styles.thDatos}>Id</th>
                                 <th className={styles.thDatos}>Estado Actual</th>
+                                <th className={styles.thDatos}>Fecha</th>
                                 <th className={styles.thDatos}>Acciones</th>
                             </tr>
                         </thead>
 
-                        <Tabla entidad="estadoscuota" />
+                        <Tabla entidad="estadoscuotas" />
 
                     </table>
 

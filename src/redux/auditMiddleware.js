@@ -5,15 +5,15 @@ const backendURL = 'http://localhost:6001/api/logs';  // Reemplaza con la URL co
 
 const auditMiddleware = (store) => (next) => (action) => {
     if (action.type === 'ADD_STATE') {
-        const customPayload = { usuario: localStorage.getItem('email'), accion: 'Se agregó' + ' ' + action.path }
+        const customPayload = { usuario: localStorage.getItem('email'), accion: `Se agregó ${action.path}` }
         console.log('Datos que se enviarán al backend:', action.payload);
         enviarRegistroAuditoria(customPayload);
     } else if (action.type === 'UPDATE_STATE') {
-        const customPayload = { usuario: localStorage.getItem('email'), accion: 'Se editó' + ' ' + action.path }
+        const customPayload = { usuario: localStorage.getItem('email'), accion: `Se editó ${action.path}` }
         console.log('Datos que se enviarán al backend:', action.payload);
         enviarRegistroAuditoria(customPayload);
     } else if (action.type === 'DELETE_STATE') {
-        const customPayload = { usuario: localStorage.getItem('email'), accion: 'Se eliminó' + ' ' + action.path }
+        const customPayload = { usuario: localStorage.getItem('email'), accion: `Se eliminó ${action.path}` }
         console.log('Se registró el evento de eliminar estado.');
         enviarRegistroAuditoria(customPayload);
     }

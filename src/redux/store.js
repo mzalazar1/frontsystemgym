@@ -18,7 +18,7 @@ store.dispatch(GET("socios")); // traigo cuotas y las cargo en el redux state
 store.dispatch(GET("profesores")); // traigo cuotas y las cargo en el redux state
 store.dispatch(GET("cuotas")); // traigo cuotas y las cargo en el redux state
 store.dispatch(GET("valorescuota")); // traigo valorescuota y las cargo en el redux state
-store.dispatch(GET("estadoscuota")); // traigo valorescuota y las cargo en el redux state
+store.dispatch(GET("estadoscuotas")); // traigo valorescuota y las cargo en el redux state
 store.dispatch(GET("tiposcuota")); // traigo tiposcuota y las cargo en el redux state
 store.dispatch(GET("actividades")); // traigo actividades y las cargo en el redux state
 store.dispatch(GET("empleados")); // traigo actividades y las cargo en el redux state

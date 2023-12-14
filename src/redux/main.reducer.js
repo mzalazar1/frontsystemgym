@@ -10,7 +10,7 @@ const INITIAL_STATE = {
     profesores: [],
     cuotas: [],
     valorescuota: [],
-    estadoscuota: [],
+    estadoscuotas: [],
     tiposcuota: [],
     actividades: [],
     empleados: [],
