@@ -28,14 +28,6 @@ const Socios = () => {
                             placeholder="Buscar..."
                         />
                     </div>
-                    <div>
-                        <label>Busqueda:</label>
-                        <input
-                            type="text"
-                            onChange={(e) => setGlobalFilter(e.target.value)}
-                            placeholder="Buscar..."
-                        />
-                    </div>
                     <div className={styles.botValoresCuota}>
                         <Link to="/addvalorcuota">
                             <Boton
@@ -46,7 +38,6 @@ const Socios = () => {
                     <table>
                         <thead>
                             <tr>
-                                <th className={styles.thDatos}>Id</th>
                                 <th className={styles.thDatos}>Mes</th>
                                 <th className={styles.thDatos}>Importe</th>
                                 <th className={styles.thDatos}>Tipo</th>

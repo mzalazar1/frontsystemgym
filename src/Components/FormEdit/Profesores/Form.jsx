@@ -35,7 +35,7 @@ const EditProfesor = () => {
     };
 
     useEffect(() => {
-        const profesorDetail = profesores.filter((profesor) => +profesor.id === +currentId.id);
+        const profesorDetail = profesores.filter((profesor) => profesor._id === currentId.id);
         setSelectedProfesor(profesorDetail[0]);
     }, [currentId, profesores]);
 
@@ -43,7 +43,7 @@ const EditProfesor = () => {
         <div className={styles.frmProfesor}>
             {modEditProfesor && (
                 <Modal
-                    id={selectedProfesor?.id}
+                    id={selectedProfesor?._id}
                     path={"profesores"}
                     texto="Aguarde mientras se actualizan los datos"
                     tipo="nuevoProfesor"
@@ -51,7 +51,7 @@ const EditProfesor = () => {
             )}
             {modFallaEdit && (
                 <Modal
-                    id={selectedProfesor?.id}
+                    id={selectedProfesor?._id}
                     path={"profesores"}
                     texto="Falló al actualizar los datos"
                     tipo="nuevoProfesor"
@@ -61,16 +61,6 @@ const EditProfesor = () => {
                 <form onSubmit={handleSubmit(onSubmitHandler)}>
                     <h2>Editar datos</h2>
 
-                    <div>
-                        <label>Id: </label>
-                        <input
-                            {...register("id", {
-                                valueAsNumber: true,
-                            })}
-                            value={selectedProfesor?.id}
-                            type="number"
-                        />
-                    </div>
                     <div>
                         <label>Dni: </label>
 

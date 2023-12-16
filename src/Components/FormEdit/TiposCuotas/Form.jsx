@@ -35,7 +35,7 @@ const EditTipoCuota = () => {
     };
 
     useEffect(() => {
-        const tipoCuotaDetail = tiposcuota.filter((tipoCuota) => +tipoCuota.id === +currentId.id);
+        const tipoCuotaDetail = tiposcuota.filter((tipoCuota) => tipoCuota._id === currentId.id);
         setSelectedTipoCuota(tipoCuotaDetail[0]);
     }, [currentId, tiposcuota]);
 
@@ -43,7 +43,7 @@ const EditTipoCuota = () => {
         <div className={styles.frmTipoCuota}>
             {modEditTipoCuota && (
                 <Modal
-                    id={selectedTipoCuota?.id}
+                    id={selectedTipoCuota?._id}
                     path={"tiposcuota"}
                     texto="Aguarde mientras se actualizan los datos"
                     tipo="nuevoTipoCuota"
@@ -51,7 +51,7 @@ const EditTipoCuota = () => {
             )}
             {modFallaEdit && (
                 <Modal
-                    id={selectedTipoCuota?.id}
+                    id={selectedTipoCuota?._id}
                     path={"tiposcuota"}
                     texto="Falló al actualizar los datos"
                     tipo="nuevoTipoCuota"
@@ -61,16 +61,6 @@ const EditTipoCuota = () => {
                 <form onSubmit={handleSubmit(onSubmitHandler)}>
                     <h2>Editar datos</h2>
 
-                    <div>
-                        <label>Id: </label>
-                        <input
-                            {...register("id", {
-                                valueAsNumber: true,
-                            })}
-                            value={selectedTipoCuota?.id}
-                            type="number"
-                        />
-                    </div>
                     <div>
                         <label>Descripcion: </label>
 

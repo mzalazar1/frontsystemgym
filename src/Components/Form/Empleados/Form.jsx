@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { POST } from "../../../redux/main.actions";
 import Boton from "../../SharedComponents/Boton";
 import styles from "./Form.module.css";
@@ -17,6 +17,9 @@ const Formulario = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const { roles } = useSelector(
+    (state) => state
+  );
 
   const empleadoHandler = async (empleado) => {
     setModNewEmpleado(true);
@@ -49,13 +52,6 @@ const Formulario = () => {
       )}
       <h2>Formulario</h2>
       <form onSubmit={handleSubmit(empleadoHandler)}>
-        <div>
-          <label>Id: </label>
-          <input {...register("id")} />
-          {errors.id && (
-            <span className={styles.claseError}>{errors.id.message}</span>
-          )}
-        </div>
         <div>
           <label>Dni: </label>
           <input {...register("dni")} />
@@ -91,13 +87,22 @@ const Formulario = () => {
             <span className={styles.claseError}>{errors.fechaNac.message}</span>
           )}
         </div>
-        <div>
-          <label>Rol: </label>
-          <input {...register("rol")} />
-          {errors.rol && (
-            <span className={styles.claseError}>{errors.rol.message}</span>
-          )}
-        </div>
+        <label>Rol: </label>
+        <select
+          {...register("rol", {
+            valueAsNumber: true,
+          })}
+        >
+          <option value="">Seleccionar Rol</option>
+
+          {roles.map((rol) => {
+            return (
+              <option key={rol._id} value={rol.rol}>
+                {rol.rol}
+              </option>
+            );
+          })}
+        </select>
 
         <Boton tipo="empleadoABM" texto="Enviar" />
       </form>

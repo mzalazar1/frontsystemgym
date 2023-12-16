@@ -42,7 +42,7 @@ const EditCuota = () => {
 
     useEffect(() => {
         const cuotasDetail = cuotas.filter(
-            (cuota) => cuota._id?.toString() === currentId.id
+            (cuota) => cuota._id === currentId.id
         );
 
         console.log("🚀 ~ file: Form.jsx:65 ~ useEffect ~ cuotasDetail:", cuotasDetail);
@@ -108,7 +108,7 @@ const EditCuota = () => {
 
                             {actividades.map((actividad) => {
                                 return (
-                                    <option key={actividad._id} value={actividad._id}>
+                                    <option key={actividad._id} value={actividad.nombre}>
                                         {actividad.nombre}
                                     </option>
                                 );

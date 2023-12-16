@@ -35,7 +35,7 @@ const EditValorCuota = () => {
     };
 
     useEffect(() => {
-        const valorCuotaDetail = valorescuota.filter((valorCuota) => +valorCuota.id === +currentId.id);
+        const valorCuotaDetail = valorescuota.filter((valorCuota) => valorCuota._id === currentId.id);
         setSelectedValorCuota(valorCuotaDetail[0]);
     }, [currentId, valorescuota]);
 
@@ -43,7 +43,7 @@ const EditValorCuota = () => {
         <div className={styles.frmValorCuota}>
             {modEditValorCuota && (
                 <Modal
-                    id={selectedValorCuota?.id}
+                    id={selectedValorCuota?._id}
                     path={"valorescuota"}
                     texto="Aguarde mientras se actualizan los datos"
                     tipo="nuevoValorCuota"
@@ -51,7 +51,7 @@ const EditValorCuota = () => {
             )}
             {modFallaEdit && (
                 <Modal
-                    id={selectedValorCuota?.id}
+                    id={selectedValorCuota?._id}
                     path={"valorescuota"}
                     texto="Falló al actualizar los datos"
                     tipo="nuevoValorCuota"

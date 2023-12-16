@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { POST } from "../../../redux/main.actions";
 import Boton from "../../SharedComponents/Boton";
 import styles from "./Form.module.css";
@@ -12,11 +12,15 @@ const Formulario = () => {
   const navigate = useNavigate();
   const [modNewValorCuota, setModNewValorCuota] = useState(false);
   const [modFallaValorCuota, setModFallaValorCuota] = useState(false);
+  const [selectedTipo] = useState(null);
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const { tiposcuota } = useSelector((state) => state); // traigo todo el state
+
 
   const valorCuotaHandler = async (valorCuota) => {
 
@@ -52,13 +56,7 @@ const Formulario = () => {
       )}
       <h2>Formulario</h2>
       <form onSubmit={handleSubmit(valorCuotaHandler)}>
-        <div>
-          <label>Id: </label>
-          <input {...register("id")} />
-          {errors.id && (
-            <span className={styles.claseError}>{errors.id.message}</span>
-          )}
-        </div>
+
         <div>
           <label>Mes: </label>
           <input {...register("mes")} />
@@ -75,10 +73,14 @@ const Formulario = () => {
         </div>
         <div>
           <label>Tipo: </label>
-          <input {...register("tipo")} />
-          {errors.tipo && (
-            <span className={styles.claseError}>{errors.tipo.message}</span>
-          )}
+          <select {...register("tipo")} defaultValue={selectedTipo?.tipo}>
+
+            <option value="">Seleccionar tipo</option>
+
+            {tiposcuota.map(tipocuota => {
+              return <option value={tipocuota.tipo}>{tipocuota.tipo}</option>
+            })}
+          </select>
         </div>
 
         <Boton tipo="valorCuotaABM" texto="Enviar" />

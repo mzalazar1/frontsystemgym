@@ -37,7 +37,6 @@ const Cuotas = () => {
           <table>
             <thead>
               <tr>
-                <th className={styles.thDatos}>Id</th>
                 <th className={styles.thDatos}>Socio</th>
                 <th className={styles.thDatos}>Actividad</th>
                 <th className={styles.thDatos}>Tipo</th>

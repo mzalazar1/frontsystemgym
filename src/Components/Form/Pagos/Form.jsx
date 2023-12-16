@@ -55,13 +55,7 @@ const Formulario = () => {
             )}
             <h2>Formulario</h2>
             <form onSubmit={handleSubmit(pagoHandler)}>
-                <div>
-                    <label>Id: </label>
-                    <input {...register("id")} />
-                    {errors.id && (
-                        <span className={styles.claseError}>{errors.id.message}</span>
-                    )}
-                </div>
+
                 <div>
                     <label>Fecha: </label>
                     <input {...register("fecha")} />
@@ -83,7 +77,7 @@ const Formulario = () => {
                         <option value="">Seleccionar Metodo de Pago</option>
 
                         {metodospagos.map(metodopago => {
-                            return <option value={metodopago.id}>{metodopago.tipo}</option>
+                            return <option value={metodopago.tipo}>{metodopago.tipo}</option>
                         })}
                     </select>
                 </div>

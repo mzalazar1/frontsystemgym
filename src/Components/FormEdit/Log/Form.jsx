@@ -35,7 +35,7 @@ const EditLog = () => {
   };
 
   useEffect(() => {
-    const logDetail = logs.filter((log) => +log.id === +currentId.id);
+    const logDetail = logs.filter((log) => log.id === currentId.id);
     setSelectedLog(logDetail[0]);
   }, [currentId, logs]);
 
@@ -43,7 +43,7 @@ const EditLog = () => {
     <div className={styles.frmLog}>
       {modEditLog && (
         <Modal
-          id={selectedLog?.id}
+          id={selectedLog?._id}
           path={"logs"}
           texto="Aguarde mientras se actualizan los datos"
           tipo="nuevoLog"
@@ -51,7 +51,7 @@ const EditLog = () => {
       )}
       {modFallaEdit && (
         <Modal
-          id={selectedLog?.id}
+          id={selectedLog?._id}
           path={"logs"}
           texto="Falló al actualizar los datos"
           tipo="nuevoLog"

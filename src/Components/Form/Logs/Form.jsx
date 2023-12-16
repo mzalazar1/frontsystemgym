@@ -51,13 +51,7 @@ const Formulario = () => {
       )}
       <h2>Formulario</h2>
       <form onSubmit={handleSubmit(logHandler)}>
-        <div>
-          <label>Id: </label>
-          <input {...register("id")} />
-          {errors.id && (
-            <span className={styles.claseError}>{errors.id.message}</span>
-          )}
-        </div>
+
         <div>
           <label>Acción: </label>
           <input {...register("accion")} />

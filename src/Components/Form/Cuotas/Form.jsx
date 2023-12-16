@@ -25,23 +25,23 @@ const Formulario = () => {
         (state) => state
     ); // traigo todo el state
 
-    const handleDescuentoChange = (event) => {
-        // Set the value in React Hook Form
-        const valor = event.target.value;
-        if (valor === "0") {
-            setValorDescontado(false);
-            return;
-        }
-        const descontado = (getValues("valor") * event.target.value) / 100;
-        setValorDescontado(descontado);
-    };
+    // const handleDescuentoChange = (event) => {
+    //     // Set the value in React Hook Form
+    //     const valor = event.target.value;
+    //     if (valor === "0") {
+    //         setValorDescontado(false);
+    //         return;
+    //     }
+    //     const descontado = (getValues("valor") * event.target.value) / 100;
+    //     setValorDescontado(descontado);
+    // };
 
     const cuotaHandler = async (data) => {
         setModNewCuota(true);
 
         // sobreescribimos data.importe por el nuevo descontado
-        data.valor =
-            valorDescontado > 0 ? data.valor - valorDescontado : data.valor;
+        // data.valor =
+        //     valorDescontado > 0 ? data.valor - valorDescontado : data.valor;
 
         try {
             await dispatch(POST("cuotas", data));
@@ -74,13 +74,7 @@ const Formulario = () => {
             )}
             <h2>Formulario</h2>
             <form onSubmit={handleSubmit(cuotaHandler)}>
-                <div>
-                    <label>Id: </label>
-                    <input {...register("id")} />
-                    {errors.id && (
-                        <span className={styles.claseError}>{errors.id.message}</span>
-                    )}
-                </div>
+
                 <div>
                     <label>Socio: </label>
                     <select {...register("socio")}>
@@ -102,7 +96,7 @@ const Formulario = () => {
 
                         {actividades.map((actividad) => {
                             return (
-                                <option key={actividad.id} value={actividad.nombre}>
+                                <option key={actividad._id} value={actividad.nombre}>
                                     {actividad.nombre}
                                 </option>
                             );
@@ -116,7 +110,7 @@ const Formulario = () => {
 
                         {tiposcuota.map((tipo) => {
                             return (
-                                <option key={tipo.id} value={tipo.tipo}>
+                                <option key={tipo._id} value={tipo.tipo}>
                                     {tipo.tipo}
                                 </option>
                             );
@@ -134,34 +128,34 @@ const Formulario = () => {
 
                         {valorescuota.map((valorcuota) => {
                             return (
-                                <option key={valorcuota.id} value={valorcuota.importe}>
+                                <option key={valorcuota._id} value={valorcuota.importe}>
                                     {valorcuota.importe}
                                 </option>
                             );
                         })}
                     </select>
                 </div>
-                <div>
-                    <label>Descuento Opcional: </label>
-                    <select
-                        {...register("descuento", {
-                            valueAsNumber: true,
-                        })}
-                        onChange={handleDescuentoChange}
-                    >
-                        <option selected value="0">
-                            Seleccionar Descuento
-                        </option>
-                        <option value="10">10%</option>
-                        <option value="20">20%</option>
-                        <option value="50">50%</option>
-                        <option value="75">75%</option>
-                        <option value="100">100%</option>
-                    </select>
-                </div>
-                {valorDescontado && valorDescontado !== 0 && (
-                    <p>Valor descontado ${valorDescontado}</p>
-                )}
+                {/* <div>
+                <label>Descuento Opcional: </label>
+                <select
+                    {...register("descuento", {
+                        valueAsNumber: true,
+                    })}
+                    onChange={handleDescuentoChange}
+                >
+                    <option selected value="0">
+                        Seleccionar Descuento
+                    </option>
+                    <option value="10">10%</option>
+                    <option value="20">20%</option>
+                    <option value="50">50%</option>
+                    <option value="75">75%</option>
+                    <option value="100">100%</option>
+                </select>
+            </div>
+            {valorDescontado && valorDescontado !== 0 && (
+                <p>Valor descontado ${valorDescontado}</p>
+            )} */}
                 <Boton tipo="cuotaABM" texto="Enviar" />
             </form>
         </div>

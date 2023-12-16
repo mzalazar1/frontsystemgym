@@ -51,13 +51,7 @@ const Formulario = () => {
       )}
       <h2>Formulario</h2>
       <form onSubmit={handleSubmit(estadoCuotaHandler)}>
-        <div>
-          <label>Id: </label>
-          <input {...register("id")} />
-          {errors.id && (
-            <span className={styles.claseError}>{errors.id.message}</span>
-          )}
-        </div>
+
         <div>
           <label>Estado Actual: </label>
           <input {...register("estado")} />

@@ -35,7 +35,7 @@ const EditMetodoPago = () => {
     };
 
     useEffect(() => {
-        const metodoPagoDetail = metodosPago.filter((metodoPago) => +metodoPago.id === +currentId.id);
+        const metodoPagoDetail = metodosPago.filter((metodoPago) => metodoPago._id === currentId.id);
         setSelectedMetodoPago(metodoPagoDetail[0]);
     }, [currentId, metodosPago]);
 
@@ -43,7 +43,7 @@ const EditMetodoPago = () => {
         <div className={styles.frmMetodoPago}>
             {modEditMetodoPago && (
                 <Modal
-                    id={selectedMetodoPago?.id}
+                    id={selectedMetodoPago?._id}
                     path={"metodosPago"}
                     texto="Aguarde mientras se actualizan los datos"
                     tipo="nuevoMetodoPago"
@@ -51,7 +51,7 @@ const EditMetodoPago = () => {
             )}
             {modFallaEdit && (
                 <Modal
-                    id={selectedMetodoPago?.id}
+                    id={selectedMetodoPago?._id}
                     path={"metodosPago"}
                     texto="Falló al actualizar los datos"
                     tipo="nuevoMetodoPago"
@@ -61,16 +61,6 @@ const EditMetodoPago = () => {
                 <form onSubmit={handleSubmit(onSubmitHandler)}>
                     <h2>Editar datos</h2>
 
-                    <div>
-                        <label>Id: </label>
-                        <input
-                            {...register("id", {
-                                valueAsNumber: true,
-                            })}
-                            value={selectedMetodoPago?.id}
-                            type="number"
-                        />
-                    </div>
                     <div>
                         <label>Tipo: </label>
 

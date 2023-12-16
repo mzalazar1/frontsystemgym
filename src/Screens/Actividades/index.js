@@ -47,7 +47,6 @@ const Actividades = () => {
                     <table>
                         <thead>
                             <tr>
-                                <th className={styles.thDatos}>Id</th>
                                 <th className={styles.thDatos}>Nombre</th>
                                 <th className={styles.thDatos}>Horarios</th>
                                 <th className={styles.thDatos}>Profesor</th>

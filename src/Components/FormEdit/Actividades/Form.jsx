@@ -9,7 +9,7 @@ import styles from "./Form.module.css";
 import Modal from "../../Modal/Modal";
 
 const EditActividad = () => {
-    const actividades = useSelector((state) => state.actividades);
+    const { actividades, profesores } = useSelector((state) => state); // traigo el state
     const dispatch = useDispatch();
     const currentId = useParams();
     const navigate = useNavigate();
@@ -18,7 +18,10 @@ const EditActividad = () => {
     const [modFallaEdit, setModFallaEdit] = useState(false);
     const { register, handleSubmit } = useForm();
 
-    const { socios, profesores, tiposcuota, valorescuota, pagos, metodospagos } = useSelector((state) => state); // traigo todo el state
+    console.log("🚀 ~ file: Form.jsx:13 ~ EditActividad ~ actividades:miraaa primero", actividades._id)
+
+
+    console.log("🚀 ~ file: Form.jsx:16 ~ EditActividad ~ currentId MIRAAA:", currentId.id)
 
 
     const onSubmitHandler = async (data) => {
@@ -38,7 +41,8 @@ const EditActividad = () => {
     };
 
     useEffect(() => {
-        const actividadDetail = actividades.filter((actividad) => +actividad.id === +currentId.id);
+        const actividadDetail = actividades.filter((actividad) => actividad._id === currentId.id);
+        console.log("🚀 ~ file: Form.jsx:39 ~ useEffect ~ currentId._id: miaaa tambien", currentId.id)
         setSelectedActividad(actividadDetail[0]);
     }, [currentId, actividades]);
 
@@ -46,7 +50,7 @@ const EditActividad = () => {
         <div className={styles.frmActividad}>
             {modEditActividad && (
                 <Modal
-                    id={selectedActividad?.id}
+                    id={selectedActividad?._id}
                     path={"actividades"}
                     texto="Aguarde mientras se actualizan los datos"
                     tipo="nuevoActividad"
@@ -54,7 +58,7 @@ const EditActividad = () => {
             )}
             {modFallaEdit && (
                 <Modal
-                    id={selectedActividad?.id}
+                    id={selectedActividad?._id}
                     path={"actividades"}
                     texto="Falló al actualizar los datos"
                     tipo="nuevoActividad"
@@ -63,17 +67,6 @@ const EditActividad = () => {
             {selectedActividad != null && (
                 <form onSubmit={handleSubmit(onSubmitHandler)}>
                     <h2>Editar datos</h2>
-
-                    <div>
-                        <label>Id: </label>
-                        <input
-                            {...register("id", {
-                                valueAsNumber: true,
-                            })}
-                            value={selectedActividad?.id}
-                            type="number"
-                        />
-                    </div>
                     <div>
                         <label>Nombre: </label>
 
@@ -85,12 +78,12 @@ const EditActividad = () => {
                     </div>
                     <div>
                         <label>Profesor: </label>
-                        <select {...register("actividad")} defaultValue={selectedActividad?.actividad}>
+                        <select {...register("profesor")} defaultValue={selectedActividad?.profesor}>
 
                             <option value="">Seleccionar Profesor</option>
 
-                            {actividades.map(actividad => {
-                                return <option value={actividad.id}>{actividad.profesor}</option>
+                            {profesores.map(profesor => {
+                                return <option value={profesor.name}>{profesor.name}</option>
                             })}
                         </select>
                     </div>

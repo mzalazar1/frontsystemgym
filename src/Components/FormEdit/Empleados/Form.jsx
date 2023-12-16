@@ -18,6 +18,12 @@ const EditEmpleado = () => {
     const [modFallaEdit, setModFallaEdit] = useState(false);
     const { register, handleSubmit } = useForm();
 
+
+    console.log("🚀 ~ file: Form.jsx:13 ~ EditActividad ~ actividades:miraaa primero", empleados._id)
+
+
+    console.log("🚀 ~ file: Form.jsx:16 ~ EditActividad ~ currentId MIRAAA:", currentId.id)
+
     const onSubmitHandler = async (data) => {
         setModEditEmpleado(true);
         try {
@@ -35,7 +41,8 @@ const EditEmpleado = () => {
     };
 
     useEffect(() => {
-        const empleadoDetail = empleados.filter((empleado) => +empleado.id === +currentId.id);
+        const empleadoDetail = empleados.filter((empleado) => empleado._id === currentId.id);
+        console.log("🚀 ~ file: Form.jsx:39 ~ useEffect ~ currentId._id: miaaa tambien", currentId.id)
         setSelectedEmpleado(empleadoDetail[0]);
     }, [currentId, empleados]);
 
@@ -43,7 +50,7 @@ const EditEmpleado = () => {
         <div className={styles.frmEmpleado}>
             {modEditEmpleado && (
                 <Modal
-                    id={selectedEmpleado?.id}
+                    id={selectedEmpleado?._id}
                     path={"empleados"}
                     texto="Aguarde mientras se actualizan los datos"
                     tipo="nuevoEmpleado"
@@ -51,7 +58,7 @@ const EditEmpleado = () => {
             )}
             {modFallaEdit && (
                 <Modal
-                    id={selectedEmpleado?.id}
+                    id={selectedEmpleado?._id}
                     path={"empleados"}
                     texto="Falló al actualizar los datos"
                     tipo="nuevoEmpleado"
@@ -60,17 +67,6 @@ const EditEmpleado = () => {
             {selectedEmpleado != null && (
                 <form onSubmit={handleSubmit(onSubmitHandler)}>
                     <h2>Editar datos</h2>
-
-                    <div>
-                        <label>Id: </label>
-                        <input
-                            {...register("id", {
-                                valueAsNumber: true,
-                            })}
-                            value={selectedEmpleado?.id}
-                            type="number"
-                        />
-                    </div>
                     <div>
                         <label>Dni: </label>
 

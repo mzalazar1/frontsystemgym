@@ -44,7 +44,7 @@ const reducer = (state = INITIAL_STATE, action) => {
 
         case UPDATE_STATE:
             const indexToUpdate = state[action.path].findIndex((e) => {
-                return e.id === +action.payload.id; // "+" para convertirlo en numero, porque del input viene como string
+                return e.id === +action.payload._id; // "+" para convertirlo en numero, porque del input viene como string
             });
             const updatedArray = [...state[action.path]];
             updatedArray[indexToUpdate] = action.payload;
@@ -56,7 +56,7 @@ const reducer = (state = INITIAL_STATE, action) => {
 
         case DELETE_STATE:
             const finalAfterDeleted = state[action.path].filter((e) => {
-                return e.id !== action.payload.id;
+                return e.id !== action.payload._id;
             });
 
             return {

@@ -48,13 +48,7 @@ const Formulario = () => {
       )}
       <h2>Formulario</h2>
       <form onSubmit={handleSubmit(socioHandler)}>
-        <div>
-          <label>Id: </label>
-          <input {...register("id")} />
-          {errors.id && (
-            <span className={styles.claseError}>{errors.id.message}</span>
-          )}
-        </div>
+
         <div>
           <label>Dni: </label>
           <input {...register("dni")} />

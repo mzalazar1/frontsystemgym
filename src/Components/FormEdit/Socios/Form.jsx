@@ -9,15 +9,22 @@ import styles from "./Form.module.css";
 import Modal from "../../Modal/Modal";
 
 const EditSocio = () => {
-    const socios = useSelector((state) => state.socios);
-
+    const { socios } = useSelector(
+        (state) => state
+    );
     const dispatch = useDispatch();
-    const currentId = useParams(null);
+    const currentId = useParams();
     const navigate = useNavigate();
     const [selectedSocio, setSelectedSocio] = useState(null);
     const [modEditSocio, setModEditSocio] = useState(false);
     const [modFallaEdit, setModFallaEdit] = useState(false);
     const { register, handleSubmit } = useForm();
+
+
+    console.log("🚀 ~ file: Form.jsx:13 ~ EditSocio ~ socios:miraaa", socios)
+
+    console.log("🚀 ~ file: Form.jsx:16 ~ EditSocio ~ currentId miraaa:", currentId)
+
 
     const onSubmitHandler = async (data) => {
 
@@ -38,24 +45,30 @@ const EditSocio = () => {
     };
 
     useEffect(() => {
-        const socioDetail = socios.filter((socio) => +socio.id === +currentId.id);
+        const socioDetail = socios.filter((socio) => socio._id === currentId.id);
+        console.log("🚀 ~ file: Form.jsx:47 ~ useEffect ~ currentId.id:otra vezzz", currentId.id)
         setSelectedSocio(socioDetail[0]);
+        console.log("🚀 ~ file: Form.jsx:48 ~ useEffect ~ socioDetail: miraaa", socioDetail)
 
     }, [currentId, socios]);
+
+    console.log("🚀 ~ file: Form.jsx:60 ~ EditSocio ~ selectedSocio?._id:", selectedSocio?._id)
+
 
     return (
         <div className={styles.frmSocio}>
             {modEditSocio && (
                 <Modal
-                    id={selectedSocio?.id}
+                    id={selectedSocio?._id}
                     path={"socios"}
                     texto="Aguarde mientras se actualizan los datos"
                     tipo="nuevoSocio"
                 />
             )}
+
             {modFallaEdit && (
                 <Modal
-                    id={selectedSocio?.id}
+                    id={selectedSocio?._id}
                     path={"socios"}
                     texto="Falló al actualizar los datos"
                     tipo="nuevoSocio"
@@ -65,16 +78,6 @@ const EditSocio = () => {
                 <form onSubmit={handleSubmit(onSubmitHandler)}>
                     <h2>Editar datos</h2>
 
-                    <div>
-                        <label>Id: </label>
-                        <input
-                            {...register("id", {
-                                valueAsNumber: true,
-                            })}
-                            value={selectedSocio?.id}
-                            type="number"
-                        />
-                    </div>
                     <div>
                         <label>Dni: </label>
 

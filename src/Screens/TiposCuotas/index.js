@@ -38,7 +38,6 @@ const TiposCuota = () => {
                     <table>
                         <thead>
                             <tr>
-                                <th className={styles.thDatos}>Id</th>
                                 <th className={styles.thDatos}>Tipo</th>
                                 <th className={styles.thDatos}>Importe</th>
                                 <th className={styles.thDatos}>Mes</th>

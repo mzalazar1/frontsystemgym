@@ -14,9 +14,9 @@ const Formulario = () => {
     const [modFallaActividad, setModFallaActividad] = useState(false);
     const [selectedActividad, setSelectedActividad] = useState(null);
 
-    const { actividades } = useSelector((state) => state); // traigo todo el state
-    console.log("🚀 ~ file: Form.jsx:18 ~ Formulario ~ actividades:", actividades);
-    console.log("🚀 ~ file: Form.jsx:19 ~ Formulario ~ actividades:", actividades[0]._id);
+    const { actividades, profesores } = useSelector((state) => state); // traigo todo el state
+    console.log("🚀 ~ file: Form.jsx:18 ~ Formulario ~ actividades:", profesores);
+    console.log("🚀 ~ file: Form.jsx:19 ~ Formulario ~ actividades: acaaaaa", profesores._id);
 
     const {
         register,
@@ -73,13 +73,14 @@ const Formulario = () => {
                 </div>
                 <div>
                     <label>Profesor: </label>
-                    <select {...register("actividad")} defaultValue={selectedActividad?.actividad}>
+                    <select {...register("profesor")} defaultValue={selectedActividad?.profesor}>
 
                         <option value="">Seleccionar Profesor</option>
 
-                        {actividades.map(actividad => {
-                            console.log("Valor de actividad._id:", actividad._id); // Agregar este console.log
-                            return <option value={actividad._id}>{actividad.profesor}</option>
+                        {profesores.map(profesor => {
+                            console.log("🚀 ~ file: Form.jsx:83 ~ Formulario ~ profesores.nombre:", profesor.name)
+                            console.log("Valor de profesor._id: ultima linea", profesor._id); // Agregar este console.log
+                            return <option value={profesor.name}>{profesor.name}</option>
                         })}
                     </select>
                 </div>

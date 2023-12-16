@@ -30,11 +30,11 @@ const Tabla = ({ entidad, globalFilter }) => {
   let stateValues = useSelector((state) => state && state[entidad]) || [];
 
   const [deleteValue, setDeleteValue] = useState(false);
-  const [id, setId] = useState();
+  const [_id, setId] = useState();
 
   const deleteHandler = (id) => {
     setDeleteValue(true);
-    setId(id);
+    setId(_id);
   };
 
   const cancelHandler = () => {
@@ -62,7 +62,7 @@ const Tabla = ({ entidad, globalFilter }) => {
 
       {deleteValue && (
         <Modal
-          id={id}
+          id={_id}
           entidad={entidad}
           texto="¿Desea eliminar el registro?"
           cerrar={cancelHandler}
@@ -85,7 +85,7 @@ const Tabla = ({ entidad, globalFilter }) => {
             {entidad !== 'logs' && (
               <td key={stateValueIndex + "td"} className={styles.tdBotones}>
                 <Fragment>
-                  <Link to={`/edit${entidad}/${element.id}`}>
+                  <Link to={`/edit${entidad}/${element._id}`}>
                     <Boton tipo="editSocio" texto="Editar" />
                   </Link>
 
@@ -93,7 +93,7 @@ const Tabla = ({ entidad, globalFilter }) => {
                     <Boton
                       tipo="editSocio"
                       texto="Eliminar"
-                      onClick={() => deleteHandler(element.id)}
+                      onClick={() => deleteHandler(element._id)}
                     />
                   </AuthorizationComponent>
                 </Fragment>

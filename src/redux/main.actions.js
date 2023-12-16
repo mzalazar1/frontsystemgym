@@ -17,25 +17,19 @@ export const GET = (path) => async (dispatch) => {
   try {
     await fetch(`${REACT_APP_API_URL}/${path}/all`)
       .then((respuesta) => {
-        console.log(
-          "🚀 ~ file: main.actions.js:20 ~ .then ~ respuesta:",
-          respuesta
-        );
+        console.log("🚀 ~ file: main.actions.js:20 ~ .then ~ respuesta:", respuesta)
         if (respuesta.ok) {
           return respuesta.json();
         }
       })
       .then((respuesta) => {
-        console.log(
-          "🚀 ~ file: main.actions.js:25 ~ .then ~ respuesta:",
-          respuesta
-        );
+        console.log("🚀 ~ file: main.actions.js:25 ~ .then ~ respuesta:", respuesta)
 
         if (respuesta.length > 0) {
           dispatch({
             type: LOAD_INITIAL_STATE,
             payload: respuesta,
-            path: path,
+            path: path
           });
         } else {
           console.log("fallo la conexion");
@@ -47,10 +41,10 @@ export const GET = (path) => async (dispatch) => {
 };
 
 export const POST = (path, payload) => async (dispatch) => {
+  console.log("🚀 ~ file: main.actions.js:44 ~ POST ~ payload:", payload)
   const token = getToken();
 
   try {
-    // osea que ahi en PATH va a venir "/" ??? y va a temrinar tu final de URL con doble "//"
     await fetch(`${REACT_APP_API_URL}/${path}`, {
       method: "POST",
       headers: {
@@ -58,21 +52,19 @@ export const POST = (path, payload) => async (dispatch) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ ...payload }),
-    })
-      .then((respuesta) => {
-        if (respuesta.ok) {
-          return respuesta.json();
-        }
-      })
-      .then((respuesta) => {
+    }).then((respuesta) => {
+      if (respuesta.ok) {
         dispatch({
           type: ADD_STATE,
-          payload: respuesta,
-          path: path,
+          payload: payload,
+          path: path
         });
-      });
+      } else {
+        console.log("fallo la subida");
+      }
+    })
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
 };
 
@@ -80,7 +72,7 @@ export const PUT = (path, payload) => async (dispatch) => {
   const token = getToken();
 
   try {
-    await fetch(`${REACT_APP_API_URL}/${path}/${payload.id}`, {
+    await fetch(`${REACT_APP_API_URL}/${path}/${payload._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -89,19 +81,19 @@ export const PUT = (path, payload) => async (dispatch) => {
       body: JSON.stringify({
         ...payload,
       }),
-    })
-      .then((respuesta) => {
-        if (respuesta.ok) {
-          return respuesta.json();
-        }
-      })
-      .then((respuesta) => {
+    }).then((respuesta) => {
+
+      if (respuesta.ok) {
         dispatch({
           type: UPDATE_STATE,
-          payload: respuesta,
-          path: path,
+          payload: payload,
+          path: path
+
         });
-      });
+      } else {
+        console.log("fallo la edición");
+      }
+    });
   } catch (error) {
     console.log(error);
   }
@@ -111,7 +103,7 @@ export const DELETE = (path, payload) => async (dispatch) => {
   const token = getToken();
 
   try {
-    await fetch(`${REACT_APP_API_URL}/${path}/${payload.id}`, {
+    await fetch(`${REACT_APP_API_URL}/${path}/${payload._id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -122,7 +114,8 @@ export const DELETE = (path, payload) => async (dispatch) => {
         dispatch({
           type: DELETE_STATE,
           payload: payload,
-          path: path,
+          path: path
+
         });
       } else {
         console.log("fallo al borrar");
@@ -132,6 +125,8 @@ export const DELETE = (path, payload) => async (dispatch) => {
     console.log(error);
   }
 };
+
+
 
 export const CHECK_DNI = (path, payload) => async (dispatch) => {
   const token = getToken();
@@ -151,13 +146,18 @@ export const CHECK_DNI = (path, payload) => async (dispatch) => {
     if (respuesta.ok) {
       const data = await respuesta.json();
       return data;
+
     } else {
       // Handle non-OK responses, e.g., dispatch an action to handle errors
       console.error("Error in fetch:", respuesta.status);
       return null;
     }
+
+    // aca van los logs id created
+
   } catch (error) {
     console.error("Error during fetch:", error);
     return null;
   }
 };
+

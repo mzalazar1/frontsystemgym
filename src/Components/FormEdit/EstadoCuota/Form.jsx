@@ -9,7 +9,7 @@ import styles from "./Form.module.css";
 import Modal from "../../Modal/Modal";
 
 const EditEstadoCuota = () => {
-    const estadosCuota = useSelector((state) => state.estado);
+    const estadoscuotas = useSelector((state) => state.estadoscuotas);
     const dispatch = useDispatch();
     const currentId = useParams();
     const navigate = useNavigate();
@@ -17,6 +17,10 @@ const EditEstadoCuota = () => {
     const [modEditEstadoCuota, setModEditEstadoCuota] = useState(false);
     const [modFallaEdit, setModFallaEdit] = useState(false);
     const { register, handleSubmit } = useForm();
+
+    console.log("🚀 ~ file: Form.jsx:13 ~ EditEstadoCuota ~ estadosCuota: miaaa", estadoscuotas)
+    console.log("🚀 ~ file: Form.jsx:15 ~ EditEstadoCuota ~ currentId: miraaaa", currentId.id)
+
 
     const onSubmitHandler = async (data) => {
         setModEditEstadoCuota(true);
@@ -35,9 +39,9 @@ const EditEstadoCuota = () => {
     };
 
     useEffect(() => {
-        const estadoCuotaDetail = estadosCuota.filter((estadoCuota) => +estadoCuota.id === +currentId.id);
+        const estadoCuotaDetail = estadoscuotas.filter((estadoCuota) => estadoCuota._id === currentId.id);
         setSelectedEstadoCuota(estadoCuotaDetail[0]);
-    }, [currentId, estadosCuota]);
+    }, [currentId, estadoscuotas]);
 
     return (
         <div className={styles.frmEstadoCuota}>

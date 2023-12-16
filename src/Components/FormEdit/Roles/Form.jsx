@@ -35,7 +35,7 @@ const EditRol = () => {
     };
 
     useEffect(() => {
-        const rolDetail = roles.filter((rol) => +rol.id === +currentId.id);
+        const rolDetail = roles.filter((rol) => rol._id === currentId.id);
         setSelectedRol(rolDetail[0]);
     }, [currentId, roles]);
 
@@ -43,7 +43,7 @@ const EditRol = () => {
         <div className={styles.frmRol}>
             {modEditRol && (
                 <Modal
-                    id={selectedRol?.id}
+                    id={selectedRol?._id}
                     path={"roles"}
                     texto="Aguarde mientras se actualizan los datos"
                     tipo="nuevoRol"
@@ -51,7 +51,7 @@ const EditRol = () => {
             )}
             {modFallaEdit && (
                 <Modal
-                    id={selectedRol?.id}
+                    id={selectedRol?._id}
                     path={"roles"}
                     texto="Falló al actualizar los datos"
                     tipo="nuevoRol"
