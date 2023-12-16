@@ -80,7 +80,7 @@ const Formulario = () => {
                     <label>Metodo de Pago: </label>
                     <select {...register("metodopago")} defaultValue={selectedPago?.metodopago}>
 
-                        <option value="">Seleccionar Actividad</option>
+                        <option value="">Seleccionar Metodo de Pago</option>
 
                         {metodospagos.map(metodopago => {
                             return <option value={metodopago.id}>{metodopago.tipo}</option>

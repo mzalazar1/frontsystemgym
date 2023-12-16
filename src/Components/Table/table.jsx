@@ -22,7 +22,8 @@ const transformDate = (date) => {
   return finalDate
 }
 
-const Tabla = ({ entidad }) => {
+const Tabla = ({ entidad, globalFilter }) => {
+  console.log("🚀 ~ file: table.jsx:27 ~ Tabla ~ globalFilter:", globalFilter)
   console.log("🚀 ~ file: table.jsx:25 ~ Tabla ~ entidad:", typeof entidad)
   const dispatch = useDispatch();
 
@@ -46,9 +47,19 @@ const Tabla = ({ entidad }) => {
     }
   }, [dispatch, entidad, stateValues?.length]);
 
+  // Filtrar los elementos según el texto de búsqueda
+  //búsqueda
+  const filteredValues = stateValues.filter((element) => {
+    const match = Object.values(element).some((value) =>
+      String(value).toLowerCase().includes(globalFilter.toLowerCase())
+    );
+    console.log(`Filtering: ${JSON.stringify(element)} - Match: ${match}`);
+    return match;
+  });
 
   return (
     <Fragment>
+
       {deleteValue && (
         <Modal
           id={id}
@@ -58,16 +69,21 @@ const Tabla = ({ entidad }) => {
           tipo="elminiar"
         />
       )}
-      {stateValues?.length > 0 ? (
-        stateValues.map((element, stateValueIndex) => (
+
+      {filteredValues.length > 0 ? (
+        filteredValues.map((element, stateValueIndex) => (
           <tr key={stateValueIndex}>
             {Object.keys(element).map(
               (key, keyIndex) =>
-                !DATES_PROPERTIES.includes(key) && !key.startsWith("_") && <td key={keyIndex}>{key === "created_at" ? transformDate(element[key]) : element[key]}</td>
+                !DATES_PROPERTIES.includes(key) &&
+                !key.startsWith("_") && (
+                  <td key={keyIndex}>
+                    {key === "created_at" ? transformDate(element[key]) : element[key]}
+                  </td>
+                )
             )}
             {entidad !== 'logs' && (
               <td key={stateValueIndex + "td"} className={styles.tdBotones}>
-
                 <Fragment>
                   <Link to={`/edit${entidad}/${element.id}`}>
                     <Boton tipo="editSocio" texto="Editar" />
@@ -81,15 +97,18 @@ const Tabla = ({ entidad }) => {
                     />
                   </AuthorizationComponent>
                 </Fragment>
-
               </td>
             )}
           </tr>
         ))
       ) : (
-        <h4>No hay elementos cargados</h4>
+        <Fragment>
+          <h4>No hay elementos cargados</h4>
+          {/* Puedes agregar aquí un mensaje o contenido alternativo cuando no hay coincidencias */}
+        </Fragment>
       )}
-    </Fragment >
+    </Fragment>
   );
 };
+
 export default Tabla;

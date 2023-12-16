@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import HeaderSection from '../../Components/Header/Header';
 import FooterSection from '../../Components/Footer/Footer';
@@ -12,11 +12,22 @@ import { getAuth } from "firebase/auth"
 const auth = getAuth(firebaseAapp)
 
 const Empleados = () => {
+    const [globalFilter, setGlobalFilter] = useState('')
+    console.log("🚀 ~ file: index.js:16 ~ Cuotas ~ globalFilter:", globalFilter)
+    console.log("🚀 ~ file: index.js:17 ~ Cuotas ~ setGlobalFilter:", setGlobalFilter)
     return (
         <div>
             <HeaderSection />
             {auth.currentUser != null ?
                 <>
+                    <div>
+                        <label>Busqueda:</label>
+                        <input
+                            type="text"
+                            onChange={(e) => setGlobalFilter(e.target.value)}
+                            placeholder="Buscar..."
+                        />
+                    </div>
                     <div className={styles.botEmpleados}>
                         <Link to="/addempleado">
                             <Boton
@@ -38,7 +49,7 @@ const Empleados = () => {
                             </tr>
                         </thead>
 
-                        <Tabla entidad="empleados" />
+                        <Tabla entidad="empleados" globalFilter={globalFilter} />
 
                     </table>
 

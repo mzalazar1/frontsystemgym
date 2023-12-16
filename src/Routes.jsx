@@ -63,63 +63,64 @@ const RoutesAPP = () => {
 
     return (
         <Routes>
-            <Route path="/estadisticas" element={<Estadisticas />} />
-
 
             <Route path="/" element={<Home />} />
             <Route path='/login' element={<Login />} />
 
-            {userLogin ?
-                <>
-                    <Route path="/estadisticas" element={<Estadisticas />} />
+            if (userLogin) (
+            {/* {userLogin ? */}
+            <>
 
-                    <Route path="/socios" element={<Socios />} />
-                    <Route path="/pagos" element={<Pagos />} />
-                    <Route path="/cuotas" element={<Cuotas />} />
-                    <Route path="/actividades" element={<Actividades />} />
-                    <Route path="/empleados" element={<Empleados />} />
-                    <Route path="/estadoscuotas" element={<EstadosCuotas />} />
-                    <Route path="/metodospagos" element={<MetodoPago />} />
-                    <Route path="/profesores" element={<Profesores />} />
-                    <Route path="/logs" element={<Logs />} />
-                    <Route path="/roles" element={<Roles />} />
-                    <Route path="/tiposcuota" element={<TiposCuotas />} />
-                    <Route path="/valorescuota" element={<ValoresCuotas />} />
+                <Route path="/estadisticas" element={<Estadisticas />} />
 
-
-
-                    <Route path="/addSocio" element={<FormAddSocio />} />
-                    <Route path='/editsocios/:id' element={<FormEditSocio />} />
-                    <Route path="/addcuota" element={<FormAddCuota />} />
-                    <Route path="/addactividad" element={<FormAddActividad />} />
-                    <Route path="/addempleado" element={<FormAddEmpleado />} />
-                    <Route path="/editempleados/:id" element={<FormEditEmpleado />} />
-                    <Route path="/addestadocuota" element={<FormAddEstadoCuota />} />
-                    <Route path='/editestadoscuotas/:id' element={<FormEditEstadoCuota />} />
-                    <Route path="/addprofesor" element={<FormAddProfesor />} />
-                    <Route path="/addrol" element={<FormAddRol />} />
-                    <Route path="/editprofesores/:id" element={<FormEditProfesor />} />
-                    <Route path="/edittiposcuota/:id" element={<FormEditTipoCuota />} />
-                    <Route path="/editlogs/:id" element={<FormEditLog />} />
+                <Route path="/socios" element={<Socios />} />
+                <Route path="/pagos" element={<Pagos />} />
+                <Route path="/cuotas" element={<Cuotas />} />
+                <Route path="/actividades" element={<Actividades />} />
+                <Route path="/empleados" element={<Empleados />} />
+                <Route path="/estadoscuotas" element={<EstadosCuotas />} />
+                <Route path="/metodospagos" element={<MetodoPago />} />
+                <Route path="/profesores" element={<Profesores />} />
+                <Route path="/logs" element={<Logs />} />
+                <Route path="/roles" element={<Roles />} />
+                <Route path="/tiposcuota" element={<TiposCuotas />} />
+                <Route path="/valorescuota" element={<ValoresCuotas />} />
 
 
-                    <Route path="/addtipocuota" element={<FormAddTipoCuota />} />
-                    <Route path="/addvalorcuota" element={<FormAddValorCuota />} />
-                    <Route path="/addlog" element={<FormAddLog />} />
+
+                <Route path="/addSocio" element={<FormAddSocio />} />
+                <Route path='/editsocios/:id' element={<FormEditSocio />} />
+                <Route path="/addcuota" element={<FormAddCuota />} />
+                <Route path="/addactividad" element={<FormAddActividad />} />
+                <Route path="/addempleado" element={<FormAddEmpleado />} />
+                <Route path="/editempleados/:id" element={<FormEditEmpleado />} />
+                <Route path="/addestadocuota" element={<FormAddEstadoCuota />} />
+                <Route path='/editestadoscuotas/:id' element={<FormEditEstadoCuota />} />
+                <Route path="/addprofesor" element={<FormAddProfesor />} />
+                <Route path="/addrol" element={<FormAddRol />} />
+                <Route path="/editprofesores/:id" element={<FormEditProfesor />} />
+                <Route path="/edittiposcuota/:id" element={<FormEditTipoCuota />} />
+                <Route path="/editlogs/:id" element={<FormEditLog />} />
 
 
-                    <Route path="/addmetodoPago" element={<FormAddMetodoPago />} />
-                    <Route path='/editmetodospagos/:id' element={<FormEditMetodoPago />} />
-                    <Route path='/editactividades/:id' element={<FormEditActividad />} />
-                    <Route path='/editvalorescuota/:id' element={<FormEditValorCuota />} />
-                    <Route path='/editroles/:id' element={<FormEditRol />} />
+                <Route path="/addtipocuota" element={<FormAddTipoCuota />} />
+                <Route path="/addvalorcuota" element={<FormAddValorCuota />} />
+                <Route path="/addlog" element={<FormAddLog />} />
 
-                    <Route path='/editcuotas/:id' element={<FormEditCuota />} />
-                    <Route path="/addpago" element={<FormAddPago />} />
-                    <Route path='/editpagos/:id' element={<FormEditPago />} />
 
-                </> : <Route path="*" element={<Navigate to="/" />} />
-            }
+                <Route path="/addmetodoPago" element={<FormAddMetodoPago />} />
+                <Route path='/editmetodospagos/:id' element={<FormEditMetodoPago />} />
+                <Route path='/editactividades/:id' element={<FormEditActividad />} />
+                <Route path='/editvalorescuota/:id' element={<FormEditValorCuota />} />
+                <Route path='/editroles/:id' element={<FormEditRol />} />
+
+                <Route path='/editcuotas/:id' element={<FormEditCuota />} />
+                <Route path="/addpago" element={<FormAddPago />} />
+                <Route path='/editpagos/:id' element={<FormEditPago />} />
+
+            </>
+            {/* : <Route path="*" element={<Navigate to="/" />} /> */}
+            {/* } */})
         </Routes>
     )
 }
