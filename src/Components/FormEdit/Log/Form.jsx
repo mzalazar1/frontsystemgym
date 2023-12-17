@@ -19,6 +19,8 @@ const EditLog = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmitHandler = async (data) => {
+    data._id = currentId.id;
+
     setModEditLog(true);
     try {
       await dispatch(PUT("logs", data)); // para el PUT enviamos el ID
@@ -35,7 +37,7 @@ const EditLog = () => {
   };
 
   useEffect(() => {
-    const logDetail = logs.filter((log) => log.id === currentId.id);
+    const logDetail = logs.filter((log) => log._id === currentId.id);
     setSelectedLog(logDetail[0]);
   }, [currentId, logs]);
 

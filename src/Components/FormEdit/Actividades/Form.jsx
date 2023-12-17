@@ -18,13 +18,13 @@ const EditActividad = () => {
     const [modFallaEdit, setModFallaEdit] = useState(false);
     const { register, handleSubmit } = useForm();
 
-    console.log("🚀 ~ file: Form.jsx:13 ~ EditActividad ~ actividades:miraaa primero", actividades._id)
-
-
-    console.log("🚀 ~ file: Form.jsx:16 ~ EditActividad ~ currentId MIRAAA:", currentId.id)
+    console.log("🚀 ~ file: Form.jsx:13 ~ EditActividad ~ actividades:miraaa primero", actividades)
+    console.log("🚀 ~ file: Form.jsx:16 ~ EditActividad ~ currentId MIRAAA al principio:", currentId.id)
 
 
     const onSubmitHandler = async (data) => {
+        data._id = currentId.id;
+
         setModEditActividad(true);
         try {
             await dispatch(PUT("actividades", data)); // para el PUT enviamos el ID
@@ -42,7 +42,7 @@ const EditActividad = () => {
 
     useEffect(() => {
         const actividadDetail = actividades.filter((actividad) => actividad._id === currentId.id);
-        console.log("🚀 ~ file: Form.jsx:39 ~ useEffect ~ currentId._id: miaaa tambien", currentId.id)
+        console.log("🚀 ~ file: Form.jsx:39 ~ useEffect ~ currentId._id: miraaa tambien en useeffect", currentId.id)
         setSelectedActividad(actividadDetail[0]);
     }, [currentId, actividades]);
 

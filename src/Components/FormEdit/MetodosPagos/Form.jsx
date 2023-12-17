@@ -19,6 +19,8 @@ const EditMetodoPago = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmitHandler = async (data) => {
+        data._id = currentId.id;
+
         setModEditMetodoPago(true);
         try {
             await dispatch(PUT("metodospagos", data)); // para el PUT enviamos el ID

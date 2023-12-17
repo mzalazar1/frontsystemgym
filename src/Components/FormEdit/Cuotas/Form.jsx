@@ -24,6 +24,8 @@ const EditCuota = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmitHandler = async (data) => {
+        data._id = currentId.id;
+
         setModEditCuota(true);
 
         try {
@@ -79,7 +81,7 @@ const EditCuota = () => {
                     <h2>Editar datos</h2>
 
                     <div>
-                        <label>Socio: </label>
+                        <label>Socio:</label>
 
                         <select {...register("socio")} defaultValue={selectedCuota?.socio}>
                             <option value="">Seleccionar Socio</option>
@@ -99,19 +101,12 @@ const EditCuota = () => {
                     </div>
                     <div>
                         <label>Actividad: </label>
+                        <select {...register("actividad")} defaultValue={selectedCuota?.actividad}>
 
-                        <select
-                            {...register("actividad")}
-                            defaultValue={selectedCuota?.actividad}
-                        >
-                            <option value="">Seleccionar Actividad</option>
+                            <option value="">Seleccionar actividad</option>
 
-                            {actividades.map((actividad) => {
-                                return (
-                                    <option key={actividad._id} value={actividad.nombre}>
-                                        {actividad.nombre}
-                                    </option>
-                                );
+                            {actividades.map(actividad => {
+                                return <option key={actividad._id} value={actividad.nombre}>{actividad.nombre}</option>
                             })}
                         </select>
                     </div>

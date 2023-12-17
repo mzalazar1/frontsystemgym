@@ -40,6 +40,7 @@ const MetodoPago = () => {
                         <thead>
                             <tr>
                                 <th className={styles.thDatos}>Tipo</th>
+                                <th className={styles.thDatos}>Desde</th>
                                 <th className={styles.thDatos}>Acciones</th>
                             </tr>
                         </thead>

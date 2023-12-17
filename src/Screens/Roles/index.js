@@ -41,6 +41,7 @@ const Rol = () => {
                             <tr>
                                 <th className={styles.thDatos}>Usuario</th>
                                 <th className={styles.thDatos}>Rol</th>
+                                <th className={styles.thDatos}>Desde</th>
                                 <th className={styles.thDatos}>Acciones</th>
                             </tr>
                         </thead>

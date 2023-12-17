@@ -19,6 +19,8 @@ const EditValorCuota = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmitHandler = async (data) => {
+        data._id = currentId.id;
+
         setModEditValorCuota(true);
         try {
             await dispatch(PUT("valorescuota", data)); // para el PUT enviamos el ID
@@ -61,16 +63,6 @@ const EditValorCuota = () => {
                 <form onSubmit={handleSubmit(onSubmitHandler)}>
                     <h2>Editar datos</h2>
 
-                    <div>
-                        <label>Id: </label>
-                        <input
-                            {...register("id", {
-                                valueAsNumber: true,
-                            })}
-                            value={selectedValorCuota?.id}
-                            type="number"
-                        />
-                    </div>
                     <div>
                         <label>Mes: </label>
 

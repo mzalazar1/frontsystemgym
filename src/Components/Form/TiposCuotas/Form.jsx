@@ -48,17 +48,10 @@ const Formulario = () => {
       <h2>Formulario</h2>
       <form onSubmit={handleSubmit(tipoCuotaHandler)}>
         <div>
-          <label>Tipo: </label>
+          <label>Descripción Tipo: </label>
           <input {...register("tipo")} />
           {errors.tipo && (
             <span className={styles.claseError}>{errors.tipo.message}</span>
-          )}
-        </div>
-        <div>
-          <label>Importe: </label>
-          <input {...register("importe")} />
-          {errors.importe && (
-            <span className={styles.claseError}>{errors.importe.message}</span>
           )}
         </div>
 

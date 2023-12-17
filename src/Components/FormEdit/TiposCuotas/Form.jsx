@@ -19,6 +19,8 @@ const EditTipoCuota = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmitHandler = async (data) => {
+        data._id = currentId.id;
+
         setModEditTipoCuota(true);
         try {
             await dispatch(PUT("tiposcuota", data)); // para el PUT enviamos el ID
@@ -65,10 +67,6 @@ const EditTipoCuota = () => {
                         <label>Descripcion: </label>
 
                         <input {...register("tipo")} defaultValue={selectedTipoCuota?.tipo} />
-                    </div>
-                    <div>
-                        <label>Importe: </label>
-                        <input {...register("importe")} defaultValue={selectedTipoCuota?.importe} />
                     </div>
 
                     <Boton tipo="tipoABM" texto="Guardar" />

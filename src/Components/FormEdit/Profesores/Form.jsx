@@ -19,6 +19,8 @@ const EditProfesor = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmitHandler = async (data) => {
+        data._id = currentId.id;
+
         setModEditProfesor(true);
         try {
             await dispatch(PUT("profesores", data)); // para el PUT enviamos el ID

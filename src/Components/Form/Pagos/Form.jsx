@@ -23,11 +23,15 @@ const Formulario = () => {
     } = useForm();
 
     const pagoHandler = async (pago) => {
+        console.log("🚀 ~ file: Form.jsx:43 ~ pagoHandler ~ pago:LO QUE LLEGA DE PAGO", pago)
+
         setModNewPago(true);
         try {
             await dispatch(POST("pagos", pago));
             setModNewPago(false);
             navigate("/pagos");
+            console.log("🚀 ~ file: Form.jsx:38 ~ pagoHandler ~ pago:siiii mira", pago)
+
         } catch (error) {
             setModNewPago(false);
             setModFallaPago(true);
@@ -72,7 +76,7 @@ const Formulario = () => {
                 </div>
                 <div>
                     <label>Metodo de Pago: </label>
-                    <select {...register("metodopago")} defaultValue={selectedPago?.metodopago}>
+                    <select {...register("metodo")} defaultValue={selectedPago?.metodo}>
 
                         <option value="">Seleccionar Metodo de Pago</option>
 

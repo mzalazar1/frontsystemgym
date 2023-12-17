@@ -9,9 +9,7 @@ import styles from "./Form.module.css";
 import Modal from "../../Modal/Modal";
 
 const EditSocio = () => {
-    const { socios } = useSelector(
-        (state) => state
-    );
+    const { socios } = useSelector((state) => state);
     const dispatch = useDispatch();
     const currentId = useParams();
     const navigate = useNavigate();
@@ -21,13 +19,13 @@ const EditSocio = () => {
     const { register, handleSubmit } = useForm();
 
 
-    console.log("🚀 ~ file: Form.jsx:13 ~ EditSocio ~ socios:miraaa", socios)
-
-    console.log("🚀 ~ file: Form.jsx:16 ~ EditSocio ~ currentId miraaa:", currentId)
+    console.log("🚀 ~ file: Form.jsx:13 ~ EditSocio ~ socios:miraaalos", socios)
+    console.log("🚀 ~ file: Form.jsx:16 ~ EditSocio ~ currentId miraaa:", currentId.id)
 
 
     const onSubmitHandler = async (data) => {
 
+        data._id = currentId.id;
 
         setModEditSocio(true);
         try {
@@ -41,6 +39,7 @@ const EditSocio = () => {
                 setModFallaEdit(false);
             }, 2000);
         }
+        console.log("🚀 ~ file: Form.jsx:41 ~ onSubmitHandler ~ data: LO QUE LE MANDO AL ACTIONS", data)
         navigate("/socios");
     };
 
@@ -48,11 +47,10 @@ const EditSocio = () => {
         const socioDetail = socios.filter((socio) => socio._id === currentId.id);
         console.log("🚀 ~ file: Form.jsx:47 ~ useEffect ~ currentId.id:otra vezzz", currentId.id)
         setSelectedSocio(socioDetail[0]);
-        console.log("🚀 ~ file: Form.jsx:48 ~ useEffect ~ socioDetail: miraaa", socioDetail)
 
     }, [currentId, socios]);
 
-    console.log("🚀 ~ file: Form.jsx:60 ~ EditSocio ~ selectedSocio?._id:", selectedSocio?._id)
+    console.log("🚀 ~ file: Form.jsx:60 ~ EditSocio ~ selectedSocio?._id:es acaaaa", selectedSocio?.name)
 
 
     return (

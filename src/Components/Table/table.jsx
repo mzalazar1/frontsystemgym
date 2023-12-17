@@ -24,17 +24,18 @@ const transformDate = (date) => {
 
 const Tabla = ({ entidad, globalFilter }) => {
   console.log("🚀 ~ file: table.jsx:27 ~ Tabla ~ globalFilter:", globalFilter)
-  console.log("🚀 ~ file: table.jsx:25 ~ Tabla ~ entidad:", typeof entidad)
+  console.log("🚀 ~ file: table.jsx:25 ~ Tabla ~ entidad:", entidad)
   const dispatch = useDispatch();
 
   let stateValues = useSelector((state) => state && state[entidad]) || [];
 
-  const [deleteValue, setDeleteValue] = useState(false);
   const [_id, setId] = useState();
+  const [deleteValue, setDeleteValue] = useState(false);
+  console.log("🚀 ~ file: table.jsx:34 ~ Tabla ~ _id: mira estooooo", _id)
 
-  const deleteHandler = (id) => {
-    setDeleteValue(true);
+  const deleteHandler = (_id) => {
     setId(_id);
+    setDeleteValue(true);
   };
 
   const cancelHandler = () => {
@@ -46,6 +47,7 @@ const Tabla = ({ entidad, globalFilter }) => {
       dispatch(GET(entidad)); // traigo la netidad en la que estoy
     }
   }, [dispatch, entidad, stateValues?.length]);
+  console.log("🚀 ~ file: table.jsx:50 ~ Tabla ~ entidad:acaaaaa", entidad)
 
   // Filtrar los elementos según el texto de búsqueda
   //búsqueda
@@ -69,7 +71,6 @@ const Tabla = ({ entidad, globalFilter }) => {
           tipo="elminiar"
         />
       )}
-
       {filteredValues.length > 0 ? (
         filteredValues.map((element, stateValueIndex) => (
           <tr key={stateValueIndex}>

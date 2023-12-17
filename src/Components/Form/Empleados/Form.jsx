@@ -22,6 +22,8 @@ const Formulario = () => {
   );
 
   const empleadoHandler = async (empleado) => {
+    console.log("🚀 ~ file: Form.jsx:38 ~ empleadoHandler ~ empleado: A VER QUE LLEGA", empleado)
+
     setModNewEmpleado(true);
     try {
       await dispatch(POST("empleados", empleado));
@@ -89,9 +91,7 @@ const Formulario = () => {
         </div>
         <label>Rol: </label>
         <select
-          {...register("rol", {
-            valueAsNumber: true,
-          })}
+          {...register("rol")}
         >
           <option value="">Seleccionar Rol</option>
 

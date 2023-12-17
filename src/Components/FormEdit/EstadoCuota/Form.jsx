@@ -23,6 +23,9 @@ const EditEstadoCuota = () => {
 
 
     const onSubmitHandler = async (data) => {
+        console.log("🚀 ~ file: Form.jsx:40 ~ onSubmitHandler ~ data:DATA ESTADO CUOTAAA", data)
+        data._id = currentId.id;
+
         setModEditEstadoCuota(true);
         try {
             await dispatch(PUT("estadoscuotas", data)); // para el PUT enviamos el ID
@@ -47,7 +50,7 @@ const EditEstadoCuota = () => {
         <div className={styles.frmEstadoCuota}>
             {modEditEstadoCuota && (
                 <Modal
-                    id={selectedEstadoCuota?.id}
+                    id={selectedEstadoCuota?._id}
                     path={"estadosCuota"}
                     texto="Aguarde mientras se actualizan los datos"
                     tipo="nuevoEstadoCuota"
@@ -55,7 +58,7 @@ const EditEstadoCuota = () => {
             )}
             {modFallaEdit && (
                 <Modal
-                    id={selectedEstadoCuota?.id}
+                    id={selectedEstadoCuota?._id}
                     path={"estadosCuota"}
                     texto="Falló al actualizar los datos"
                     tipo="nuevoEstadoCuota"
@@ -64,20 +67,8 @@ const EditEstadoCuota = () => {
             {selectedEstadoCuota != null && (
                 <form onSubmit={handleSubmit(onSubmitHandler)}>
                     <h2>Editar datos</h2>
-
-                    <div>
-                        <label>Id: </label>
-                        <input
-                            {...register("id", {
-                                valueAsNumber: true,
-                            })}
-                            value={selectedEstadoCuota?.id}
-                            type="number"
-                        />
-                    </div>
                     <div>
                         <label>Estado Actual: </label>
-
                         <input {...register("estado")} defaultValue={selectedEstadoCuota?.estado} />
                     </div>
 

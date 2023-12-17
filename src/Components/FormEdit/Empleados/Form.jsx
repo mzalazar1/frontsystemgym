@@ -18,13 +18,15 @@ const EditEmpleado = () => {
     const [modFallaEdit, setModFallaEdit] = useState(false);
     const { register, handleSubmit } = useForm();
 
+    const empleadoDetail = empleados.filter((empleado) => empleado._id.toString() === currentId.id);
 
-    console.log("🚀 ~ file: Form.jsx:13 ~ EditActividad ~ actividades:miraaa primero", empleados._id)
+    console.log("🚀 ~ file: Form.jsx:13 ~ EditEmpleados ~ Empleados:miraaa primero", empleadoDetail._id)
 
-
-    console.log("🚀 ~ file: Form.jsx:16 ~ EditActividad ~ currentId MIRAAA:", currentId.id)
+    console.log("🚀 ~ file: Form.jsx:16 ~ EditEmpleados ~ currentId MIRAAA:", currentId.id)
 
     const onSubmitHandler = async (data) => {
+        data._id = currentId.id;
+
         setModEditEmpleado(true);
         try {
             await dispatch(PUT("empleados", data)); // para el PUT enviamos el ID

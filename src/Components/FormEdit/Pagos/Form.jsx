@@ -9,7 +9,7 @@ import styles from "./Form.module.css";
 import Modal from "../../Modal/Modal";
 
 const EditPago = () => {
-    const pagos = useSelector((state) => state.pagos);
+    const { metodospagos, pagos } = useSelector((state) => state); // traigo todo el state
     const dispatch = useDispatch();
     const currentId = useParams();
     const navigate = useNavigate();
@@ -19,6 +19,10 @@ const EditPago = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmitHandler = async (data) => {
+        console.log("🚀 ~ file: Form.jsx:37 ~ onSubmitHandler ~ data:DATA QUE ENVIAMOOOS", data)
+
+        data._id = currentId.id;
+
         setModEditPago(true);
         try {
             await dispatch(PUT("pagos", data)); // para el PUT enviamos el ID
@@ -71,9 +75,14 @@ const EditPago = () => {
                         <input {...register("importe")} defaultValue={selectedPago?.importe} />
                     </div>
                     <div>
-                        <label>Metodo: </label>
-                        <input
-                            {...register("metodo")} defaultValue={selectedPago?.metodo} />
+                        <label>Metodo de Pago: </label>
+                        <select {...register("metodo")} defaultValue={selectedPago?.metodo}>
+
+                            <option value="">Seleccionar Metodo de Pago</option>
+                            {metodospagos.map(metodopago => {
+                                return <option value={metodopago.tipo}>{metodopago.tipo}</option>
+                            })}
+                        </select>
                     </div>
 
                     <Boton tipo="pagoABM" texto="Guardar" />

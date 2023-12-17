@@ -71,6 +71,9 @@ export const POST = (path, payload) => async (dispatch) => {
 export const PUT = (path, payload) => async (dispatch) => {
   const token = getToken();
 
+  console.log("🚀 ~ file: main.actions.js:101 ~ PUT ~ payload:ESTO LLEGÓ AL ACTION PUT", payload)
+
+
   try {
     await fetch(`${REACT_APP_API_URL}/${path}/${payload._id}`, {
       method: "PUT",
@@ -103,7 +106,7 @@ export const DELETE = (path, payload) => async (dispatch) => {
   const token = getToken();
 
   try {
-    await fetch(`${REACT_APP_API_URL}/${path}/${payload._id}`, {
+    await fetch(`${REACT_APP_API_URL}/${path}/${payload}`, {     //el payload ya es el id
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
