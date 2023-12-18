@@ -12,9 +12,9 @@ const Formulario = () => {
     const navigate = useNavigate();
     const [modNewActividad, setModNewActividad] = useState(false);
     const [modFallaActividad, setModFallaActividad] = useState(false);
-    const [selectedActividad, setSelectedActividad] = useState(null);
+    const [selectedActividad] = useState(null);
 
-    const { actividades, profesores } = useSelector((state) => state); // traigo todo el state
+    const { profesores } = useSelector((state) => state); // traigo todo el state
     console.log("🚀 ~ file: Form.jsx:18 ~ Formulario ~ actividades:", profesores);
     console.log("🚀 ~ file: Form.jsx:19 ~ Formulario ~ actividades: acaaaaa", profesores._id);
 
@@ -24,10 +24,10 @@ const Formulario = () => {
         handleSubmit,
     } = useForm();
 
-    const actividadHandler = async (actividad) => {
+    const actividadHandler = async (data) => {
         setModNewActividad(true);
         try {
-            await dispatch(POST("actividades", actividad));
+            await dispatch(POST("actividades", data));
             setModNewActividad(false);
             navigate("/actividades");
         } catch (error) {
@@ -80,7 +80,7 @@ const Formulario = () => {
                         {profesores.map(profesor => {
                             console.log("🚀 ~ file: Form.jsx:83 ~ Formulario ~ profesores.nombre:", profesor.name)
                             console.log("Valor de profesor._id: ultima linea", profesor._id); // Agregar este console.log
-                            return <option value={profesor.name}>{profesor.name}</option>
+                            return <option key={profesor._id} value={profesor.name}>{profesor.name}</option>
                         })}
                     </select>
                 </div>

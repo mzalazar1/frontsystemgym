@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { GET } from "../../redux/main.actions";
 import { Link } from "react-router-dom";
 import HeaderSection from '../../Components/Header/Header';
 import FooterSection from '../../Components/Footer/Footer';
@@ -18,11 +15,7 @@ const Actividades = () => {
     const [globalFilter, setGlobalFilter] = useState('')
     console.log("🚀 ~ file: index.js:16 ~ Cuotas ~ globalFilter:", globalFilter)
     console.log("🚀 ~ file: index.js:17 ~ Cuotas ~ setGlobalFilter:", setGlobalFilter)
-    const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(GET("actividades"));
-    }, [dispatch])
 
     return (
         <div>
@@ -47,9 +40,10 @@ const Actividades = () => {
                     <table>
                         <thead>
                             <tr>
-                                <th className={styles.thDatos}>Nombre</th>
+                                <th className={styles.thDatos}>Actividad</th>
                                 <th className={styles.thDatos}>Horarios</th>
                                 <th className={styles.thDatos}>Profesor</th>
+                                <th className={styles.thDatos}>Fecha desde</th>
                                 <th className={styles.thDatos}>Acciones</th>
                             </tr>
                         </thead>

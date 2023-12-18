@@ -37,6 +37,7 @@ const EditActividad = () => {
                 setModFallaEdit(false);
             }, 2000);
         }
+        console.log("🚀 ~ file: Form.jsx:41 ~ onSubmitHandler ~ data: LO QUE LE MANDO AL ACTIONS", data)
         navigate("/actividades");
     };
 
@@ -83,7 +84,7 @@ const EditActividad = () => {
                             <option value="">Seleccionar Profesor</option>
 
                             {profesores.map(profesor => {
-                                return <option value={profesor.name}>{profesor.name}</option>
+                                return <option key={profesor._id} value={profesor.name}>{profesor.name}</option>
                             })}
                         </select>
                     </div>
