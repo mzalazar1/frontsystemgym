@@ -6,6 +6,7 @@ import Boton from "../../Components/SharedComponents/Boton";
 import styles from "./Index.module.css";
 import Tabla from "../../Components/Table/table";
 
+
 import firebaseAapp from "../../Firebase/credenciales";
 import { getAuth } from "firebase/auth";
 
@@ -14,8 +15,7 @@ const auth = getAuth(firebaseAapp);
 const Cuotas = () => {
 
   const [globalFilter, setGlobalFilter] = useState('')
-  console.log("🚀 ~ file: index.js:16 ~ Cuotas ~ globalFilter:", globalFilter)
-  console.log("🚀 ~ file: index.js:17 ~ Cuotas ~ setGlobalFilter:", setGlobalFilter)
+
   return (
     <div>
       <HeaderSection />
@@ -51,7 +51,11 @@ const Cuotas = () => {
 
             <Tabla entidad="cuotas" globalFilter={globalFilter} />
           </table>
+
+
         </>
+
+
       ) : (
         <>
           <p>Debe iniciar sesión para ingresar a este menú</p>

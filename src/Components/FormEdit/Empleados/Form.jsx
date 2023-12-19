@@ -21,10 +21,6 @@ const EditEmpleado = () => {
 
     const empleadoDetail = empleados.filter((empleado) => empleado._id.toString() === currentId.id);
 
-    console.log("🚀 ~ file: Form.jsx:13 ~ EditEmpleados ~ Empleados:miraaa primero", empleadoDetail._id)
-
-    console.log("🚀 ~ file: Form.jsx:16 ~ EditEmpleados ~ currentId MIRAAA:", currentId.id)
-
     const onSubmitHandler = async (data) => {
         data._id = currentId.id;
 
@@ -45,7 +41,6 @@ const EditEmpleado = () => {
 
     useEffect(() => {
         const empleadoDetail = empleados.filter((empleado) => empleado._id === currentId.id);
-        console.log("🚀 ~ file: Form.jsx:39 ~ useEffect ~ currentId._id: miaaa tambien", currentId.id)
         setSelectedEmpleado(empleadoDetail[0]);
     }, [currentId, empleados]);
 

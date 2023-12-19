@@ -19,7 +19,6 @@ const EditPago = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmitHandler = async (data) => {
-        console.log("🚀 ~ file: Form.jsx:37 ~ onSubmitHandler ~ data:DATA QUE ENVIAMOOOS", data)
 
         data._id = currentId.id;
 

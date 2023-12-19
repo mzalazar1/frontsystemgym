@@ -19,54 +19,41 @@ const BodySection = () => {
 
 
     useEffect(() => {
-        console.log("🚀 ~ cuotas en useEffect:", cuotas);
 
         if (selectedCuotaRef.current.dni) {
-            console.log("🚀 ~ dni actual en useEffect:", selectedCuotaRef.current.dni);
 
             //ver aca atributo dni ??? se llama usuario
             const usuarioEncontradoCuota = cuotas.find((cuota) => cuota.dni === selectedCuotaRef.current.dni);
-            console.log("🚀 ~ usuarioEncontradoCuota en useEffect:", usuarioEncontradoCuota);
 
             selectedCuotaRef.current = { ...selectedCuotaRef.current, data: usuarioEncontradoCuota || null };
-            console.log("🚀 ~ selectedCuotaRef.current en useEffect:", selectedCuotaRef.current);
 
             setAcceso((prev) => ({ ...prev }));
         }
     }, [cuotas]);
 
     useEffect(() => {
-        console.log("🚀 ~ socios en useEffect:", socios);
 
         if (selectedSocioRef.current.dni) {
-            console.log("🚀 ~ dni actual en useEffect:", selectedSocioRef.current.dni);
 
             const usuarioEncontradoSocio = socios.find((socio) => socio.dni === selectedSocioRef.current.dni);
-            console.log("🚀 ~ usuarioEncontradoSocio en useEffect:", usuarioEncontradoSocio);
 
             selectedSocioRef.current = { ...selectedSocioRef.current, data: usuarioEncontradoSocio || null };
-            console.log("🚀 ~ selectedSocioRef.current en useEffect:", selectedSocioRef.current);
 
             setAcceso((prev) => ({ ...prev }));
         }
     }, [socios]);
 
     const onSubmit = async (data) => {
-        console.log("🚀 ~ data en onSubmit:", data);
 
         try {
             const respuesta = await dispatch(CHECK_DNI("accesosocio", data)); // nose si se mezclara con otra cosa con el "/" sino le puedo poner /accesosocio
-            console.log("🚀 ~ file: Body.jsx:18 ~ onSubmit ~ data:", data)
             setAcceso(respuesta);
-            console.log("🚀 ~ respuesta en onSubmit:", respuesta);
 
             const usuarioEncontradoSocio = socios.find((socio) => socio.dni === data.socio);
             selectedSocioRef.current = { dni: data.socio, data: usuarioEncontradoSocio || null };
-            console.log("🚀 ~ selectedSocioRef.current en onSubmit:", selectedSocioRef.current);
 
             const usuarioEncontradoCuota = cuotas.find((cuota) => cuota.dni === data.cuota);
             selectedCuotaRef.current = { dni: data.socio, data: usuarioEncontradoCuota || null };
-            console.log("🚀 ~ selectedCuotaRef.current en onSubmit:", selectedCuotaRef.current);
 
             setTimeout(() => {
             }, 2000);
@@ -74,8 +61,6 @@ const BodySection = () => {
             console.log("🚀 ~ file: Body.jsx:28 ~ onSubmit ~ error:", error);
         }
     };
-
-    console.log("🚀 ~ |", selectedSocioRef.current);
 
     return (
         <div className={styles.cuerpo}>

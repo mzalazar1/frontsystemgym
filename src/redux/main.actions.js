@@ -17,13 +17,11 @@ export const GET = (path) => async (dispatch) => {
   try {
     await fetch(`${REACT_APP_API_URL}/${path}/all`)
       .then((respuesta) => {
-        console.log("🚀 ~ file: main.actions.js:20 ~ .then ~ respuesta:", respuesta)
         if (respuesta.ok) {
           return respuesta.json();
         }
       })
       .then((respuesta) => {
-        console.log("🚀 ~ file: main.actions.js:25 ~ .then ~ respuesta:", respuesta)
 
         if (respuesta.length > 0) {
           dispatch({
@@ -41,7 +39,6 @@ export const GET = (path) => async (dispatch) => {
 };
 
 export const POST = (path, payload) => async (dispatch) => {
-  console.log("🚀 ~ file: main.actions.js:44 ~ POST ~ payload:", payload)
   const token = getToken();
 
   try {
@@ -53,13 +50,11 @@ export const POST = (path, payload) => async (dispatch) => {
       },
       body: JSON.stringify({ ...payload }),
     }).then((respuesta) => {
-      console.log("🚀 ~ file: main.actions.js:56 ~ POST ~ respuesta:", respuesta)
       if (respuesta.ok) {
         return respuesta.json()
       }
     })
       .then((respuesta) => {
-        console.log("🚀 ~ file: main.actions.js:62 ~ POST ~ respuesta:", respuesta)
 
         dispatch({
           type: ADD_STATE,
@@ -75,8 +70,6 @@ export const POST = (path, payload) => async (dispatch) => {
 
 export const PUT = (path, payload) => async (dispatch) => {
   const token = getToken();
-
-  console.log("🚀 ~ file: main.actions.js:101 ~ PUT ~ payload:ESTO LLEGÓ AL ACTION PUT", payload)
 
 
   try {

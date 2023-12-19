@@ -19,10 +19,6 @@ const EditSocio = () => {
     const { register, handleSubmit } = useForm();
 
 
-    console.log("🚀 ~ file: Form.jsx:13 ~ EditSocio ~ socios:miraaalos", socios)
-    console.log("🚀 ~ file: Form.jsx:16 ~ EditSocio ~ currentId miraaa:", currentId.id)
-
-
     const onSubmitHandler = async (data) => {
 
         data._id = currentId.id;
@@ -39,18 +35,15 @@ const EditSocio = () => {
                 setModFallaEdit(false);
             }, 2000);
         }
-        console.log("🚀 ~ file: Form.jsx:41 ~ onSubmitHandler ~ data: LO QUE LE MANDO AL ACTIONS", data)
         navigate("/socios");
     };
 
     useEffect(() => {
         const socioDetail = socios.filter((socio) => socio._id === currentId.id);
-        console.log("🚀 ~ file: Form.jsx:47 ~ useEffect ~ currentId.id:otra vezzz", currentId.id)
         setSelectedSocio(socioDetail[0]);
 
     }, [currentId, socios]);
 
-    console.log("🚀 ~ file: Form.jsx:60 ~ EditSocio ~ selectedSocio?._id:es acaaaa", selectedSocio?.name)
 
 
     return (

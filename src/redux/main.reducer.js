@@ -25,7 +25,6 @@ const INITIAL_STATE = {
 
 // en action vienen "action.type" y "action.payload"
 const reducer = (state = INITIAL_STATE, action) => {
-    console.log("🚀 ~ file: main.reducer.js:25 ~ reducer ~ action:", action)
     switch (action.type) {
         case LOAD_INITIAL_STATE:
             return {
@@ -62,7 +61,6 @@ const reducer = (state = INITIAL_STATE, action) => {
             const finalAfterDeleted = state[action.path].filter((e) => {
                 return e._id !== action.payload;
             });
-            console.log("🚀 ~ file: main.reducer.js:62 ~ finalAfterDeleted ~ finalAfterDeleted: EN EL REDUCEEER", finalAfterDeleted)
 
             return {
                 ...state,

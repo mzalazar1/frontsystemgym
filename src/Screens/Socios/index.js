@@ -14,8 +14,6 @@ const auth = getAuth(firebaseAapp)
 const Socios = () => {
 
     const [globalFilter, setGlobalFilter] = useState('')
-    console.log("🚀 ~ file: index.js:16 ~ Socios ~ globalFilter:", globalFilter)
-    console.log("🚀 ~ file: index.js:17 ~ Socios ~ setGlobalFilter:", setGlobalFilter)
 
     return (
         <div>

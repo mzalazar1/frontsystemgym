@@ -26,5 +26,6 @@ store.dispatch(GET("roles")); // traigo actividades y las cargo en el redux stat
 store.dispatch(GET("logs")); // traigo pagos y las cargo en el redux state
 store.dispatch(GET("pagos")); // traigo pagos y las cargo en el redux state
 store.dispatch(GET("metodospagos")); // traigo metodospagos y las cargo en el redux state
+store.dispatch(GET("descuentos")); // traigo metodospagos y las cargo en el redux state
 
 export default store; 

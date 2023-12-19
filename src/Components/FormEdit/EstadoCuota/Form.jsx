@@ -18,12 +18,8 @@ const EditEstadoCuota = () => {
     const [modFallaEdit, setModFallaEdit] = useState(false);
     const { register, handleSubmit } = useForm();
 
-    console.log("🚀 ~ file: Form.jsx:13 ~ EditEstadoCuota ~ estadosCuota: miaaa", estadoscuotas)
-    console.log("🚀 ~ file: Form.jsx:15 ~ EditEstadoCuota ~ currentId: miraaaa", currentId.id)
-
 
     const onSubmitHandler = async (data) => {
-        console.log("🚀 ~ file: Form.jsx:40 ~ onSubmitHandler ~ data:DATA ESTADO CUOTAAA", data)
         data._id = currentId.id;
 
         setModEditEstadoCuota(true);

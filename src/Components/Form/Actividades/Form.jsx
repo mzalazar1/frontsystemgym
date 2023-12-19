@@ -15,8 +15,6 @@ const Formulario = () => {
     const [selectedActividad] = useState(null);
 
     const { profesores } = useSelector((state) => state); // traigo todo el state
-    console.log("🚀 ~ file: Form.jsx:18 ~ Formulario ~ actividades:", profesores);
-    console.log("🚀 ~ file: Form.jsx:19 ~ Formulario ~ actividades: acaaaaa", profesores._id);
 
     const {
         register,
@@ -78,8 +76,6 @@ const Formulario = () => {
                         <option value="">Seleccionar Profesor</option>
 
                         {profesores.map(profesor => {
-                            console.log("🚀 ~ file: Form.jsx:83 ~ Formulario ~ profesores.nombre:", profesor.name)
-                            console.log("Valor de profesor._id: ultima linea", profesor._id); // Agregar este console.log
                             return <option key={profesor._id} value={profesor.name}>{profesor.name}</option>
                         })}
                     </select>

@@ -17,13 +17,9 @@ const Formulario = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const { roles } = useSelector(
-    (state) => state
-  );
+  const { roles } = useSelector((state) => state);
 
   const empleadoHandler = async (empleado) => {
-    console.log("🚀 ~ file: Form.jsx:38 ~ empleadoHandler ~ empleado: A VER QUE LLEGA", empleado)
-
     setModNewEmpleado(true);
     try {
       await dispatch(POST("empleados", empleado));
@@ -91,9 +87,7 @@ const Formulario = () => {
         </div>
         <div>
           <label>Rol: </label>
-          <select
-            {...register("rol")}
-          >
+          <select {...register("rol")}>
             <option value="">Seleccionar Rol</option>
 
             {roles.map((rol) => {

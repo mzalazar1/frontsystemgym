@@ -18,9 +18,6 @@ const EditDescuento = () => {
     const [modFallaEdit, setModFallaEdit] = useState(false);
     const { register, handleSubmit } = useForm();
 
-    console.log("🚀 ~ file: Form.jsx:13 ~ EditDescuento ~ descuentos:miraaa primero", descuentos)
-    console.log("🚀 ~ file: Form.jsx:16 ~ EditDescuento ~ currentId MIRAAA al principio:", currentId.id)
-
 
     const onSubmitHandler = async (data) => {
         data._id = currentId.id;
@@ -37,13 +34,11 @@ const EditDescuento = () => {
                 setModFallaEdit(false);
             }, 2000);
         }
-        console.log("🚀 ~ file: Form.jsx:41 ~ onSubmitHandler ~ data: LO QUE LE MANDO AL ACTIONS", data)
         navigate("/descuentos");
     };
 
     useEffect(() => {
         const descuentoDetail = descuentos.filter((descuento) => descuento._id === currentId.id);
-        console.log("🚀 ~ file: Form.jsx:39 ~ useEffect ~ currentId._id: miraaa tambien en useeffect", currentId.id)
         setSelectedDescuento(descuentoDetail[0]);
     }, [currentId, descuentos]);
 

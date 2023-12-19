@@ -23,15 +23,13 @@ const transformDate = (date) => {
 }
 
 const Tabla = ({ entidad, globalFilter }) => {
-  console.log("🚀 ~ file: table.jsx:27 ~ Tabla ~ globalFilter:", globalFilter)
-  console.log("🚀 ~ file: table.jsx:25 ~ Tabla ~ entidad:", entidad)
+
   const dispatch = useDispatch();
 
   let stateValues = useSelector((state) => state && state[entidad]) || [];
 
   const [_id, setId] = useState();
   const [deleteValue, setDeleteValue] = useState(false);
-  console.log("🚀 ~ file: table.jsx:34 ~ Tabla ~ _id: mira estooooo", _id)
 
   const deleteHandler = (_id) => {
     setId(_id);
@@ -44,10 +42,9 @@ const Tabla = ({ entidad, globalFilter }) => {
 
   useEffect(() => {
     if (stateValues?.length === 0) {
-      dispatch(GET(entidad)); // traigo la netidad en la que estoy
+      dispatch(GET(entidad)); // traigo la entidad en la que estoy
     }
   }, [dispatch, entidad, stateValues?.length]);
-  console.log("🚀 ~ file: table.jsx:50 ~ Tabla ~ entidad:acaaaaa", entidad)
 
   // Filtrar los elementos según el texto de búsqueda
   //búsqueda
@@ -55,7 +52,6 @@ const Tabla = ({ entidad, globalFilter }) => {
     const match = Object.values(element).some((value) =>
       String(value).toLowerCase().includes(globalFilter.toLowerCase())
     );
-    console.log(`Filtering: ${JSON.stringify(element)} - Match: ${match}`);
     return match;
   });
 

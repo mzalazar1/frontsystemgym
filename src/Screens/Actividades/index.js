@@ -13,9 +13,6 @@ const auth = getAuth(firebaseAapp)
 
 const Actividades = () => {
     const [globalFilter, setGlobalFilter] = useState('')
-    console.log("🚀 ~ file: index.js:16 ~ Cuotas ~ globalFilter:", globalFilter)
-    console.log("🚀 ~ file: index.js:17 ~ Cuotas ~ setGlobalFilter:", setGlobalFilter)
-
 
     return (
         <div>

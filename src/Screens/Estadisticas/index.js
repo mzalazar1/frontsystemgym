@@ -20,12 +20,12 @@ function Estadisticas() {
             {auth.currentUser != null ?
                 <>
 
-                    <h1 className="text-center text-2xl leading-9 font-bold">ReCharts</h1>
-                    <h1 className="text-center text-2xl leading-9 font-bold">Gráfico de Barras</h1>
+                    <h1 className="text-center text-2xl leading-9 font-bold">Estadisticas</h1>
+                    <h2 className="text-center text-2xl leading-9 font-bold">Gráfico de Barras</h2>
                     <SimpleBarCharts />
-                    <h1 className="text-center text-2xl leading-9 font-bold">Gráfico de área</h1>
+                    <h2 className="text-center text-2xl leading-9 font-bold">Gráfico de área</h2>
                     <StackedAreaCharts />
-                    <h1 className="text-center text-2xl leading-9 font-bold">Gráfico de torta</h1>
+                    <h2 className="text-center text-2xl leading-9 font-bold">Gráfico de torta</h2>
                     <SimplePieCharts />
 
                     <Link to="/">
