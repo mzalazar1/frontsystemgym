@@ -1,70 +1,82 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { PieChart, ResponsiveContainer, Pie, Tooltip, Cell } from 'recharts'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { PieChart, ResponsiveContainer, Pie, Tooltip, Cell } from "recharts";
 
-//Datos de ejemplo
-// const data = [
-//     { name: "Group A", value: 2400 },
-//     { name: 'Group B', value: 4567 },
-//     { name: 'Group C', value: 1398 },
-//     { name: 'Group D', value: 9800 },
-//     { name: 'Group E', value: 3908 },
-//     { name: 'Group F', value: 4800 },
-// ]
-
-
-const COLORS = ['#ce93d8', '#5c6bc0', '#b39ddb', '#4dd0e1', '#f48fb1', '#d500f9']
+const COLORS = [
+  "#ce93d8",
+  "#5c6bc0",
+  "#b39ddb",
+  "#4dd0e1",
+  "#f48fb1",
+  "#d500f9",
+];
 
 const SimplePieCharts = () => {
-    const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://localhost:6001/api/cuotas/all');
-                setData(response.data);
-                console.log('Data from API:', response.data); // Agregar este console.log
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(
+          "http://localhost:6001/api/valorescuota/all"
+        );
 
-                // Agregar console.log para cada dato del eje X
-                response.data.forEach(item => {
-                    console.log('X Axis Data:', item.id);
-                });
+        // Group the data by month and calculate the sum of importe for each month
+        const groupedData = data.reduce((result, current) => {
+          const month = current.mes;
 
-                // Agregar console.log para cada dato del eje Y (weight y age)
-                response.data.forEach(item => {
-                    console.log('Y Axis Data (actividadPie):', item.actividad);
-                    console.log('Y Axis Data (socioPie):', item.socio);
-                });
+          if (!result[month]) {
+            result[month] = {
+              mes: month,
+              totalDelMes: 0,
+            };
+          }
 
-            } catch (error) {
-                console.error('Error al obtener datos desde la API:', error);
-            }
-        };
+          result[month].totalDelMes += current.importe;
 
-        fetchData();
-    }, []);
+          return result;
+        }, {});
 
-    return (
-        <div style={{ width: '100%', height: 400 }}>
-            <ResponsiveContainer>
-                <PieChart>
-                    <Pie
-                        dataKey="value"
-                        data={data}
-                        innerRadius={60}
-                        outerRadius={85}
-                        fill="#82ca9d"
-                    >
-                        {data.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
-                    </Pie>
-                    <Tooltip />
-                </PieChart>
+        // Convert the groupedData object into an array of objects and revert the Order. ENERO primero DICIEMBRE ULTIMO
+        const resultArray = Object.values(groupedData).reverse();
 
-            </ResponsiveContainer>
-        </div>
-    )
-}
+        setData(resultArray);
+      } catch (error) {
+        console.error("Error al obtener datos desde la API:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const tooltipFormatter = (value, name, props) => {
+    // Assuming 'mes' is the property you want to show in the tooltip
+    return [props.payload.mes, `Total: $ ${value}`];
+  };
+
+  return (
+    <div style={{ width: "100%", height: 400 }}>
+      <ResponsiveContainer>
+        <PieChart>
+          <Pie
+            dataKey="totalDelMes"
+            data={data}
+            innerRadius={60}
+            outerRadius={85}
+            fill="#82ca9d"
+          >
+            {data.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
+          <Tooltip formatter={tooltipFormatter} />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
+  );
+};
 
 export default SimplePieCharts;

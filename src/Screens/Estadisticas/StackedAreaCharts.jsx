@@ -1,68 +1,85 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
-
-//Datos de ejemplo
-// const data = [
-//     {name: "María", age: 10, weight: 60},
-//     {name: 'Karina', age: 25, weight: 70},
-//     {name: 'Susana', age: 15, weight: 65},
-//     {name: 'Pedro', age: 35, weight: 85},
-//     {name: 'Felipe', age: 12, weight: 48},
-//     {name: 'Laura', age: 30, weight: 69},
-//     {name: 'Adrián', age: 15, weight: 78},
-// ]
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 const StackedAreaCharts = () => {
-    const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://localhost:6001/api/cuotas/all');
-                setData(response.data);
-                console.log('Data from API:', response.data); // Agregar este console.log
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(
+          "http://localhost:6001/api/valorescuota/all"
+        );
 
-                // Agregar console.log para cada dato del eje X
-                response.data.forEach(item => {
-                    console.log('X Axis Data:', item.id);
-                });
+        // Group the data by month and calculate the sum of importe for each month
+        const groupedData = data.reduce((result, current) => {
+          const month = current.mes;
 
-                // Agregar console.log para cada dato del eje
-                response.data.forEach(item => {
-                    console.log('Y Axis Data (actividad):', item.actividad);
-                    console.log('Y Axis Data (socio):', item.socio);
-                });
+          if (!result[month]) {
+            result[month] = {
+              mes: month,
+              totalDelMes: 0,
+            };
+          }
 
-            } catch (error) {
-                console.error('Error al obtener datos desde la API:', error);
-            }
-        };
+          result[month].totalDelMes += current.importe;
 
-        fetchData();
-    }, []);
-    return (
-        <ResponsiveContainer width="50%" aspect={2}>
-            <AreaChart
-                width={500}
-                height={400}
-                data={data}
-                margin={{
-                    top: 10,
-                    right: 30,
-                    left: 0,
-                    bottom: 0
-                }}
-            >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Area type="monotone" dataKey="age" stackId="1" stroke='#8884d8' fill="#8884d8" />
-                <Area type="monotone" dataKey="weight" stackId="1" stroke='#82caed' fill="#fad3cf" />
-            </AreaChart>
-        </ResponsiveContainer>
-    )
-}
+          return result;
+        }, {});
+
+        // Convert the groupedData object into an array of objects and revert the Order. ENERO primero DICIEMBRE ULTIMO
+        const resultArray = Object.values(groupedData).reverse();
+
+        setData(resultArray);
+      } catch (error) {
+        console.error("Error al obtener datos desde la API:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const tooltipFormatter = (value, name, props) => {
+    // Assuming 'mes' is the property you want to show in the tooltip
+    return [props.payload.mes, `Total: $ ${value}`];
+  };
+
+  return (
+    <ResponsiveContainer width="50%" aspect={2}>
+      <AreaChart
+        width={500}
+        height={400}
+        data={data}
+        margin={{
+          top: 10,
+          right: 30,
+          left: 0,
+          bottom: 0,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="mes" />
+        <YAxis />
+        <Tooltip formatter={tooltipFormatter} />
+        <Area
+          type="monotone"
+          dataKey="totalDelMes"
+          stackId="1"
+          stroke="#8884d8"
+          fill="#8884d8"
+        />
+      </AreaChart>
+    </ResponsiveContainer>
+  );
+};
 
 export default StackedAreaCharts;
