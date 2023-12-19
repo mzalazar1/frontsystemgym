@@ -21,6 +21,9 @@ const EditCuota = () => {
     const [modEditCuota, setModEditCuota] = useState(false);
     const [modFallaEdit, setModFallaEdit] = useState(false);
 
+    const [valorDescontado, setValorDescontado] = useState(null);
+
+
     const { register, handleSubmit } = useForm();
 
     const onSubmitHandler = async (data) => {
@@ -167,6 +170,9 @@ const EditCuota = () => {
                         </select>
                     </div>
 
+            // Se trabaja todo en cuota y despues solo con el importe se va a la tabla pagos a registrar el pago
+                    //Falta la logica de aplicar el descuento al total
+                    <h3>{`Importe total: ${valorDescontado}`}</h3>
 
                     <Boton tipo="cuotaABM" texto="Guardar" />
                 </form>

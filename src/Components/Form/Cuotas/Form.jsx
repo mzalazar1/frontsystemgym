@@ -182,11 +182,20 @@ const Formulario = () => {
             </div>
             {valorDescontado && valorDescontado !== 0 && (
                 <p>Valor descontado ${valorDescontado}</p>
-            )} */}
+            )} */
+
+                    <div>
+            // Se trabaja todo en cuota y despues solo con el importe se va a la tabla pagos a registrar el pago
+                        //Falta la logica de aplicar el descuento al total
+                        <h3>{`Importe total: ${valorDescontado}`}</h3>
+                    </div>
+                }
                 <Boton tipo="cuotaABM" texto="Enviar" />
             </form>
         </div>
     );
+
+
 };
 
 export default Formulario;
