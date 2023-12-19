@@ -99,9 +99,7 @@ const EditEmpleado = () => {
                     </div>
                     <div>
                         <label>Rol: </label>
-                        <select
-                            {...register("rol")}
-                        >
+                        <select {...register("rol")} defaultValue={selectedEmpleado?.rol}>
                             <option value="">Seleccionar Rol</option>
 
                             {roles.map((rol) => {

@@ -18,6 +18,9 @@ const EditValorCuota = () => {
     const [modFallaEdit, setModFallaEdit] = useState(false);
     const { register, handleSubmit } = useForm();
 
+    const { tiposcuota } = useSelector((state) => state); // traigo todo el state
+
+
     const onSubmitHandler = async (data) => {
         data._id = currentId.id;
 
@@ -74,10 +77,14 @@ const EditValorCuota = () => {
                     </div>
                     <div>
                         <label>Tipo: </label>
-                        <input
-                            {...register("tipo")}
-                            defaultValue={selectedValorCuota?.tipo}
-                        />
+                        <select {...register("tipo")} defaultValue={selectedValorCuota?.tipo}>
+
+                            <option value="">Seleccionar tipo</option>
+
+                            {tiposcuota.map(tipocuota => {
+                                return <option value={tipocuota.tipo}>{tipocuota.tipo}</option>
+                            })}
+                        </select>
                     </div>
 
                     <Boton tipo="valorCuotaABM" texto="Guardar" />

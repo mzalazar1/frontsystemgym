@@ -22,19 +22,19 @@ const SimpleBarCharts = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:6001/api/cuotas/all');
+                const response = await axios.get('http://localhost:6001/api/valorescuota/all');
                 setData(response.data);
-                console.log('Data from API:', response.data); // Agregar este console.log
+                console.log('Data from API:MUESTRA LOS DATOS QUE TRAIGO', response.data); // Agregar este console.log
 
                 // Agregar console.log para cada dato del eje X
                 response.data.forEach(item => {
-                    console.log('X Axis Data:', item.id);
+                    console.log('X Axis Data:', item.mes);
                 });
 
                 // Agregar console.log para cada dato del eje Y (weight y age)
                 response.data.forEach(item => {
-                    console.log('Y Axis Data (actividad):', item.actividad);
-                    console.log('Y Axis Data (socio):', item.socio);
+                    console.log('Y Axis Data (mes):', item.importe);
+                    // console.log('Y Axis Data (tipo):', item.tipo);
                 });
 
             } catch (error) {
