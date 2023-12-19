@@ -39,9 +39,10 @@ const Pagos = () => {
                     <table>
                         <thead>
                             <tr>
-                                <th className={styles.thDatos}>Fecha</th>
+                                <th className={styles.thDatos}>Dni</th>
                                 <th className={styles.thDatos}>Importe</th>
                                 <th className={styles.thDatos}>Metodo</th>
+                                <th className={styles.thDatos}>Fecha</th>
                                 <th className={styles.thDatos}>Acciones</th>
                             </tr>
                         </thead>

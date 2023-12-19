@@ -9,7 +9,7 @@ import styles from "./Form.module.css";
 import Modal from "../../Modal/Modal";
 
 const EditCuota = () => {
-    const { cuotas, socios, actividades, tiposcuota, valorescuota } = useSelector(
+    const { cuotas, socios, actividades, tiposcuota, valorescuota, descuentos } = useSelector(
         (state) => state
     ); // traigo todo el state
     console.log("🚀 ~ file: Form.jsx:13 ~ EditCuota ~ cuotas:", cuotas)
@@ -151,6 +151,22 @@ const EditCuota = () => {
                             </select>
                         </>
                     </div>
+
+                    <div>
+                        <label>Porcentaje descuento: </label>
+                        <select {...register("descuento")} defaultValue={selectedCuota?.descuento}>
+                            <option value="">Seleccionar descuento</option>
+
+                            {descuentos.map((desc) => {
+                                return (
+                                    <option key={desc._id} value={desc.porcentaje}>
+                                        {desc.descripcion}
+                                    </option>
+                                );
+                            })}
+                        </select>
+                    </div>
+
 
                     <Boton tipo="cuotaABM" texto="Guardar" />
                 </form>

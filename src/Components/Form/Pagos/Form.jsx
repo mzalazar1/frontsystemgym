@@ -59,13 +59,9 @@ const Formulario = () => {
             )}
             <h2>Formulario</h2>
             <form onSubmit={handleSubmit(pagoHandler)}>
-
                 <div>
-                    <label>Fecha: </label>
-                    <input {...register("fecha")} />
-                    {errors.fecha && (
-                        <span className={styles.claseError}>{errors.fecha.message}</span>
-                    )}
+                    <label>Dni: </label>
+                    <input {...register("dni")} defaultValue={selectedPago?.dni} />
                 </div>
                 <div>
                     <label>Importe: </label>

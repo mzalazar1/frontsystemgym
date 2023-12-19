@@ -21,9 +21,13 @@ const Formulario = () => {
         handleSubmit,
     } = useForm();
 
-    const { socios, actividades, tiposcuota, valorescuota } = useSelector(
+    const { socios, actividades, tiposcuota, valorescuota, descuentos } = useSelector(
         (state) => state
     ); // traigo todo el state
+
+    console.log("🚀 ~ file: Form.jsx:25 ~ valorescuota:DEsde state", valorescuota)
+    console.log("🚀 ~ file: Form.jsx:25 ~ descuentos:DESDE EL STATEEEE", descuentos)
+
 
     // const handleDescuentoChange = (event) => {
     //     // Set the value in React Hook Form
@@ -127,6 +131,7 @@ const Formulario = () => {
                         <option value="">Seleccionar Valor Cuota</option>
 
                         {valorescuota.map((valorcuota) => {
+                            console.log("🚀 ~ file: Form.jsx:133 ~ {valorescuota.map ~ valorcuota: YYYYYY", valorcuota)
                             return (
                                 <option key={valorcuota._id} value={valorcuota.importe}>
                                     {valorcuota.importe}
@@ -135,6 +140,28 @@ const Formulario = () => {
                         })}
                     </select>
                 </div>
+
+                <div>
+                    <label>Porcentaje descuento: </label>
+                    <select
+                        {...register("descuento", {
+                            valueAsNumber: true,
+                        })}
+                    >
+                        <option value="">Seleccionar Descuento</option>
+
+                        {descuentos.map((desc) => {
+                            console.log("🚀 ~ file: Form.jsx:155 ~ {descs.map ~ desc:MIRA EL PORCENTAJEEE", desc)
+
+                            return (
+                                <option key={desc._id} value={desc.porcentaje}>
+                                    {desc.descripcion}
+                                </option>
+                            );
+                        })}
+                    </select>
+                </div>
+
                 {/* <div>
                 <label>Descuento Opcional: </label>
                 <select

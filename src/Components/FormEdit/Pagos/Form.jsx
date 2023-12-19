@@ -64,11 +64,9 @@ const EditPago = () => {
             {selectedPago != null && (
                 <form onSubmit={handleSubmit(onSubmitHandler)}>
                     <h2>Editar datos</h2>
-
                     <div>
-                        <label>Fecha: </label>
-
-                        <input {...register("fecha")} defaultValue={selectedPago?.fecha} />
+                        <label>Dni: </label>
+                        <input {...register("dni")} defaultValue={selectedPago?.dni} />
                     </div>
                     <div>
                         <label>Importe: </label>

@@ -24,6 +24,7 @@ const BodySection = () => {
         if (selectedCuotaRef.current.dni) {
             console.log("🚀 ~ dni actual en useEffect:", selectedCuotaRef.current.dni);
 
+            //ver aca atributo dni ??? se llama usuario
             const usuarioEncontradoCuota = cuotas.find((cuota) => cuota.dni === selectedCuotaRef.current.dni);
             console.log("🚀 ~ usuarioEncontradoCuota en useEffect:", usuarioEncontradoCuota);
 
@@ -95,7 +96,7 @@ const BodySection = () => {
             {acceso === true && selectedSocioRef.current.data && (
                 <div>
                     <h1>ACCESO AUTORIZADO</h1>
-                    <h3>{`Usuario: ${selectedSocioRef.current.data.name} ${selectedSocioRef.current.data.lastname}/  Actividad: ${selectedCuotaRef.current.data.actividad}/  Vencimiento:${selectedCuotaRef.current.data.valor}`}</h3>
+                    <h3>{`Usuario: ${selectedSocioRef.current.data.name} ${selectedSocioRef.current.data.lastname} -  Actividad: ${selectedCuotaRef.current.data.actividad}`}</h3>
                     {/* Otras propiedades del usuario que quieras mostrar */}
                 </div>
             )}
