@@ -64,11 +64,6 @@ const EditRol = () => {
                     <h2>Editar datos</h2>
 
                     <div>
-                        <label>Usuario: </label>
-
-                        <input {...register("usuario")} defaultValue={selectedRol?.usuario} />
-                    </div>
-                    <div>
                         <label>Rol: </label>
                         <input {...register("rol")} defaultValue={selectedRol?.rol} />
                     </div>

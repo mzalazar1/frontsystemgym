@@ -13,6 +13,9 @@ import Logs from "./Screens/PantallaLogs";
 import Roles from "./Screens/Roles";
 import TiposCuotas from "./Screens/TiposCuotas";
 import ValoresCuotas from "./Screens/ValoresCuotas";
+import Descuentos from "./Screens/Descuentos";
+import Asistencias from "./Screens/Asistencias";
+
 // ESTADISTICAS
 import Estadisticas from "./Screens/Estadisticas";
 
@@ -34,6 +37,8 @@ import FormAddLog from './Screens/FormAddLog';
 import FormAddRol from './Screens/FormAddRol';
 import FormEditValorCuota from './Screens/FormEditValorCuota';
 
+import FormAddDescuento from './Screens/FormAddDescuento';
+import FormEditDescuento from './Screens/FormEditDescuento';
 import FormAddMetodoPago from './Screens/FormAddMetodoPago';
 import FormAddProfesor from './Screens/FormAddProfesor';
 import FormEditProfesor from './Screens/FormEditProfesor';
@@ -85,9 +90,11 @@ const RoutesAPP = () => {
                 <Route path="/roles" element={<Roles />} />
                 <Route path="/tiposcuota" element={<TiposCuotas />} />
                 <Route path="/valorescuota" element={<ValoresCuotas />} />
+                <Route path="/descuentos" element={<Descuentos />} />
+                <Route path="/asistencias" element={<Asistencias />} />
 
 
-
+                <Route path="/adddescuento" element={<FormAddDescuento />} />
                 <Route path="/addSocio" element={<FormAddSocio />} />
                 <Route path='/editsocios/:id' element={<FormEditSocio />} />
                 <Route path="/addcuota" element={<FormAddCuota />} />
@@ -101,6 +108,7 @@ const RoutesAPP = () => {
                 <Route path="/editprofesores/:id" element={<FormEditProfesor />} />
                 <Route path="/edittiposcuota/:id" element={<FormEditTipoCuota />} />
                 <Route path="/editlogs/:id" element={<FormEditLog />} />
+                <Route path="/editdescuentos/:id" element={<FormEditDescuento />} />
 
 
                 <Route path="/addtipocuota" element={<FormAddTipoCuota />} />

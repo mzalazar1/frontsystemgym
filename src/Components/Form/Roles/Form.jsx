@@ -52,13 +52,6 @@ const Formulario = () => {
       <h2>Formulario</h2>
       <form onSubmit={handleSubmit(rolHandler)}>
         <div>
-          <label>Usuario: </label>
-          <input {...register("usuario")} />
-          {errors.usuario && (
-            <span className={styles.claseError}>{errors.usuario.message}</span>
-          )}
-        </div>
-        <div>
           <label>Rol: </label>
           <input {...register("rol")} />
           {errors.rol && (

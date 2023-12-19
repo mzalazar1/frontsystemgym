@@ -11,10 +11,11 @@ import { getAuth } from "firebase/auth"
 
 const auth = getAuth(firebaseAapp)
 
-const Rol = () => {
+const Asistencias = () => {
     const [globalFilter, setGlobalFilter] = useState('')
     console.log("🚀 ~ file: index.js:16 ~ Cuotas ~ globalFilter:", globalFilter)
     console.log("🚀 ~ file: index.js:17 ~ Cuotas ~ setGlobalFilter:", setGlobalFilter)
+
 
     return (
         <div>
@@ -29,23 +30,24 @@ const Rol = () => {
                             placeholder="Buscar..."
                         />
                     </div>
-                    <div className={styles.botRol}>
-                        <Link to="/addrol">
-                            <Boton
-                                tipo='rolABM'
-                                texto='Agregar rol' />
+                    <div className={styles.botAsistencia}>
+                        <Link to="/addasistencia">
+                            {/* <Boton
+                                tipo='asistenciaABM'
+                                texto='Agregar asistencia' /> */}
                         </Link>
                     </div>
                     <table>
                         <thead>
                             <tr>
-                                <th className={styles.thDatos}>Rol</th>
-                                <th className={styles.thDatos}>Creación Rol</th>
-                                <th className={styles.thDatos}>Acciones</th>
+                                <th className={styles.thDatos}>Dni</th>
+                                <th className={styles.thDatos}>Nombre</th>
+                                <th className={styles.thDatos}>Apellido</th>
+                                <th className={styles.thDatos}>Fecha</th>
                             </tr>
                         </thead>
 
-                        <Tabla entidad="roles" globalFilter={globalFilter} />
+                        <Tabla entidad="asistencias" globalFilter={globalFilter} />
 
                     </table>
 
@@ -54,7 +56,7 @@ const Rol = () => {
                     <p>Debe iniciar sesión para ingresar a este menú</p>
                     <Link to="/login">
                         <Boton
-                            tipo='editRoles'
+                            tipo='editAsistencia'
                             texto='Iniciar sesión' />
                     </Link>
                 </>
@@ -65,4 +67,4 @@ const Rol = () => {
 
 }
 
-export default Rol;
+export default Asistencias;

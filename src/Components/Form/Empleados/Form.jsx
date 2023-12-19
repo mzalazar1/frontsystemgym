@@ -89,20 +89,22 @@ const Formulario = () => {
             <span className={styles.claseError}>{errors.fechaNac.message}</span>
           )}
         </div>
-        <label>Rol: </label>
-        <select
-          {...register("rol")}
-        >
-          <option value="">Seleccionar Rol</option>
+        <div>
+          <label>Rol: </label>
+          <select
+            {...register("rol")}
+          >
+            <option value="">Seleccionar Rol</option>
 
-          {roles.map((rol) => {
-            return (
-              <option key={rol._id} value={rol.rol}>
-                {rol.rol}
-              </option>
-            );
-          })}
-        </select>
+            {roles.map((rol) => {
+              return (
+                <option key={rol._id} value={rol.rol}>
+                  {rol.rol}
+                </option>
+              );
+            })}
+          </select>
+        </div>
 
         <Boton tipo="empleadoABM" texto="Enviar" />
       </form>

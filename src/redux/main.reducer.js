@@ -18,6 +18,9 @@ const INITIAL_STATE = {
     logs: [],
     pagos: [],
     metodospagos: [],
+    descuentos: [],
+    asistencias: []
+
 };
 
 // en action vienen "action.type" y "action.payload"

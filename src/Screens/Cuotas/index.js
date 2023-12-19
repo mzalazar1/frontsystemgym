@@ -43,6 +43,8 @@ const Cuotas = () => {
                 <th className={styles.thDatos}>Valor</th>
                 <th className={styles.thDatos}>Descuento</th>
                 <th className={styles.thDatos}>Fecha</th>
+                <th className={styles.thDatos}>Estado</th>
+                <th className={styles.thDatos}>Fecha Vencimiento</th>
                 <th className={styles.thDatos}>Acciones</th>
               </tr>
             </thead>

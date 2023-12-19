@@ -17,6 +17,7 @@ const EditEmpleado = () => {
     const [modEditEmpleado, setModEditEmpleado] = useState(false);
     const [modFallaEdit, setModFallaEdit] = useState(false);
     const { register, handleSubmit } = useForm();
+    const { roles } = useSelector((state) => state);
 
     const empleadoDetail = empleados.filter((empleado) => empleado._id.toString() === currentId.id);
 
@@ -98,10 +99,19 @@ const EditEmpleado = () => {
                     </div>
                     <div>
                         <label>Rol: </label>
-                        <input
+                        <select
                             {...register("rol")}
-                            defaultValue={selectedEmpleado?.rol}
-                        />
+                        >
+                            <option value="">Seleccionar Rol</option>
+
+                            {roles.map((rol) => {
+                                return (
+                                    <option key={rol._id} value={rol.rol}>
+                                        {rol.rol}
+                                    </option>
+                                );
+                            })}
+                        </select>
                     </div>
                     <Boton tipo="empleadoABM" texto="Guardar" />
                 </form>

@@ -13,6 +13,10 @@ const BodySection = () => {
     const { socios, cuotas } = useSelector((state) => state); // traigo todo el state
     const selectedSocioRef = useRef({ dni: null, data: null });
     const selectedCuotaRef = useRef({ dni: null, data: null });
+    //manejo de fecha vencimiento
+    const [fechaVenc, setFechaVenc] = useState(null);
+
+
 
     useEffect(() => {
         console.log("🚀 ~ cuotas en useEffect:", cuotas);
@@ -70,7 +74,7 @@ const BodySection = () => {
         }
     };
 
-    console.log("🚀 ~ selectedSocioRef.current fuera de useEffect y onSubmit:", selectedSocioRef.current);
+    console.log("🚀 ~ |", selectedSocioRef.current);
 
     return (
         <div className={styles.cuerpo}>
@@ -96,8 +100,10 @@ const BodySection = () => {
                 </div>
             )}
 
-            {acceso === false && <h1>!!!!!ACCESO DENEGADO!!!!!!</h1>}
-            {acceso === "not found" && <h1>DNI NO ENCONTRADO</h1>}
+            {acceso === false && <h1>!!!!!CUOTA VENCIDA!!!!!!</h1>}
+            {acceso === "dni not found" && <h1>DNI NO ENCONTRADO</h1>}
+            {acceso === "cuota not found" && <h1>CUOTA NO ENCONTRADO</h1>}
+
 
             <h2 className={styles.h2}>
                 Esta aplicación fue desarrollada por Marcos Zalazar para rendir final de Trabajo de campo y Trabajo de Diploma
@@ -112,6 +118,13 @@ const BodySection = () => {
                     <Boton
                         tipo='estadisticas'
                         texto='VER ESTADISTICAS' />
+                </Link>
+            </div>
+            <div className={styles.Estadisticas}>
+                <Link to="/asistencias">
+                    <Boton
+                        tipo='asistencias'
+                        texto='REPORTE ASISTENCIAS' />
                 </Link>
             </div>
         </div>

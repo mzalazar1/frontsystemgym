@@ -18,6 +18,7 @@ const HeaderSection = () => {
         <Link to="/profesores">Profesores</Link>
         <Link to="/tiposcuota">Tipos Cuotas</Link>
         <Link to="/valorescuota">Tarifas</Link>
+        <Link to="/descuentos">Descuentos</Link>
         <Link to="/logs">Logs</Link>
         <Link to="/roles">Roles</Link>
         <Link to="/login">Perfil</Link>

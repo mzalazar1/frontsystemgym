@@ -8,7 +8,7 @@ import Modal from "../Modal/Modal";
 import { useState, Fragment, useEffect } from "react";
 import AuthorizationComponent from './../../redux/authorizationComponent';
 
-const DATES_PROPERTIES = ["updated_at"];
+const DATES_PROPERTIES = ["updated_at", "id"];
 
 const transformDate = (date) => {
 
@@ -83,7 +83,7 @@ const Tabla = ({ entidad, globalFilter }) => {
                   </td>
                 )
             )}
-            {entidad !== 'logs' && (
+            {entidad !== 'logs' && entidad !== 'asistencias' && (
               <td key={stateValueIndex + "td"} className={styles.tdBotones}>
                 <Fragment>
                   <Link to={`/edit${entidad}/${element._id}`}>

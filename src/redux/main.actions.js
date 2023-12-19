@@ -53,16 +53,21 @@ export const POST = (path, payload) => async (dispatch) => {
       },
       body: JSON.stringify({ ...payload }),
     }).then((respuesta) => {
+      console.log("🚀 ~ file: main.actions.js:56 ~ POST ~ respuesta:", respuesta)
       if (respuesta.ok) {
-        dispatch({
-          type: ADD_STATE,
-          payload: payload,
-          path: path
-        });
-      } else {
-        console.log("fallo la subida");
+        return respuesta.json()
       }
     })
+      .then((respuesta) => {
+        console.log("🚀 ~ file: main.actions.js:62 ~ POST ~ respuesta:", respuesta)
+
+        dispatch({
+          type: ADD_STATE,
+          payload: respuesta,
+          path: path
+        });
+
+      })
   } catch (error) {
     console.log(error)
   }
