@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const HeaderSection = () => {
   return (
     <div className={styles.cabecera}>
-      <p className={styles.titulo}>Aplicación Final TC - TD SystemGym</p>
+      <p className={styles.titulo}>Aplicación Final SAP - TFI SystemGym</p>
       <div className={styles.navegacion}>
         <Link to="/">Home</Link>
         <Link to="/socios">Socios</Link>

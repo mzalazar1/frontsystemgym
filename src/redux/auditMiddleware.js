@@ -1,7 +1,7 @@
 // auditMiddleware.js
 import axios from "axios";
 
-const backendURL = "http://localhost:6001/api/logs"; // Reemplaza con la URL correcta de tu backend
+const backendURL = "https://backsystemgym.vercel.app/api/logs"; // Reemplaza con la URL correcta de tu backend
 
 const auditMiddleware = (store) => (next) => (action) => {
   if (action.type === "ADD_STATE") {
